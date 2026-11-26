@@ -4,12 +4,12 @@ import type { WordTiming } from '../../engine/timeline';
 import { splitDirection } from '../../script/script';
 
 const NAMES = { callum: 'Callum', agent: 'Claude' } as const;
-const MAX_WORDS = 9;
+// About two lines at caption size. Chunks are built to fit, so the two-line clamp never hides a word.
+const MAX_WORDS = 20;
 
 /**
- * Splits a line into short phrases, the way live captions do, so only a few words are on screen at once.
- * Sentences stay whole when they fit; longer ones are cut into even pieces, at a comma where there is one nearby.
- * Very short sentences ("Honestly?") join their neighbour so nothing flashes up on its own.
+ * Splits a line into caption-sized chunks of at most two lines, the way live captions page through speech.
+ * Whole sentences are grouped while they fit; a longer one is cut into even pieces, at a comma where there is one nearby.
  */
 function phrases(words: WordTiming[]): number[][] {
   const sentences: number[][] = [];
@@ -26,7 +26,7 @@ function phrases(words: WordTiming[]): number[][] {
   const merged: number[][] = [];
   for (const sentence of sentences) {
     const prev = merged[merged.length - 1];
-    if (prev && (prev.length < 3 || (prev.length + sentence.length <= MAX_WORDS && (prev.length < 4 || sentence.length < 3)))) prev.push(...sentence);
+    if (prev && prev.length + sentence.length <= MAX_WORDS) prev.push(...sentence);
     else merged.push([...sentence]);
   }
 

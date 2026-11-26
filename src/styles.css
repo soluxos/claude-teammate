@@ -2664,29 +2664,12 @@ button:focus-visible {
   color: #6a737d;
 }
 
-/* Captions: one short phrase at a time, sized to its words, so they read as captions rather than paragraphs. */
-.captions {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  width: max-content;
-  max-width: min(600px, calc(100% - 80px));
-  padding: 7px 14px 8px;
-  border-radius: 10px;
-  text-align: left;
-}
-.captions .caption-name {
-  flex: none;
-  font-size: 12px;
-}
+/* Captions: name above, at most two lines of speech below. */
 .captions p {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 21px;
-}
-.captions .now {
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1.5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Speaker badges hold a drawn mark, centred exactly. */

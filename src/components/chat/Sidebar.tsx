@@ -44,7 +44,7 @@ export function Sidebar() {
         Teammate sessions <Icon name="chevron" size={14} />
       </div>
       <ul>
-        {view === 'record' && <li className="selected">{session.title}</li>}
+        {(view === 'record' || view === 'outro') && <li className="selected">{session.title}</li>}
         <li>Checkout flow review</li>
       </ul>
       <div className="sb-label">

@@ -14,6 +14,7 @@ import { Captions } from './components/session/Captions';
 import { ActivityChips } from './components/session/ActivityChips';
 import { ShareOverlay } from './components/session/ShareOverlay';
 import { StartScreen } from './components/StartScreen';
+import { Outro } from './components/Outro';
 import { TourPointer } from './components/TourPointer';
 import { NewPage, TeammatePage } from './components/chat/Pages';
 
@@ -91,7 +92,9 @@ function GoalBar() {
 }
 
 function Shell() {
-  const view = useSnap().state.view;
+  const shown = useSnap().state.view;
+  // The outro sits over the decision record, so Claude's interface underneath stays on the record.
+  const view = shown === 'outro' ? 'record' : shown;
   return (
     <div className="app" data-view={view}>
       <PlaybackBar />
@@ -115,6 +118,7 @@ function Shell() {
         <div className="concept-label">Concept prototype</div>
       </div>
       <StartScreen />
+      <Outro />
     </div>
   );
 }

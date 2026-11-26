@@ -5,8 +5,9 @@
 import { harborNav, relayNav } from './layouts';
 
 export type Speaker = 'callum' | 'agent';
-/** new: Claude's New page. teammate: the Teammate page. session: the live call. record: the chat it ends in. */
-export type View = 'new' | 'teammate' | 'session' | 'record';
+/** new: Claude's New page. teammate: the Teammate page. session: the live call. record: the chat it ends in.
+ *  outro: the prototype's closing screen, outside Claude, over the record. */
+export type View = 'new' | 'teammate' | 'session' | 'record' | 'outro';
 
 export type At =
   | { word: string; occurrence?: number; plus?: number } // nth occurrence of a word in the line, plus seconds
@@ -64,7 +65,7 @@ export type Segment = Line | Beat;
 export const DEFAULT_GAP = 0.3;
 export const WORDS_PER_MINUTE = 165;
 
-export const sceneNames = ['Opening Teammate', 'Briefing', 'Working in parallel', 'Disagreement', 'Building the third option', 'Decision record'];
+export const sceneNames = ['Opening Teammate', 'Briefing', 'Working in parallel', 'Disagreement', 'Building the third option', 'Decision record', 'Beyond this session'];
 
 /** Leading "(pause)" style parentheticals are direction, not speech. */
 export function splitDirection(text: string): { direction: string | null; spoken: string } {
@@ -609,6 +610,9 @@ export const script: Segment[] = [
 
   // Scene 5: Decision record (text). Content and timing live in `record` above.
   { kind: 'beat', id: 's5-record', scene: 5, duration: record.timing.duration, events: [at(0, { type: 'view', to: 'record' })] },
+
+  // Scene 6: the closing screen. It stays up once the timeline ends.
+  { kind: 'beat', id: 's6-outro', scene: 6, duration: 1.2, events: [at(0, { type: 'view', to: 'outro' })] },
 ];
 
 export const lines = script.filter((s): s is Line => s.kind === 'line');

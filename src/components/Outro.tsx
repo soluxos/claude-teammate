@@ -29,7 +29,7 @@ export function Outro() {
   const open = state.view === 'outro';
   const backToRecord = () => {
     player.pause();
-    player.seek(player.timeline.starts['s5-record'] + record.timing.replay);
+    player.seek(player.timeline.starts['s5-record'] + record.timing.actions);
   };
   return (
     <AnimatePresence>
@@ -53,7 +53,7 @@ export function Outro() {
               ))}
             </dl>
             <div className="start-go">
-              <button onClick={() => player.restart()}>Replay</button>
+              <button onClick={() => player.reset()}>Take me to the beginning</button>
               <button className="start-secondary" onClick={backToRecord}>
                 Back to the decision record
               </button>

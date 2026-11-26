@@ -44,17 +44,14 @@ export function ChatView() {
                     {record.saved}
                   </div>
                 )}
-                {local >= r.replay && (
+                {local >= r.actions && (
                   <div className="record-actions">
                     <button className="btn-secondary" onClick={() => setShowTranscript((v) => !v)} aria-expanded={showTranscript}>
                       {showTranscript ? 'Hide transcript' : 'Read the transcript'}
                     </button>
-                    <button className="btn-secondary" onClick={() => player.restart()}>
-                      Replay
-                    </button>
                   </div>
                 )}
-                {local >= r.replay && showTranscript && (
+                {local >= r.actions && showTranscript && (
                   <div className="record-transcript">
                     <div className="record-transcript-head">Transcript · click any line to jump back to that moment</div>
                     <Transcript all />

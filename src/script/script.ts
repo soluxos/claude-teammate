@@ -108,7 +108,8 @@ export const record = {
   ],
   saved: 'Saved to project memory',
   // seconds from the start of scene 5
-  timing: { streamStart: 0.8, streamEnd: 7.0, saved: 7.6, replay: 8.0, duration: 8.8 },
+  // The record stays up for about five seconds once it is saved, so it can be read before the closing screen.
+  timing: { streamStart: 0.8, streamEnd: 7.0, saved: 7.6, actions: 8.0, duration: 13 },
 };
 
 // ── Authoring helpers ────────────────────────────────────────────────────────

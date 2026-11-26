@@ -220,6 +220,12 @@ export class Player {
   toggle() {
     this.snapshot.playing ? this.pause() : this.play();
   }
+  /** Back to the very start: stopped at zero, with the start screen showing again. */
+  reset() {
+    this.pause();
+    this.seek(0);
+    this.set({ fresh: true });
+  }
   /** Also the join button: the gesture that unlocks audio. */
   restart() {
     this.seek(0);

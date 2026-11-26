@@ -1,5 +1,5 @@
 // Audio queue, analyser and alignment lookups.
-// One <audio> element is reused for every line so a single user gesture unlocks it in every browser.
+// Two <audio> elements are reused for every line, so a single user gesture unlocks sound in every browser.
 
 import audioIndex from 'virtual:audio-index';
 import { spokenWords, type Line } from '../script/script';
@@ -31,13 +31,13 @@ async function fetchWords(url: string): Promise<{ duration?: number; words: Word
   }
 }
 
+type Channel = { el: HTMLAudioElement; analyser: AnalyserNode; samples: Uint8Array<ArrayBuffer>; id: string | null };
+
 export class AudioEngine implements ClockSource {
   private ctx: AudioContext | null = null;
-  private el: HTMLAudioElement | null = null;
-  private analyser: AnalyserNode | null = null;
-  private samples = new Uint8Array(512);
+  // Two channels, used by alternate lines, so an interrupting line can sound over the one it cuts off.
+  private channels: Channel[] = [];
   private urls: Record<string, string> = {};
-  private currentId: string | null = null;
   private unlocked = false;
   /** 'none' | 'partial' | 'full' once load() has run. */
   coverage: 'none' | 'partial' | 'full' = 'none';
@@ -65,6 +65,9 @@ export class AudioEngine implements ClockSource {
         const aligned = hasJson ? await fetchWords(`${dir}${line.id}.json`) : null;
         // Alignment must match the script's words one for one, or word anchors would drift.
         const usable = aligned && aligned.words.length === spokenWords(line.text).length;
+        // A line ends shortly after its last word, so trailing silence in the file costs no time
+        // and an interruption lands on speech.
+        if (usable) duration = Math.min(duration, aligned.words[aligned.words.length - 1].end + 0.2);
         timings[line.id] = usable
           ? { duration, words: aligned.words, hasAudio: true }
           : { ...estimateTiming(line.text, duration), hasAudio: true };
@@ -80,37 +83,51 @@ export class AudioEngine implements ClockSource {
     try {
       if (!this.ctx) {
         const Ctx = window.AudioContext ?? (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        this.ctx = new Ctx();
-        this.el = new Audio();
-        this.el.preload = 'auto';
-        this.analyser = this.ctx.createAnalyser();
-        this.analyser.fftSize = 512;
-        this.ctx.createMediaElementSource(this.el).connect(this.analyser);
-        this.analyser.connect(this.ctx.destination);
+        const ctx = (this.ctx = new Ctx());
+        this.channels = [0, 1].map(() => {
+          const el = new Audio();
+          el.preload = 'auto';
+          const analyser = ctx.createAnalyser();
+          analyser.fftSize = 512;
+          ctx.createMediaElementSource(el).connect(analyser);
+          analyser.connect(ctx.destination);
+          return { el, analyser, samples: new Uint8Array(512), id: null };
+        });
       }
       if (this.ctx.state !== 'running') void this.ctx.resume().then(() => (this.unlocked = true)).catch(() => {});
       else this.unlocked = true;
-      if (this.el && !this.currentId) {
-        this.el.src = SILENCE;
-        this.el.play().catch(() => {});
+      // Playing each element once inside the gesture lets it play later without one.
+      for (const ch of this.channels) {
+        if (ch.id) continue;
+        ch.el.src = SILENCE;
+        ch.el.play().catch(() => {});
       }
     } catch {
       // No audio support: the performance runs on estimated timing.
     }
   }
 
-  sync(line: BuiltLine | null, t: number, playing: boolean, speed: number): number | null {
-    const { el } = this;
-    if (!el) return null;
+  sync(lines: BuiltLine[], t: number, playing: boolean, speed: number): number | null {
+    let master: number | null = null;
+    this.channels.forEach((ch, i) => {
+      const line = lines.filter((l) => l.index % 2 === i).pop() ?? null;
+      const now = this.syncChannel(ch, line, t, playing, speed);
+      if (line && line === lines[lines.length - 1]) master = now;
+    });
+    return master;
+  }
+
+  private syncChannel(ch: Channel, line: BuiltLine | null, t: number, playing: boolean, speed: number): number | null {
+    const { el } = ch;
     const url = line ? this.urls[line.line.id] : undefined;
     if (!playing || !line || !url || !this.unlocked) {
       if (!el.paused) el.pause();
-      if (!line || !url) this.currentId = null;
+      if (!line || !url) ch.id = null;
       return null;
     }
     const local = t - line.start;
-    if (this.currentId !== line.line.id) {
-      this.currentId = line.line.id;
+    if (ch.id !== line.line.id) {
+      ch.id = line.line.id;
       el.src = url;
       el.currentTime = local;
       el.playbackRate = speed;
@@ -131,13 +148,14 @@ export class AudioEngine implements ClockSource {
     return el.readyState >= 3 ? line.start + el.currentTime : null;
   }
 
-  /** Current loudness of the playing line, 0 to 1, or null when no real audio is sounding. */
-  level(): number | null {
-    if (!this.analyser || !this.el || this.el.paused || !this.currentId) return null;
-    this.analyser.getByteTimeDomainData(this.samples);
+  /** Current loudness of a line, 0 to 1, or null when its audio is not actually sounding. */
+  level(line: BuiltLine): number | null {
+    const ch = this.channels[line.index % 2];
+    if (!ch || ch.id !== line.line.id || ch.el.paused) return null;
+    ch.analyser.getByteTimeDomainData(ch.samples);
     let sum = 0;
-    for (const v of this.samples) sum += ((v - 128) / 128) ** 2;
-    return Math.min(1, Math.sqrt(sum / this.samples.length) * 5);
+    for (const v of ch.samples) sum += ((v - 128) / 128) ** 2;
+    return Math.min(1, Math.sqrt(sum / ch.samples.length) * 5);
   }
 }
 

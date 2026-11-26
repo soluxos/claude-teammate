@@ -1,172 +1,172 @@
 {
  "id": "s3-04",
  "text": "But I'm keeping one part. Every suite I looked at has one account area, even the four that keep their products apart. And our own decision log says Billing is already one system.",
- "duration": 10.867,
+ "duration": 12.167,
  "words": [
   {
    "word": "But",
    "start": 0,
-   "end": 0.221
+   "end": 0.186
   },
   {
    "word": "I'm",
-   "start": 0.255,
-   "end": 0.372
+   "start": 0.221,
+   "end": 0.313
   },
   {
    "word": "keeping",
-   "start": 0.441,
-   "end": 0.72
+   "start": 0.383,
+   "end": 0.685
   },
   {
    "word": "one",
-   "start": 0.836,
-   "end": 1.08
+   "start": 0.755,
+   "end": 0.917
   },
   {
    "word": "part.",
-   "start": 1.138,
-   "end": 1.474
+   "start": 0.975,
+   "end": 1.463
   },
   {
    "word": "Every",
-   "start": 1.533,
-   "end": 1.834
+   "start": 2.02,
+   "end": 2.322
   },
   {
    "word": "suite",
-   "start": 1.892,
-   "end": 2.159
+   "start": 2.392,
+   "end": 2.694
   },
   {
    "word": "I",
-   "start": 2.206,
-   "end": 2.229
+   "start": 2.728,
+   "end": 2.752
   },
   {
    "word": "looked",
-   "start": 2.31,
-   "end": 2.566
+   "start": 2.81,
+   "end": 3.019
   },
   {
    "word": "at",
-   "start": 2.624,
-   "end": 2.786
+   "start": 3.065,
+   "end": 3.228
   },
   {
    "word": "has",
-   "start": 3.181,
-   "end": 3.367
+   "start": 3.634,
+   "end": 3.82
   },
   {
    "word": "one",
-   "start": 3.483,
-   "end": 3.704
+   "start": 3.924,
+   "end": 4.098
   },
   {
    "word": "account",
-   "start": 3.727,
-   "end": 4.052
+   "start": 4.122,
+   "end": 4.458
   },
   {
    "word": "area,",
-   "start": 4.122,
-   "end": 4.656
+   "start": 4.516,
+   "end": 4.992
   },
   {
    "word": "even",
-   "start": 4.911,
-   "end": 5.155
-  },
-  {
-   "word": "the",
-   "start": 5.19,
-   "end": 5.259
-  },
-  {
-   "word": "four",
-   "start": 5.329,
-   "end": 5.526
-  },
-  {
-   "word": "that",
-   "start": 5.584,
+   "start": 5.399,
    "end": 5.677
   },
   {
-   "word": "keep",
+   "word": "the",
    "start": 5.724,
-   "end": 5.875
+   "end": 5.793
+  },
+  {
+   "word": "four",
+   "start": 5.863,
+   "end": 6.13
+  },
+  {
+   "word": "that",
+   "start": 6.188,
+   "end": 6.293
+  },
+  {
+   "word": "keep",
+   "start": 6.339,
+   "end": 6.49
   },
   {
    "word": "their",
-   "start": 5.921,
-   "end": 6.037
+   "start": 6.536,
+   "end": 6.653
   },
   {
    "word": "products",
-   "start": 6.072,
-   "end": 6.444
+   "start": 6.687,
+   "end": 6.978
   },
   {
    "word": "apart.",
-   "start": 6.478,
-   "end": 6.989
+   "start": 7.012,
+   "end": 7.488
   },
   {
    "word": "And",
-   "start": 7.384,
-   "end": 7.558
+   "start": 8.243,
+   "end": 8.382
   },
   {
    "word": "our",
-   "start": 7.616,
-   "end": 7.744
+   "start": 8.44,
+   "end": 8.545
   },
   {
    "word": "own",
-   "start": 7.814,
-   "end": 7.988
+   "start": 8.591,
+   "end": 8.696
   },
   {
    "word": "decision",
-   "start": 8.034,
-   "end": 8.406
+   "start": 8.731,
+   "end": 9.125
   },
   {
    "word": "log",
-   "start": 8.464,
-   "end": 8.638
+   "start": 9.183,
+   "end": 9.404
   },
   {
    "word": "says",
-   "start": 8.707,
-   "end": 8.893
+   "start": 9.706,
+   "end": 9.915
   },
   {
    "word": "Billing",
-   "start": 8.975,
-   "end": 9.276
+   "start": 9.996,
+   "end": 10.298
   },
   {
    "word": "is",
-   "start": 9.334,
-   "end": 9.416
+   "start": 10.344,
+   "end": 10.414
   },
   {
    "word": "already",
-   "start": 9.474,
-   "end": 9.776
+   "start": 10.461,
+   "end": 10.762
   },
   {
    "word": "one",
-   "start": 9.845,
-   "end": 10.019
+   "start": 10.832,
+   "end": 10.995
   },
   {
    "word": "system.",
-   "start": 10.066,
-   "end": 10.867
+   "start": 11.029,
+   "end": 12.167
   }
  ]
 }

@@ -12,6 +12,7 @@ import { Canvas } from './components/session/Canvas';
 import { CallBar } from './components/session/CallBar';
 import { Captions } from './components/session/Captions';
 import { ActivityChips } from './components/session/ActivityChips';
+import { JoinOverlay } from './components/session/JoinOverlay';
 
 export function App() {
   const [ctx, setCtx] = useState<{ player: Player; audio: AudioEngine } | null>(null);
@@ -24,7 +25,6 @@ export function App() {
       if (cancelled) return;
       player = new Player(buildTimeline(script, timings), audio);
       player.start();
-      player.play(); // scene 0 is text only, so it can start without a gesture
       if (import.meta.env.DEV) (window as unknown as { __player: Player }).__player = player; // for timing passes
       setCtx({ player, audio });
     });
@@ -40,8 +40,7 @@ export function App() {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (e.code === 'Space') {
         e.preventDefault();
-        if (ctx.player.snapshot.atGate) ctx.player.startSession();
-        else ctx.player.toggle();
+        ctx.player.toggle();
       } else if (e.code === 'ArrowRight') ctx.player.jumpScene(1);
       else if (e.code === 'ArrowLeft') ctx.player.jumpScene(-1);
     };
@@ -91,6 +90,7 @@ function Shell() {
           <ActivityChips />
           <Captions />
           <CallBar />
+          <JoinOverlay />
         </div>
         <div className="concept-label">Concept prototype</div>
       </div>

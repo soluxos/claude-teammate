@@ -15,7 +15,7 @@ export type WordTiming = { word: string; start: number; end: number }; // second
 export type LineTiming = { duration: number; words: WordTiming[]; hasAudio: boolean };
 
 export type BuiltSegment = { seg: Segment; start: number; end: number };
-export type BuiltLine = { line: Line; start: number; end: number; words: WordTiming[]; hasAudio: boolean };
+export type BuiltLine = { line: Line; index: number; start: number; end: number; words: WordTiming[]; hasAudio: boolean };
 
 export type Timeline = {
   segments: BuiltSegment[];
@@ -23,7 +23,6 @@ export type Timeline = {
   prims: TimedPrim[];
   scenes: { index: number; name: string; start: number }[];
   starts: Record<string, number>; // segment id -> absolute start
-  gate: number; // start of scene 1: playback waits here for "Start working session"
   total: number;
 };
 
@@ -72,10 +71,11 @@ export function buildTimeline(script: Segment[], timings: Record<string, LineTim
     const sceneStart = clock;
     if (seg.kind === 'line') {
       const timing = timings[seg.id] ?? estimateTiming(seg.text);
-      start = clock + (seg.gapBefore ?? DEFAULT_GAP);
+      // A negative gap starts this line over the end of the previous one: an interruption.
+      start = Math.max(0, clock + (seg.gapBefore ?? DEFAULT_GAP));
       end = start + timing.duration;
       words = timing.words;
-      lines.push({ line: seg, start, end, words, hasAudio: timing.hasAudio });
+      lines.push({ line: seg, index: lines.length, start, end, words, hasAudio: timing.hasAudio });
     } else {
       start = clock;
       end = start + seg.duration;
@@ -90,7 +90,7 @@ export function buildTimeline(script: Segment[], timings: Record<string, LineTim
     clock = end;
   }
   prims.sort((a, b) => a.t - b.t || a.seq - b.seq);
-  return { segments, lines, prims, scenes, starts, gate: scenes[1]?.start ?? 0, total: clock };
+  return { segments, lines, prims, scenes, starts, total: clock };
 }
 
 /** Canvas state at time t: reset, then replay every primitive up to t. */
@@ -107,17 +107,16 @@ export type Snapshot = {
   speed: number;
   instant: boolean; // true right after a seek: render without animating
   captions: boolean;
-  atGate: boolean;
+  fresh: boolean; // nothing has played yet: show the join screen
   ended: boolean;
 };
 
 export interface ClockSource {
-  /** Called every frame. Returns the audio's idea of "now" for the line, if it is actually playing. */
-  sync(line: BuiltLine | null, t: number, playing: boolean, speed: number): number | null;
+  /** Called every frame with the lines sounding now (two while one speaker interrupts the other).
+   *  Returns the audio's idea of "now" for the newest line, if it is actually playing. */
+  sync(lines: BuiltLine[], t: number, playing: boolean, speed: number): number | null;
   unlock(): void;
 }
-
-const GATE_EPS = 0.02;
 
 export class Player {
   t = 0;
@@ -132,7 +131,7 @@ export class Player {
     public timeline: Timeline,
     private audio: ClockSource,
   ) {
-    this.snapshot = { state: initialState(), playing: false, speed: 1, instant: true, captions: true, atGate: false, ended: false };
+    this.snapshot = { state: initialState(), playing: false, speed: 1, instant: true, captions: true, fresh: true, ended: false };
     this.seek(0);
   }
 
@@ -146,7 +145,7 @@ export class Player {
   }
   stop() {
     cancelAnimationFrame(this.raf);
-    this.audio.sync(null, this.t, false, 1);
+    this.audio.sync([], this.t, false, 1);
   }
 
   subscribeTime = (fn: () => void) => (this.timeSubs.add(fn), () => void this.timeSubs.delete(fn));
@@ -159,12 +158,12 @@ export class Player {
     this.snapSubs.forEach((fn) => fn());
   }
   private flags() {
-    const gate = this.timeline.gate;
-    return { atGate: Math.abs(this.t - (gate - GATE_EPS)) < 1e-6, ended: this.t >= this.timeline.total };
+    return { ended: this.t >= this.timeline.total };
   }
 
-  lineAt(t: number): BuiltLine | null {
-    return this.timeline.lines.find((l) => t >= l.start && t < l.end) ?? null;
+  /** Lines sounding at t, oldest first. */
+  linesAt(t: number, hold = 0): BuiltLine[] {
+    return this.timeline.lines.filter((l) => t >= l.start && t < l.end + hold);
   }
   sceneAt(t: number) {
     const scenes = this.timeline.scenes;
@@ -177,20 +176,14 @@ export class Player {
     const dt = Math.min(0.1, (now - this.last) / 1000);
     this.last = now;
     const { playing, speed, state } = this.snapshot;
-    const line = this.lineAt(this.t);
-    const audioNow = this.audio.sync(line, this.t, playing, speed);
+    const audioNow = this.audio.sync(this.linesAt(this.t), this.t, playing, speed);
     if (!playing) return;
 
     let next = this.t + dt * speed;
     // Audio is the master clock while a line is sounding: lean towards it.
     if (audioNow !== null && Math.abs(audioNow - next) < 0.3) next += (audioNow - next) * 0.2;
 
-    const gate = this.timeline.gate - GATE_EPS;
     let stop = false;
-    if (this.t < gate && next >= gate) {
-      next = gate; // wait for "Start working session"
-      stop = true;
-    }
     if (next >= this.timeline.total) {
       next = this.timeline.total;
       stop = true;
@@ -216,7 +209,7 @@ export class Player {
     this.audio.unlock();
     if (this.t >= this.timeline.total) this.seek(0);
     this.last = performance.now();
-    this.set({ playing: true, ...this.flags() });
+    this.set({ playing: true, fresh: false, ...this.flags() });
   }
   pause() {
     this.set({ playing: false });
@@ -224,14 +217,9 @@ export class Player {
   toggle() {
     this.snapshot.playing ? this.pause() : this.play();
   }
+  /** Also the join button: the gesture that unlocks audio. */
   restart() {
     this.seek(0);
-    this.play();
-  }
-  /** The "Start working session" button: the gesture that unlocks audio. */
-  startSession() {
-    this.audio.unlock();
-    this.seek(this.timeline.gate);
     this.play();
   }
   setSpeed(speed: number) {

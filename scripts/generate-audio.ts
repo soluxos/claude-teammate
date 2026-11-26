@@ -31,9 +31,10 @@ const voices: Record<Speaker, string | undefined> = {
 };
 
 // Colleagues, not presenters: moderate stability keeps delivery natural and a little informal.
+// Speed is nudged up so the whole performance stays under four minutes with these voices.
 const baseSettings: Record<Speaker, Required<VoiceSettings>> = {
-  agent: { stability: 0.5, similarity_boost: 0.75, style: 0, speed: 0.97 },
-  callum: { stability: 0.45, similarity_boost: 0.75, style: 0.1, speed: 1 },
+  agent: { stability: 0.5, similarity_boost: 0.75, style: 0, speed: 1.08 },
+  callum: { stability: 0.45, similarity_boost: 0.75, style: 0.1, speed: 1.15 },
 };
 
 type Alignment = { characters: string[]; character_start_times_seconds: number[]; character_end_times_seconds: number[] };

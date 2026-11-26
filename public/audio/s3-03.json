@@ -1,132 +1,132 @@
 {
  "id": "s3-03",
  "text": "I didn't have that, and it changes my view. If they're different people, grouping by job puts two audiences in one menu. I'll drop Measure.",
- "duration": 10.356,
+ "duration": 10.403,
  "words": [
   {
    "word": "I",
    "start": 0,
-   "end": 0.07
+   "end": 0.093
   },
   {
    "word": "didn't",
-   "start": 0.128,
-   "end": 0.337
+   "start": 0.163,
+   "end": 0.383
   },
   {
    "word": "have",
-   "start": 0.383,
-   "end": 0.557
+   "start": 0.441,
+   "end": 0.615
   },
   {
    "word": "that,",
-   "start": 0.592,
-   "end": 0.778
+   "start": 0.65,
+   "end": 1.033
   },
   {
    "word": "and",
-   "start": 0.801,
-   "end": 0.882
+   "start": 1.196,
+   "end": 1.335
   },
   {
    "word": "it",
-   "start": 0.929,
-   "end": 0.987
+   "start": 1.393,
+   "end": 1.463
   },
   {
    "word": "changes",
-   "start": 1.022,
-   "end": 1.37
+   "start": 1.509,
+   "end": 1.892
   },
   {
    "word": "my",
-   "start": 1.428,
-   "end": 1.521
+   "start": 1.95,
+   "end": 2.032
   },
   {
    "word": "view.",
-   "start": 1.602,
-   "end": 2.136
+   "start": 2.101,
+   "end": 2.543
   },
   {
    "word": "If",
-   "start": 2.473,
-   "end": 2.624
+   "start": 3.297,
+   "end": 3.425
   },
   {
    "word": "they're",
-   "start": 2.659,
-   "end": 2.856
+   "start": 3.46,
+   "end": 3.657
   },
   {
    "word": "different",
-   "start": 2.879,
-   "end": 3.274
+   "start": 3.68,
+   "end": 4.005
   },
   {
    "word": "people,",
-   "start": 3.32,
-   "end": 4.168
+   "start": 4.052,
+   "end": 4.551
   },
   {
    "word": "grouping",
-   "start": 4.69,
-   "end": 5.178
+   "start": 4.807,
+   "end": 5.201
   },
   {
    "word": "by",
-   "start": 5.248,
+   "start": 5.259,
    "end": 5.375
   },
   {
    "word": "job",
-   "start": 5.457,
-   "end": 5.724
+   "start": 5.445,
+   "end": 5.654
   },
   {
    "word": "puts",
-   "start": 5.805,
-   "end": 6.072
+   "start": 5.724,
+   "end": 5.956
   },
   {
    "word": "two",
-   "start": 6.153,
-   "end": 6.374
+   "start": 6.014,
+   "end": 6.2
   },
   {
    "word": "audiences",
-   "start": 6.455,
-   "end": 7.012
+   "start": 6.269,
+   "end": 6.745
   },
   {
    "word": "in",
-   "start": 7.07,
-   "end": 7.152
+   "start": 6.803,
+   "end": 6.873
   },
   {
    "word": "one",
-   "start": 7.268,
-   "end": 7.523
+   "start": 6.954,
+   "end": 7.105
   },
   {
    "word": "menu.",
-   "start": 7.581,
-   "end": 8.324
+   "start": 7.152,
+   "end": 7.686
   },
   {
    "word": "I'll",
-   "start": 8.777,
-   "end": 8.998
+   "start": 8.568,
+   "end": 8.754
   },
   {
    "word": "drop",
-   "start": 9.044,
-   "end": 9.265
+   "start": 8.789,
+   "end": 8.975
   },
   {
    "word": "Measure.",
-   "start": 9.334,
-   "end": 10.356
+   "start": 9.044,
+   "end": 10.403
   }
  ]
 }

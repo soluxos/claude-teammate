@@ -10,7 +10,7 @@ import path from 'node:path';
 function audioIndex(): Plugin {
   const vid = 'virtual:audio-index';
   const rid = '\0' + vid;
-  const dir = path.resolve(__dirname, 'public/audio');
+  const dir = path.resolve(import.meta.dirname, 'public/audio');
   const list = (d: string, ext: string) =>
     fs.existsSync(d)
       ? fs.readdirSync(d).filter((f) => f.endsWith(ext) && f !== 'manifest.json').map((f) => f.slice(0, -ext.length))

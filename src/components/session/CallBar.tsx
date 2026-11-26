@@ -12,16 +12,16 @@ export function CallBar() {
   const audio = useAudio();
   const t = useTime();
   const { captions, playing } = useSnap();
-  const line = player.lineAt(t);
-  // Real loudness from the analyser when audio is sounding, otherwise a synthetic envelope.
-  const level = line && playing ? (audio.level() ?? syntheticLevel(line, t)) : 0;
-  const tl = player.timeline;
-  const elapsed = Math.min(t, tl.starts['s5-record']) - tl.gate;
+  const lines = player.linesAt(t); // two while one speaker is interrupting the other
+  const elapsed = Math.min(t, player.timeline.starts['s5-record']);
 
   return (
     <div className="callbar">
       {people.map((p) => {
-        const speaking = line?.line.speaker === p.who;
+        const line = lines.filter((l) => l.line.speaker === p.who).pop();
+        const speaking = !!line;
+        // Real loudness from the analyser when audio is sounding, otherwise a synthetic envelope.
+        const level = line && playing ? (audio.level(line) ?? syntheticLevel(line, t)) : 0;
         return (
           <div key={p.who} className={`participant ${p.who}`} data-speaking={speaking}>
             <span className="avatar-ring" style={{ boxShadow: `0 0 0 ${speaking ? 2 + level * 7 : 0}px var(--ring)` }}>

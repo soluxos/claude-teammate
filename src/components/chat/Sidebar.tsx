@@ -1,7 +1,7 @@
-import { chat } from '../../script/script';
+import { session } from '../../script/script';
 import { Mark } from '../Mark';
 
-const recents = [chat.title, 'Onboarding checklist copy', 'Research synthesis, round two', 'Empty states audit', 'Pricing page critique', 'Icon naming conventions'];
+const recents = [session.title, 'Onboarding checklist copy', 'Research synthesis, round two', 'Empty states audit', 'Pricing page critique', 'Icon naming conventions'];
 
 export function Sidebar() {
   return (

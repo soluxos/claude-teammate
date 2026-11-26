@@ -1,0 +1,57 @@
+{
+ "id": "s1-06",
+ "text": "Good. I'll take the right side. Give me a minute.",
+ "duration": 4.04,
+ "words": [
+  {
+   "word": "Good.",
+   "start": 0,
+   "end": 0.499
+  },
+  {
+   "word": "I'll",
+   "start": 1.057,
+   "end": 1.242
+  },
+  {
+   "word": "take",
+   "start": 1.277,
+   "end": 1.428
+  },
+  {
+   "word": "the",
+   "start": 1.451,
+   "end": 1.521
+  },
+  {
+   "word": "right",
+   "start": 1.556,
+   "end": 1.73
+  },
+  {
+   "word": "side.",
+   "start": 1.765,
+   "end": 2.194
+  },
+  {
+   "word": "Give",
+   "start": 3.077,
+   "end": 3.286
+  },
+  {
+   "word": "me",
+   "start": 3.32,
+   "end": 3.39
+  },
+  {
+   "word": "a",
+   "start": 3.425,
+   "end": 3.448
+  },
+  {
+   "word": "minute.",
+   "start": 3.495,
+   "end": 4.04
+  }
+ ]
+}

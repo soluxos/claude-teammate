@@ -414,10 +414,10 @@ button:focus-visible {
   }
 }
 .session-chip {
+  align-self: center;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 18px;
   padding: 7px 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
@@ -582,9 +582,6 @@ button:focus-visible {
   font-size: 11px;
   color: var(--ink-muted);
 }
-.record-msg {
-  min-height: calc(100vh - 230px); /* room to scroll the record to the top */
-}
 .saved-line {
   display: flex;
   align-items: center;
@@ -614,27 +611,48 @@ button:focus-visible {
   font-weight: 500;
   font-size: 13px;
 }
+.rail-label {
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+}
 .rail-thread {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
   overflow: hidden;
 }
-.rail-user {
-  align-self: flex-end;
-  max-width: 92%;
-  padding: 9px 12px;
-  border-radius: 12px;
-  background: var(--surface-card);
-  font-size: 12.5px;
-  line-height: 1.45;
-}
-.rail-agent {
+.rail-empty {
+  margin: 0;
   font-family: var(--serif);
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted-soft);
+}
+.brief-item {
+  padding: 10px 12px;
+  border-radius: var(--r-card);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.brief-item span {
+  display: block;
+  margin-bottom: 2px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+.brief-item[data-kind='idea'] {
+  background: var(--surface-soft);
 }
 .rail-live {
   display: flex;
@@ -928,6 +946,70 @@ button:focus-visible {
 }
 .cursor.agent .cursor-tag {
   background: var(--agent-strong);
+}
+
+/* Join screen */
+.join {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  display: grid;
+  place-items: center;
+  background: rgba(246, 243, 236, 0.82);
+  backdrop-filter: blur(3px);
+}
+.join-card {
+  width: 420px;
+  margin-bottom: 40px;
+  padding: 34px 36px 28px;
+  border-radius: var(--r-panel);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: 0 12px 40px rgba(20, 20, 19, 0.1);
+  text-align: center;
+}
+.join-kicker {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.join-card h1 {
+  margin: 6px 0 10px;
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  line-height: 1.2;
+}
+.join-card p {
+  margin: 0 0 18px;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--body);
+}
+.join-people {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.join-people .participant {
+  color: var(--ink);
+}
+.join-card .btn-primary {
+  width: 100%;
+  height: 44px;
+  font-size: 15px;
+}
+.join-card small {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted-soft);
 }
 
 /* Activity chips */

@@ -1,87 +1,67 @@
 {
  "id": "s1-02",
- "text": "Everyone eventually. But about a third of customers have both today, and they're the ones complaining.",
- "duration": 6.316,
+ "text": "Okay. I've put both navigations on the board as they are today.",
+ "duration": 4.272,
  "words": [
   {
-   "word": "Everyone",
+   "word": "Okay.",
    "start": 0,
-   "end": 0.464
+   "end": 0.546
   },
   {
-   "word": "eventually.",
-   "start": 0.499,
-   "end": 1.138
+   "word": "I've",
+   "start": 0.952,
+   "end": 1.115
   },
   {
-   "word": "But",
-   "start": 1.95,
-   "end": 2.101
-  },
-  {
-   "word": "about",
-   "start": 2.125,
-   "end": 2.334
-  },
-  {
-   "word": "a",
-   "start": 2.368,
-   "end": 2.403
-  },
-  {
-   "word": "third",
-   "start": 2.519,
-   "end": 2.868
-  },
-  {
-   "word": "of",
-   "start": 2.914,
-   "end": 2.972
-  },
-  {
-   "word": "customers",
-   "start": 3.042,
-   "end": 3.425
-  },
-  {
-   "word": "have",
-   "start": 3.471,
-   "end": 3.622
+   "word": "put",
+   "start": 1.138,
+   "end": 1.277
   },
   {
    "word": "both",
-   "start": 3.657,
-   "end": 3.843
+   "start": 1.347,
+   "end": 1.567
   },
   {
-   "word": "today,",
-   "start": 3.878,
-   "end": 4.377
+   "word": "navigations",
+   "start": 1.637,
+   "end": 2.171
   },
   {
-   "word": "and",
-   "start": 4.412,
-   "end": 4.551
-  },
-  {
-   "word": "they're",
-   "start": 4.586,
-   "end": 4.748
+   "word": "on",
+   "start": 2.206,
+   "end": 2.276
   },
   {
    "word": "the",
-   "start": 4.772,
-   "end": 4.841
+   "start": 2.31,
+   "end": 2.38
   },
   {
-   "word": "ones",
-   "start": 4.899,
-   "end": 5.062
+   "word": "board",
+   "start": 2.426,
+   "end": 2.752
   },
   {
-   "word": "complaining.",
-   "start": 5.108,
-   "end": 6.316
+   "word": "as",
+   "start": 2.821,
+   "end": 3.007
+  },
+  {
+   "word": "they",
+   "start": 3.065,
+   "end": 3.181
+  },
+  {
+   "word": "are",
+   "start": 3.228,
+   "end": 3.344
+  },
+  {
+   "word": "today.",
+   "start": 3.39,
+   "end": 4.272
   }
  ]
 }

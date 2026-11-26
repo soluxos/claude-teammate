@@ -1,137 +1,152 @@
 {
  "id": "s1-01",
- "text": "Okay, both navs are on the board as they are today. Before we move anything, who is this for? Customers who have both products, or everyone?",
- "duration": 8.638,
+ "text": "Thanks for joining. Quick background, so you know what we're working on. We make two products. Harbor is website hosting, for developers. Relay is a marketing tool, for marketers.",
+ "duration": 12.492,
  "words": [
   {
-   "word": "Okay,",
+   "word": "Thanks",
    "start": 0,
-   "end": 0.418
+   "end": 0.279
   },
   {
-   "word": "both",
-   "start": 0.464,
-   "end": 0.697
+   "word": "for",
+   "start": 0.302,
+   "end": 0.395
   },
   {
-   "word": "navs",
-   "start": 0.778,
-   "end": 1.091
+   "word": "joining.",
+   "start": 0.441,
+   "end": 0.894
   },
   {
-   "word": "are",
-   "start": 1.149,
-   "end": 1.347
+   "word": "Quick",
+   "start": 1.045,
+   "end": 1.265
   },
   {
-   "word": "on",
-   "start": 1.382,
-   "end": 1.451
+   "word": "background,",
+   "start": 1.324,
+   "end": 1.811
   },
   {
-   "word": "the",
-   "start": 1.486,
-   "end": 1.556
-  },
-  {
-   "word": "board",
-   "start": 1.602,
-   "end": 1.869
-  },
-  {
-   "word": "as",
+   "word": "so",
    "start": 1.916,
-   "end": 2.009
+   "end": 2.043
   },
   {
-   "word": "they",
-   "start": 2.055,
+   "word": "you",
+   "start": 2.101,
    "end": 2.183
   },
   {
-   "word": "are",
-   "start": 2.229,
-   "end": 2.38
+   "word": "know",
+   "start": 2.241,
+   "end": 2.368
   },
   {
-   "word": "today.",
-   "start": 2.438,
-   "end": 3.1
+   "word": "what",
+   "start": 2.403,
+   "end": 2.508
   },
   {
-   "word": "Before",
-   "start": 3.437,
-   "end": 3.715
+   "word": "we're",
+   "start": 2.531,
+   "end": 2.67
   },
   {
-   "word": "we",
-   "start": 3.738,
-   "end": 3.796
+   "word": "working",
+   "start": 2.694,
+   "end": 2.949
   },
   {
-   "word": "move",
-   "start": 3.866,
-   "end": 4.075
+   "word": "on.",
+   "start": 2.984,
+   "end": 3.216
   },
   {
-   "word": "anything,",
+   "word": "We",
+   "start": 3.924,
+   "end": 4.052
+  },
+  {
+   "word": "make",
    "start": 4.11,
-   "end": 4.435
+   "end": 4.261
   },
   {
-   "word": "who",
-   "start": 4.458,
-   "end": 4.563
+   "word": "two",
+   "start": 4.307,
+   "end": 4.528
+  },
+  {
+   "word": "products.",
+   "start": 4.598,
+   "end": 5.283
+  },
+  {
+   "word": "Harbor",
+   "start": 5.41,
+   "end": 5.77
   },
   {
    "word": "is",
-   "start": 4.609,
-   "end": 4.69
+   "start": 5.828,
+   "end": 5.956
   },
   {
-   "word": "this",
-   "start": 4.714,
-   "end": 4.865
+   "word": "website",
+   "start": 6.037,
+   "end": 6.536
   },
   {
-   "word": "for?",
-   "start": 4.934,
-   "end": 5.166
+   "word": "hosting,",
+   "start": 6.571,
+   "end": 7.07
   },
   {
-   "word": "Customers",
-   "start": 5.213,
-   "end": 5.712
+   "word": "for",
+   "start": 7.454,
+   "end": 7.697
   },
   {
-   "word": "who",
-   "start": 5.747,
-   "end": 5.863
+   "word": "developers.",
+   "start": 7.755,
+   "end": 8.417
   },
   {
-   "word": "have",
-   "start": 5.944,
-   "end": 6.316
+   "word": "Relay",
+   "start": 8.8,
+   "end": 9.218
   },
   {
-   "word": "both",
-   "start": 6.711,
-   "end": 7.012
+   "word": "is",
+   "start": 9.288,
+   "end": 9.381
   },
   {
-   "word": "products,",
-   "start": 7.082,
-   "end": 7.883
+   "word": "a",
+   "start": 9.416,
+   "end": 9.439
   },
   {
-   "word": "or",
-   "start": 7.953,
-   "end": 8.104
+   "word": "marketing",
+   "start": 9.543,
+   "end": 9.996
   },
   {
-   "word": "everyone?",
-   "start": 8.173,
-   "end": 8.638
+   "word": "tool,",
+   "start": 10.054,
+   "end": 10.437
+  },
+  {
+   "word": "for",
+   "start": 10.879,
+   "end": 11.029
+  },
+  {
+   "word": "marketers.",
+   "start": 11.088,
+   "end": 12.492
   }
  ]
 }

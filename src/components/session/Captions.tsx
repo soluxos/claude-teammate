@@ -8,7 +8,8 @@ export function Captions() {
   const t = useTime();
   const { captions } = useSnap();
   // Hold the caption briefly after the line ends so it does not flicker between lines.
-  const line = player.timeline.lines.find((l) => t >= l.start && t < l.end + 0.35);
+  // During an interruption the newer line takes over.
+  const line = player.linesAt(t, 0.35).pop();
   if (!captions || !line) return null;
   const local = t - line.start;
   const { direction } = splitDirection(line.line.text);

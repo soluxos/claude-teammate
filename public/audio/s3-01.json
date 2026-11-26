@@ -1,67 +1,87 @@
 {
  "id": "s3-01",
- "text": "Mine's up. Four groups by job: Build, Engage, Measure, Account. No duplicates.",
- "duration": 6.13,
+ "text": "Mine's up. Four groups by job: Build, Engage, Measure, Account. No duplicates, and nobody has to—",
+ "duration": 8.313,
  "words": [
   {
    "word": "Mine's",
    "start": 0,
-   "end": 0.406
+   "end": 0.325
   },
   {
    "word": "up.",
-   "start": 0.488,
-   "end": 0.789
+   "start": 0.383,
+   "end": 0.685
   },
   {
    "word": "Four",
-   "start": 1.045,
-   "end": 1.265
+   "start": 1.335,
+   "end": 1.567
   },
   {
    "word": "groups",
-   "start": 1.312,
-   "end": 1.591
+   "start": 1.614,
+   "end": 1.881
   },
   {
    "word": "by",
-   "start": 1.649,
-   "end": 1.823
+   "start": 1.916,
+   "end": 2.02
   },
   {
    "word": "job:",
-   "start": 1.904,
-   "end": 2.287
+   "start": 2.09,
+   "end": 2.485
   },
   {
    "word": "Build,",
-   "start": 2.403,
-   "end": 2.891
+   "start": 2.844,
+   "end": 3.32
   },
   {
    "word": "Engage,",
-   "start": 2.937,
-   "end": 3.599
+   "start": 3.39,
+   "end": 4.087
   },
   {
    "word": "Measure,",
-   "start": 3.657,
-   "end": 3.971
-  },
-  {
-   "word": "Account.",
-   "start": 3.994,
-   "end": 4.528
-  },
-  {
-   "word": "No",
-   "start": 4.563,
+   "start": 4.226,
    "end": 4.714
   },
   {
-   "word": "duplicates.",
-   "start": 4.795,
-   "end": 6.13
+   "word": "Account.",
+   "start": 4.783,
+   "end": 5.445
+  },
+  {
+   "word": "No",
+   "start": 5.805,
+   "end": 5.956
+  },
+  {
+   "word": "duplicates,",
+   "start": 6.026,
+   "end": 6.676
+  },
+  {
+   "word": "and",
+   "start": 6.722,
+   "end": 6.861
+  },
+  {
+   "word": "nobody",
+   "start": 6.931,
+   "end": 7.233
+  },
+  {
+   "word": "has",
+   "start": 7.279,
+   "end": 7.442
+  },
+  {
+   "word": "to—",
+   "start": 7.5,
+   "end": 8.313
   }
  ]
 }

@@ -1,102 +1,317 @@
 {
  "id": "s1-04",
- "text": "I'm not convinced. Tell you what, I'll lay out the switcher version properly, you do yours, and we compare.",
- "duration": 7.57,
+ "text": "Before I tidy anything: I don't agree with it yet, and I'd rather say so now than polish something I'd argue against. These six cards are three things. Two Billing pages, two Settings pages, and Team and Users, which are the same thing under different names. A switcher keeps all six. I'd organise by what people are doing instead of by product.",
+ "duration": 23.359,
  "words": [
   {
-   "word": "I'm",
+   "word": "Before",
    "start": 0,
-   "end": 0.186
+   "end": 0.313
   },
   {
-   "word": "not",
-   "start": 0.244,
+   "word": "I",
+   "start": 0.348,
    "end": 0.372
   },
   {
-   "word": "convinced.",
-   "start": 0.418,
-   "end": 1.138
+   "word": "tidy",
+   "start": 0.441,
+   "end": 0.72
   },
   {
-   "word": "Tell",
-   "start": 1.649,
-   "end": 1.846
+   "word": "anything:",
+   "start": 0.766,
+   "end": 1.3
   },
   {
-   "word": "you",
-   "start": 1.881,
-   "end": 1.95
+   "word": "I",
+   "start": 1.95,
+   "end": 1.997
   },
   {
-   "word": "what,",
-   "start": 1.997,
-   "end": 2.403
+   "word": "don't",
+   "start": 2.067,
+   "end": 2.241
   },
   {
-   "word": "I'll",
-   "start": 2.577,
-   "end": 2.763
+   "word": "agree",
+   "start": 2.276,
+   "end": 2.473
   },
   {
-   "word": "lay",
-   "start": 2.81,
-   "end": 2.926
+   "word": "with",
+   "start": 2.508,
+   "end": 2.612
   },
   {
-   "word": "out",
-   "start": 2.972,
-   "end": 3.065
+   "word": "it",
+   "start": 2.647,
+   "end": 2.705
   },
   {
-   "word": "the",
-   "start": 3.1,
-   "end": 3.17
-  },
-  {
-   "word": "switcher",
-   "start": 3.204,
-   "end": 3.529
-  },
-  {
-   "word": "version",
-   "start": 3.587,
-   "end": 3.913
-  },
-  {
-   "word": "properly,",
-   "start": 3.971,
-   "end": 4.493
-  },
-  {
-   "word": "you",
-   "start": 4.818,
-   "end": 4.923
-  },
-  {
-   "word": "do",
-   "start": 5.004,
-   "end": 5.132
-  },
-  {
-   "word": "yours,",
-   "start": 5.201,
-   "end": 5.689
+   "word": "yet,",
+   "start": 2.74,
+   "end": 3.1
   },
   {
    "word": "and",
+   "start": 3.657,
+   "end": 3.796
+  },
+  {
+   "word": "I'd",
+   "start": 3.843,
+   "end": 3.936
+  },
+  {
+   "word": "rather",
+   "start": 3.971,
+   "end": 4.168
+  },
+  {
+   "word": "say",
+   "start": 4.226,
+   "end": 4.365
+  },
+  {
+   "word": "so",
+   "start": 4.412,
+   "end": 4.528
+  },
+  {
+   "word": "now",
+   "start": 4.598,
+   "end": 4.76
+  },
+  {
+   "word": "than",
+   "start": 4.83,
+   "end": 4.957
+  },
+  {
+   "word": "polish",
+   "start": 5.016,
+   "end": 5.294
+  },
+  {
+   "word": "something",
+   "start": 5.329,
+   "end": 5.619
+  },
+  {
+   "word": "I'd",
+   "start": 5.666,
+   "end": 5.805
+  },
+  {
+   "word": "argue",
+   "start": 5.84,
+   "end": 6.107
+  },
+  {
+   "word": "against.",
    "start": 6.13,
-   "end": 6.269
+   "end": 6.653
   },
   {
-   "word": "we",
-   "start": 6.316,
-   "end": 6.409
+   "word": "These",
+   "start": 7.535,
+   "end": 7.755
   },
   {
-   "word": "compare.",
-   "start": 6.467,
-   "end": 7.57
+   "word": "six",
+   "start": 7.79,
+   "end": 7.976
+  },
+  {
+   "word": "cards",
+   "start": 8.046,
+   "end": 8.382
+  },
+  {
+   "word": "are",
+   "start": 8.44,
+   "end": 8.603
+  },
+  {
+   "word": "three",
+   "start": 8.638,
+   "end": 8.858
+  },
+  {
+   "word": "things.",
+   "start": 8.893,
+   "end": 9.462
+  },
+  {
+   "word": "Two",
+   "start": 10.019,
+   "end": 10.205
+  },
+  {
+   "word": "Billing",
+   "start": 10.263,
+   "end": 10.495
+  },
+  {
+   "word": "pages,",
+   "start": 10.542,
+   "end": 11.169
+  },
+  {
+   "word": "two",
+   "start": 11.389,
+   "end": 11.598
+  },
+  {
+   "word": "Settings",
+   "start": 11.668,
+   "end": 12.016
+  },
+  {
+   "word": "pages,",
+   "start": 12.062,
+   "end": 12.654
+  },
+  {
+   "word": "and",
+   "start": 13.014,
+   "end": 13.165
+  },
+  {
+   "word": "Team",
+   "start": 13.235,
+   "end": 13.514
+  },
+  {
+   "word": "and",
+   "start": 13.595,
+   "end": 13.746
+  },
+  {
+   "word": "Users,",
+   "start": 13.85,
+   "end": 14.466
+  },
+  {
+   "word": "which",
+   "start": 14.721,
+   "end": 14.907
+  },
+  {
+   "word": "are",
+   "start": 14.942,
+   "end": 15.023
+  },
+  {
+   "word": "the",
+   "start": 15.058,
+   "end": 15.127
+  },
+  {
+   "word": "same",
+   "start": 15.174,
+   "end": 15.418
+  },
+  {
+   "word": "thing",
+   "start": 15.464,
+   "end": 15.685
+  },
+  {
+   "word": "under",
+   "start": 15.766,
+   "end": 15.963
+  },
+  {
+   "word": "different",
+   "start": 16.01,
+   "end": 16.288
+  },
+  {
+   "word": "names.",
+   "start": 16.335,
+   "end": 16.869
+  },
+  {
+   "word": "A",
+   "start": 17.751,
+   "end": 17.821
+  },
+  {
+   "word": "switcher",
+   "start": 17.89,
+   "end": 18.216
+  },
+  {
+   "word": "keeps",
+   "start": 18.262,
+   "end": 18.494
+  },
+  {
+   "word": "all",
+   "start": 18.529,
+   "end": 18.657
+  },
+  {
+   "word": "six.",
+   "start": 18.726,
+   "end": 19.284
+  },
+  {
+   "word": "I'd",
+   "start": 19.69,
+   "end": 19.853
+  },
+  {
+   "word": "organise",
+   "start": 19.899,
+   "end": 20.282
+  },
+  {
+   "word": "by",
+   "start": 20.317,
+   "end": 20.41
+  },
+  {
+   "word": "what",
+   "start": 20.445,
+   "end": 20.561
+  },
+  {
+   "word": "people",
+   "start": 20.607,
+   "end": 20.839
+  },
+  {
+   "word": "are",
+   "start": 20.874,
+   "end": 20.967
+  },
+  {
+   "word": "doing",
+   "start": 21.014,
+   "end": 21.246
+  },
+  {
+   "word": "instead",
+   "start": 21.315,
+   "end": 21.571
+  },
+  {
+   "word": "of",
+   "start": 21.606,
+   "end": 21.652
+  },
+  {
+   "word": "by",
+   "start": 21.71,
+   "end": 21.803
+  },
+  {
+   "word": "product.",
+   "start": 21.861,
+   "end": 23.359
   }
  ]
 }

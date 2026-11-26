@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-Open the printed URL at about 1440 by 900. The opening chat plays by itself; click **Start working session** to begin the session with sound.
+Open the printed URL at about 1440 by 900 and click **Join working session**. The call starts straight away with sound: Callum briefs the assistant on the problem, and the assistant takes the brief down in the left rail as he talks.
 
 Controls (the dark bar at the top is prototype chrome, not part of the concept):
 
@@ -58,7 +58,8 @@ Drop a recording at `public/audio/override/{id}.mp3` (for example `s1-02.mp3`) a
 - `src/script/layouts.ts`: named card positions for each zone.
 - `src/engine/timeline.ts`: builds a flat list of absolute event times from line durations and gaps, and runs the clock. Audio is the master clock while a line is sounding.
 - `src/engine/state.ts`: canvas state as a pure function of the events that have fired. Scrubbing resets and replays events up to the target time without animation.
-- `src/engine/audio.ts`: one reusable audio element (so a single click unlocks sound in every browser) and an analyser for the voice rings.
+- `src/engine/audio.ts`: two reusable audio elements (so a single click unlocks sound in every browser, and one speaker can talk over the other) with an analyser each for the voice rings.
+- Interruptions: give a line a negative `gapBefore` and it starts over the end of the previous line. End the interrupted line's text with a dash so the voice breaks off.
 - `scripts/generate-audio.ts`: the build-time ElevenLabs script.
 
 ## Deploying

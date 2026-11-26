@@ -1,6 +1,6 @@
 // Canvas state as a pure function of the primitive events that have fired.
 
-import { CARD_H, CARD_W, NOTE_W, groupLayouts, harborNav, isSlot, relayNav, slotPos, zoneOf, type Rect } from '../script/layouts';
+import { CARD_H, CARD_W, NOTE_W, groupLayouts, isSlot, slotPos, zoneOf, type Rect } from '../script/layouts';
 import type { Action, Speaker } from '../script/script';
 
 export type CardS = {
@@ -39,6 +39,7 @@ export type CanvasState = {
   tags: TagS[];
   dim: string[];
   highlight: string | null;
+  brief: { label: string; text: string }[];
 };
 
 /** Primitive, instantaneous state changes. Actions with a duration compile to several. */
@@ -85,22 +86,12 @@ export function expand(action: Action, t: number, key: string): { t: number; pri
 }
 
 export function initialState(): CanvasState {
-  const cards: Record<string, CardS> = {};
-  const add = (prefix: string, group: string, labels: string[]) =>
-    labels.forEach((label, i) => {
-      const p = slotPos(`${group}.${i}`);
-      const id = `${prefix}-${label.toLowerCase()}`;
-      cards[id] = { id, label, x: p.x, y: p.y, w: p.w, kind: 'card', zone: 'today', dur: 0 };
-    });
-  add('t-h', 'today.harbor', harborNav);
-  add('t-r', 'today.relay', relayNav);
-  const g = (id: string, title: string): GroupS => ({ id, title, ...pick(groupLayouts[id]), zone: zoneOf(id) });
   return {
-    view: 'chat',
+    view: 'session',
     camera: { zone: 'today', dur: 0 },
     zones: ['today'],
-    cards,
-    groups: { 'today.harbor': g('today.harbor', 'Harbor'), 'today.relay': g('today.relay', 'Relay') },
+    cards: {},
+    groups: {},
     notes: {},
     rings: [],
     cursors: {
@@ -112,10 +103,10 @@ export function initialState(): CanvasState {
     tags: [],
     dim: [],
     highlight: null,
+    brief: [],
   };
 }
 
-const pick = (p: { x: number; y: number }) => ({ x: p.x, y: p.y });
 
 function resolvePoint(s: CanvasState, to: string | { x: number; y: number }): { x: number; y: number } {
   if (typeof to !== 'string') return to;
@@ -184,7 +175,7 @@ export function apply(s: CanvasState, p: Prim): CanvasState {
         w: pos.w,
         kind: p.kind ?? 'card',
         zone: zoneOf(p.slot),
-        by: p.who,
+        by: zoneOf(p.slot) === 'today' ? undefined : p.who, // today's navs belong to nobody
         heldBy: src ? p.who : undefined,
         mover: p.who,
         dur: src ? dur : 0,
@@ -267,6 +258,8 @@ export function apply(s: CanvasState, p: Prim): CanvasState {
       return { ...s, dim: p.zones };
     case 'highlight':
       return { ...s, highlight: p.zone };
+    case 'brief':
+      return { ...s, brief: [...s.brief, { label: p.label, text: p.text }] };
     case 'ring':
     case 'chip':
       return s; // compiled away by expand()

@@ -1,152 +1,277 @@
 {
  "id": "s1-03",
- "text": "Then here's my worry with the switcher. These six cards are three things. A switcher keeps all six. I'd organise by what people are doing instead of by product.",
- "duration": 11.517,
+ "text": "They've always been sold separately. But a third of our customers now have both, and they're complaining about jumping between two menus. So the job is one navigation that covers both products. I'm thinking a product switcher at the top, and we leave both navs as they are. Can you tidy that into a—",
+ "duration": 19.691,
  "words": [
   {
-   "word": "Then",
+   "word": "They've",
    "start": 0,
-   "end": 0.209
+   "end": 0.244
   },
   {
-   "word": "here's",
-   "start": 0.279,
-   "end": 0.522
+   "word": "always",
+   "start": 0.267,
+   "end": 0.499
   },
   {
-   "word": "my",
-   "start": 0.58,
+   "word": "been",
+   "start": 0.534,
    "end": 0.673
   },
   {
-   "word": "worry",
-   "start": 0.731,
-   "end": 1.01
+   "word": "sold",
+   "start": 0.708,
+   "end": 0.952
   },
   {
-   "word": "with",
-   "start": 1.068,
-   "end": 1.231
+   "word": "separately.",
+   "start": 0.998,
+   "end": 1.625
   },
   {
-   "word": "the",
-   "start": 1.277,
-   "end": 1.382
+   "word": "But",
+   "start": 2.589,
+   "end": 2.74
   },
   {
-   "word": "switcher.",
-   "start": 1.451,
-   "end": 2.31
+   "word": "a",
+   "start": 2.775,
+   "end": 2.81
   },
   {
-   "word": "These",
-   "start": 2.937,
-   "end": 3.204
-  },
-  {
-   "word": "six",
-   "start": 3.251,
-   "end": 3.541
-  },
-  {
-   "word": "cards",
-   "start": 3.611,
-   "end": 3.924
-  },
-  {
-   "word": "are",
-   "start": 3.959,
-   "end": 4.04
-  },
-  {
-   "word": "three",
-   "start": 4.087,
-   "end": 4.365
-  },
-  {
-   "word": "things.",
-   "start": 4.423,
-   "end": 4.818
-  },
-  {
-   "word": "A",
-   "start": 4.841,
-   "end": 4.888
-  },
-  {
-   "word": "switcher",
-   "start": 4.969,
-   "end": 5.41
-  },
-  {
-   "word": "keeps",
-   "start": 5.492,
-   "end": 5.805
-  },
-  {
-   "word": "all",
-   "start": 5.863,
-   "end": 6.095
-  },
-  {
-   "word": "six.",
-   "start": 6.177,
-   "end": 6.815
-  },
-  {
-   "word": "I'd",
-   "start": 7.152,
-   "end": 7.372
-  },
-  {
-   "word": "organise",
-   "start": 7.442,
-   "end": 8.034
-  },
-  {
-   "word": "by",
-   "start": 8.081,
-   "end": 8.208
-  },
-  {
-   "word": "what",
-   "start": 8.278,
-   "end": 8.44
-  },
-  {
-   "word": "people",
-   "start": 8.499,
-   "end": 8.8
-  },
-  {
-   "word": "are",
-   "start": 8.824,
-   "end": 8.928
-  },
-  {
-   "word": "doing",
-   "start": 8.963,
-   "end": 9.311
-  },
-  {
-   "word": "instead",
-   "start": 9.834,
-   "end": 10.31
+   "word": "third",
+   "start": 2.914,
+   "end": 3.309
   },
   {
    "word": "of",
-   "start": 10.356,
-   "end": 10.414
+   "start": 3.367,
+   "end": 3.448
   },
   {
-   "word": "by",
-   "start": 10.484,
-   "end": 10.588
+   "word": "our",
+   "start": 3.506,
+   "end": 3.611
   },
   {
-   "word": "product.",
-   "start": 10.658,
-   "end": 11.517
+   "word": "customers",
+   "start": 3.657,
+   "end": 4.063
+  },
+  {
+   "word": "now",
+   "start": 4.11,
+   "end": 4.249
+  },
+  {
+   "word": "have",
+   "start": 4.296,
+   "end": 4.435
+  },
+  {
+   "word": "both,",
+   "start": 4.47,
+   "end": 4.911
+  },
+  {
+   "word": "and",
+   "start": 5.352,
+   "end": 5.48
+  },
+  {
+   "word": "they're",
+   "start": 5.526,
+   "end": 5.735
+  },
+  {
+   "word": "complaining",
+   "start": 5.77,
+   "end": 6.432
+  },
+  {
+   "word": "about",
+   "start": 6.49,
+   "end": 6.699
+  },
+  {
+   "word": "jumping",
+   "start": 6.757,
+   "end": 7.059
+  },
+  {
+   "word": "between",
+   "start": 7.117,
+   "end": 7.581
+  },
+  {
+   "word": "two",
+   "start": 7.651,
+   "end": 7.941
+  },
+  {
+   "word": "menus.",
+   "start": 8.046,
+   "end": 8.8
+  },
+  {
+   "word": "So",
+   "start": 9.625,
+   "end": 9.81
+  },
+  {
+   "word": "the",
+   "start": 9.845,
+   "end": 9.927
+  },
+  {
+   "word": "job",
+   "start": 9.996,
+   "end": 10.228
+  },
+  {
+   "word": "is",
+   "start": 10.379,
+   "end": 10.519
+  },
+  {
+   "word": "one",
+   "start": 10.577,
+   "end": 10.716
+  },
+  {
+   "word": "navigation",
+   "start": 10.751,
+   "end": 11.25
+  },
+  {
+   "word": "that",
+   "start": 11.297,
+   "end": 11.424
+  },
+  {
+   "word": "covers",
+   "start": 11.471,
+   "end": 11.714
+  },
+  {
+   "word": "both",
+   "start": 11.773,
+   "end": 12.028
+  },
+  {
+   "word": "products.",
+   "start": 12.098,
+   "end": 12.783
+  },
+  {
+   "word": "I'm",
+   "start": 13.746,
+   "end": 13.886
+  },
+  {
+   "word": "thinking",
+   "start": 13.92,
+   "end": 14.211
+  },
+  {
+   "word": "a",
+   "start": 14.28,
+   "end": 14.315
+  },
+  {
+   "word": "product",
+   "start": 14.42,
+   "end": 14.745
+  },
+  {
+   "word": "switcher",
+   "start": 14.826,
+   "end": 15.139
+  },
+  {
+   "word": "at",
+   "start": 15.174,
+   "end": 15.232
+  },
+  {
+   "word": "the",
+   "start": 15.256,
+   "end": 15.325
+  },
+  {
+   "word": "top,",
+   "start": 15.36,
+   "end": 15.743
+  },
+  {
+   "word": "and",
+   "start": 15.894,
+   "end": 16.022
+  },
+  {
+   "word": "we",
+   "start": 16.057,
+   "end": 16.115
+  },
+  {
+   "word": "leave",
+   "start": 16.184,
+   "end": 16.359
+  },
+  {
+   "word": "both",
+   "start": 16.393,
+   "end": 16.579
+  },
+  {
+   "word": "navs",
+   "start": 16.649,
+   "end": 16.835
+  },
+  {
+   "word": "as",
+   "start": 16.869,
+   "end": 16.939
+  },
+  {
+   "word": "they",
+   "start": 16.974,
+   "end": 17.09
+  },
+  {
+   "word": "are.",
+   "start": 17.136,
+   "end": 17.461
+  },
+  {
+   "word": "Can",
+   "start": 18.17,
+   "end": 18.286
+  },
+  {
+   "word": "you",
+   "start": 18.321,
+   "end": 18.39
+  },
+  {
+   "word": "tidy",
+   "start": 18.437,
+   "end": 18.681
+  },
+  {
+   "word": "that",
+   "start": 18.715,
+   "end": 18.82
+  },
+  {
+   "word": "into",
+   "start": 18.855,
+   "end": 19.017
+  },
+  {
+   "word": "a—",
+   "start": 19.087,
+   "end": 19.691
   }
  ]
 }

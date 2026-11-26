@@ -6,7 +6,7 @@ export function PlaybackBar() {
   const player = usePlayer();
   const audio = useAudio();
   const t = useTime();
-  const { playing, speed, atGate } = useSnap();
+  const { playing, speed } = useSnap();
   const tl = player.timeline;
   const track = useRef<HTMLDivElement>(null);
   const scene = player.sceneAt(t);
@@ -22,7 +22,7 @@ export function PlaybackBar() {
   const onMove = (e: React.PointerEvent) => {
     if (e.buttons & 1) seekTo(e.clientX);
   };
-  const toggle = () => (atGate && !playing ? player.startSession() : player.toggle());
+  const toggle = () => player.toggle();
 
   return (
     <div className="playback">

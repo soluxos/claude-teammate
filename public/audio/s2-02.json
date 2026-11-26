@@ -1,47 +1,47 @@
 {
  "id": "s2-02",
  "text": "I'm leaving that one alone until you've finished.",
- "duration": 2.322,
+ "duration": 2.879,
  "words": [
   {
    "word": "I'm",
    "start": 0,
-   "end": 0.197
+   "end": 0.209
   },
   {
    "word": "leaving",
-   "start": 0.244,
-   "end": 0.476
+   "start": 0.267,
+   "end": 0.499
   },
   {
    "word": "that",
-   "start": 0.511,
-   "end": 0.627
+   "start": 0.546,
+   "end": 0.65
   },
   {
    "word": "one",
-   "start": 0.673,
-   "end": 0.789
+   "start": 0.697,
+   "end": 0.813
   },
   {
    "word": "alone",
-   "start": 0.813,
+   "start": 0.836,
    "end": 1.115
   },
   {
    "word": "until",
-   "start": 1.149,
-   "end": 1.347
+   "start": 1.161,
+   "end": 1.37
   },
   {
    "word": "you've",
-   "start": 1.382,
-   "end": 1.544
+   "start": 1.405,
+   "end": 1.556
   },
   {
    "word": "finished.",
-   "start": 1.567,
-   "end": 2.322
+   "start": 1.579,
+   "end": 2.879
   }
  ]
 }

@@ -1,7 +1,7 @@
 // Canvas state as a pure function of the primitive events that have fired.
 
 import { CARD_H, CARD_W, NOTE_W, RESEARCH_W, groupLayouts, isSlot, slotPos, zoneOf, type Rect } from '../script/layouts';
-import type { Action, NoteSpec, Speaker } from '../script/script';
+import type { Action, NoteSpec, Speaker, View } from '../script/script';
 
 export type CardS = {
   id: string;
@@ -26,7 +26,8 @@ export type ChipS = { id: string; label: string; done: boolean };
 export type TagS = { target: string; text: string; x: number; y: number };
 
 export type CanvasState = {
-  view: 'chat' | 'session' | 'record';
+  view: View;
+  pointer: { to: string | null; clicks: number };
   camera: { zone: string; dur: number };
   zones: string[];
   cards: Record<string, CardS>;
@@ -87,7 +88,8 @@ export function expand(action: Action, t: number, key: string): { t: number; pri
 
 export function initialState(): CanvasState {
   return {
-    view: 'session',
+    view: 'new',
+    pointer: { to: null, clicks: 0 },
     camera: { zone: 'today', dur: 0 },
     zones: ['today'],
     cards: {},
@@ -155,6 +157,10 @@ export function apply(s: CanvasState, p: Prim): CanvasState {
   switch (p.type) {
     case 'view':
       return { ...s, view: p.to };
+    case 'pointer':
+      return { ...s, pointer: { ...s.pointer, to: p.to } };
+    case 'click':
+      return { ...s, pointer: { ...s.pointer, clicks: s.pointer.clicks + 1 } };
     case 'camera':
       return { ...s, camera: { zone: p.zone, dur: p.duration ?? 1.2 } };
     case 'zone':

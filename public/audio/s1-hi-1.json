@@ -1,0 +1,44 @@
+{
+ "id": "s1-hi-1",
+ "text": "Hey Claude. Can you hear me okay?",
+ "duration": 2.093,
+ "words": [
+  {
+   "word": "Hey",
+   "start": 0.08,
+   "end": 0.24
+  },
+  {
+   "word": "Claude.",
+   "start": 0.32,
+   "end": 0.8
+  },
+  {
+   "word": "Can",
+   "start": 0.96,
+   "end": 1.04
+  },
+  {
+   "word": "you",
+   "start": 1.12,
+   "end": 1.16
+  },
+  {
+   "word": "hear",
+   "start": 1.2,
+   "end": 1.28
+  },
+  {
+   "word": "me",
+   "start": 1.36,
+   "end": 1.44
+  },
+  {
+   "word": "okay?",
+   "start": 1.52,
+   "end": 2.093
+  }
+ ],
+ "lufs": -23.51,
+ "gainDb": 3.51
+}

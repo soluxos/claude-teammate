@@ -1,164 +1,139 @@
 {
  "id": "s1-01",
- "text": "Okay, here's what we're working on. We sell two products. Harbor is where developers host their websites. Relay is where marketers run their campaigns. And each one has its own menu.",
- "duration": 13.200000000000001,
+ "text": "So, we sell two products. Harbor is where developers host their websites. Relay is where marketers run their campaigns. And each one has its own menu.",
+ "duration": 11.360000000000003,
  "words": [
   {
-   "word": "Okay,",
+   "word": "So,",
    "start": 0,
-   "end": 0.64
+   "end": 0.5600000000000005
   },
   {
-   "word": "here's",
-   "start": 0.72,
-   "end": 0.88
-  },
-  {
-   "word": "what",
-   "start": 0.96,
-   "end": 1.04
-  },
-  {
-   "word": "we're",
-   "start": 1.08,
-   "end": 1.2
-  },
-  {
-   "word": "working",
-   "start": 1.36,
-   "end": 1.52
-  },
-  {
-   "word": "on.",
-   "start": 1.6,
-   "end": 2.04
-  },
-  {
-   "word": "We",
-   "start": 2.32,
-   "end": 2.48
+   "word": "we",
+   "start": 0.6800000000000006,
+   "end": 0.8000000000000007
   },
   {
    "word": "sell",
-   "start": 2.64,
-   "end": 2.8
+   "start": 0.8799999999999999,
+   "end": 1.2000000000000002
   },
   {
    "word": "two",
-   "start": 2.88,
-   "end": 3.04
+   "start": 1.3200000000000003,
+   "end": 1.4400000000000004
   },
   {
    "word": "products.",
-   "start": 3.2,
-   "end": 3.76
+   "start": 1.5200000000000005,
+   "end": 2.5600000000000005
   },
   {
    "word": "Harbor",
-   "start": 4.24,
-   "end": 4.8
+   "start": 2.6799999999999997,
+   "end": 3.120000000000001
   },
   {
    "word": "is",
-   "start": 4.88,
-   "end": 5.04
+   "start": 3.200000000000001,
+   "end": 3.280000000000001
   },
   {
    "word": "where",
-   "start": 5.12,
-   "end": 5.2
+   "start": 3.3599999999999994,
+   "end": 3.5199999999999996
   },
   {
    "word": "developers",
-   "start": 5.28,
-   "end": 5.84
+   "start": 3.84,
+   "end": 4.16
   },
   {
    "word": "host",
-   "start": 5.92,
-   "end": 6.16
+   "start": 4.24,
+   "end": 4.48
   },
   {
    "word": "their",
-   "start": 6.24,
-   "end": 6.32
+   "start": 4.5600000000000005,
+   "end": 4.640000000000001
   },
   {
    "word": "websites.",
-   "start": 6.4,
-   "end": 7.32
+   "start": 4.720000000000001,
+   "end": 5.84
   },
   {
    "word": "Relay",
-   "start": 7.6,
-   "end": 8.08
+   "start": 5.92,
+   "end": 6.48
   },
   {
    "word": "is",
-   "start": 8.24,
-   "end": 8.32
+   "start": 6.5600000000000005,
+   "end": 6.640000000000001
   },
   {
    "word": "where",
-   "start": 8.4,
-   "end": 8.48
+   "start": 6.720000000000001,
+   "end": 6.880000000000001
   },
   {
    "word": "marketers",
-   "start": 8.64,
-   "end": 9.2
+   "start": 6.960000000000001,
+   "end": 7.4399999999999995
   },
   {
    "word": "run",
-   "start": 9.28,
-   "end": 9.36
+   "start": 7.52,
+   "end": 7.68
   },
   {
    "word": "their",
-   "start": 9.44,
-   "end": 9.6
+   "start": 7.76,
+   "end": 7.84
   },
   {
    "word": "campaigns.",
-   "start": 9.92,
-   "end": 10.4
+   "start": 7.92,
+   "end": 9.040000000000001
   },
   {
    "word": "And",
-   "start": 10.8,
-   "end": 11.04
+   "start": 9.120000000000001,
+   "end": 9.200000000000001
   },
   {
    "word": "each",
-   "start": 11.12,
-   "end": 11.36
+   "start": 9.280000000000001,
+   "end": 9.52
   },
   {
    "word": "one",
-   "start": 11.44,
-   "end": 11.6
+   "start": 9.6,
+   "end": 9.84
   },
   {
    "word": "has",
-   "start": 11.68,
-   "end": 11.84
+   "start": 9.92,
+   "end": 10
   },
   {
    "word": "its",
-   "start": 11.96,
-   "end": 12.08
+   "start": 10.120000000000001,
+   "end": 10.24
   },
   {
    "word": "own",
-   "start": 12.16,
-   "end": 12.32
+   "start": 10.32,
+   "end": 10.559999999999999
   },
   {
    "word": "menu.",
-   "start": 12.4,
-   "end": 13.2
+   "start": 10.760000000000002,
+   "end": 11.36
   }
  ],
- "lufs": -26.5,
- "gainDb": 6.5
+ "lufs": -26.19,
+ "gainDb": 6.19
 }

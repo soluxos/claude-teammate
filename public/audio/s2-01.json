@@ -1,79 +1,74 @@
 {
  "id": "s2-01",
- "text": "Billing twice. Settings twice. Yeah, okay, it does look a bit silly written down.",
- "duration": 6.719999999999999,
+ "text": "Okay... switcher at the top. Then Harbor's menu underneath, exactly as it is.",
+ "duration": 7.04,
  "words": [
   {
-   "word": "Billing",
-   "start": 0.449,
-   "end": 0.48
+   "word": "Okay...",
+   "start": 0.24,
+   "end": 1.44
   },
   {
-   "word": "twice.",
-   "start": 0.56,
-   "end": 1.48
+   "word": "switcher",
+   "start": 1.64,
+   "end": 1.92
   },
   {
-   "word": "Settings",
-   "start": 1.76,
-   "end": 2.24
+   "word": "at",
+   "start": 2,
+   "end": 2.08
   },
   {
-   "word": "twice.",
-   "start": 2.32,
-   "end": 3.2
+   "word": "the",
+   "start": 2.2,
+   "end": 2.32
   },
   {
-   "word": "Yeah,",
-   "start": 3.52,
-   "end": 3.84
+   "word": "top.",
+   "start": 2.4,
+   "end": 2.96
   },
   {
-   "word": "okay,",
-   "start": 3.92,
-   "end": 4.64
+   "word": "Then",
+   "start": 3.36,
+   "end": 3.52
+  },
+  {
+   "word": "Harbor's",
+   "start": 3.68,
+   "end": 4.08
+  },
+  {
+   "word": "menu",
+   "start": 4.24,
+   "end": 4.4
+  },
+  {
+   "word": "underneath,",
+   "start": 4.56,
+   "end": 5.36
+  },
+  {
+   "word": "exactly",
+   "start": 5.52,
+   "end": 6
+  },
+  {
+   "word": "as",
+   "start": 6.08,
+   "end": 6.16
   },
   {
    "word": "it",
-   "start": 4.72,
-   "end": 4.88
+   "start": 6.2,
+   "end": 6.24
   },
   {
-   "word": "does",
-   "start": 4.96,
-   "end": 5.12
-  },
-  {
-   "word": "look",
-   "start": 5.2,
-   "end": 5.28
-  },
-  {
-   "word": "a",
-   "start": 5.307,
-   "end": 5.333
-  },
-  {
-   "word": "bit",
-   "start": 5.36,
-   "end": 5.44
-  },
-  {
-   "word": "silly",
-   "start": 5.6,
-   "end": 5.84
-  },
-  {
-   "word": "written",
-   "start": 5.96,
-   "end": 6.08
-  },
-  {
-   "word": "down.",
-   "start": 6.16,
-   "end": 6.72
+   "word": "is.",
+   "start": 6.4,
+   "end": 7.04
   }
  ],
- "lufs": -29.43,
- "gainDb": 9.43
+ "lufs": -31.06,
+ "gainDb": 11.06
 }

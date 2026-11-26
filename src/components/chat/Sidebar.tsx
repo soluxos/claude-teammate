@@ -1,3 +1,4 @@
+import { useSnap } from '../../engine/context';
 import { session } from '../../script/script';
 import { Icon } from '../Icon';
 
@@ -6,7 +7,7 @@ const nav = [
   { icon: 'search', label: 'Search' },
   { icon: 'projects', label: 'Projects' },
   { icon: 'artifacts', label: 'Artifacts' },
-  { icon: 'teammate', label: 'Teammate', selected: true, badge: 'New' },
+  { icon: 'teammate', label: 'Teammate', badge: 'New' },
   { icon: 'customize', label: 'Customize' },
 ] as const;
 
@@ -14,6 +15,8 @@ const recents = ['Onboarding checklist copy', 'Research synthesis, round two', '
 
 /** Claude's navigation, with the concept feature, Teammate, as one more item in it. */
 export function Sidebar() {
+  const view = useSnap().state.view;
+  const selected = view === 'new' ? 'New' : 'Teammate';
   return (
     <aside className="sidebar">
       <div className="sb-top">
@@ -30,7 +33,7 @@ export function Sidebar() {
       </div>
       <nav>
         {nav.map((item) => (
-          <div key={item.label} className="sb-row" data-selected={'selected' in item}>
+          <div key={item.label} className="sb-row" data-selected={item.label === selected} data-tour={item.label === 'Teammate' ? 'nav-teammate' : undefined}>
             <Icon name={item.icon} />
             <span>{item.label}</span>
             {'badge' in item && <em>{item.badge}</em>}
@@ -41,7 +44,7 @@ export function Sidebar() {
         Teammate sessions <Icon name="chevron" size={14} />
       </div>
       <ul>
-        <li className="selected">{session.title}</li>
+        {view === 'record' && <li className="selected">{session.title}</li>}
         <li>Checkout flow review</li>
       </ul>
       <div className="sb-label">

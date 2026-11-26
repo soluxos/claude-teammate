@@ -13,7 +13,8 @@ export function CallBar() {
   const t = useTime();
   const { captions, playing } = useSnap();
   const lines = player.linesAt(t); // two while one speaker is interrupting the other
-  const elapsed = Math.min(t, player.timeline.starts['s5-record']);
+  const { starts } = player.timeline;
+  const elapsed = Math.min(t, starts['s5-record']) - starts['s1-open'];
 
   return (
     <div className="callbar">

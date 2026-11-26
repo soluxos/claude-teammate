@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-Open the printed URL at about 1440 by 900 and click **Join working session**. The call starts straight away with sound: Callum briefs the assistant on the problem, and the assistant takes the brief down in the left rail as he talks.
+Open the printed URL at about 1440 by 900 and click **Play the demo** on the start screen. The demo then runs by itself: it opens Teammate from Claude's New page, starts a session, and goes straight into the call. Callum and Claude say hello, Callum briefs Claude on the problem, both think aloud while they build their own versions, and they finish with a decision record in chat.
 
 Controls (the dark bar at the top is prototype chrome, not part of the concept):
 
@@ -71,7 +71,7 @@ Shaping delivery, in `src/script/script.ts`:
 - End a line with a dash ("Can you write that up as a—") and the voice breaks off. Give the next line a negative `gapBefore` and it starts over the end of that line: an interruption.
 - Parentheticals such as "(pause)" are stripped before text is sent and shown only in captions.
 
-The key is never printed or written to a file. Restart `npm run dev` or rebuild after adding audio if the page does not pick it up. The total runtime is shown at the right of the scrubber; keep it under four minutes.
+The key is never printed or written to a file. Restart `npm run dev` or rebuild after adding audio if the page does not pick it up. The total runtime is shown at the right of the scrubber. It is currently about four and a half minutes, over the four-minute target in the original spec.
 
 ## Recording your own lines: the override folder
 

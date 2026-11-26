@@ -5,13 +5,17 @@
 import { harborNav, relayNav } from './layouts';
 
 export type Speaker = 'callum' | 'agent';
+/** new: Claude's New page. teammate: the Teammate page. session: the live call. record: the chat it ends in. */
+export type View = 'new' | 'teammate' | 'session' | 'record';
 
 export type At =
   | { word: string; occurrence?: number; plus?: number } // nth occurrence of a word in the line, plus seconds
   | { offset: number }; // seconds from segment start
 
 export type Action =
-  | { type: 'view'; to: 'chat' | 'session' | 'record' }
+  | { type: 'view'; to: View }
+  | { type: 'pointer'; to: string | null } // the viewer's own mouse during the opening walkthrough; target is a data-tour name
+  | { type: 'click' }
   | { type: 'camera'; zone: string; duration?: number }
   | { type: 'zone'; zone: string } // reveal a zone frame
   | { type: 'cursorMove'; who: Speaker; to: string | { x: number; y: number }; duration?: number } // card, note, group, slot or point
@@ -59,7 +63,7 @@ export type Segment = Line | Beat;
 export const DEFAULT_GAP = 0.3;
 export const WORDS_PER_MINUTE = 165;
 
-export const sceneNames = ['Join', 'Briefing', 'Working in parallel', 'Disagreement', 'Building the third option', 'Decision record'];
+export const sceneNames = ['Opening Teammate', 'Briefing', 'Working in parallel', 'Disagreement', 'Building the third option', 'Decision record'];
 
 /** Leading "(pause)" style parentheticals are direction, not speech. */
 export function splitDirection(text: string): { direction: string | null; spoken: string } {
@@ -73,8 +77,11 @@ export const spokenWords = (text: string) => splitDirection(text).spoken.split(/
 
 export const session = {
   title: 'Harbor and Relay navigation',
-  join: 'Join working session',
+  start: 'Start session',
 };
+
+/** Scene 0: the viewer opens Teammate from Claude's New page. Seconds from the start. */
+export const tour = { typeStart: 3.3, typeEnd: 4.7, duration: 6.8 };
 
 export const record = {
   title: 'Decision record: Harbor and Relay navigation',
@@ -137,7 +144,7 @@ function layOut(word: string, prefix: string, group: string, name: string, label
 }
 
 // Scene 2: Callum lays out Option A, quickly, while the agent builds Option B.
-const CALLUM_STEP = 0.72;
+const CALLUM_STEP = 0.62;
 const callumBuildsA: TimedEvent[] = [
   at(1.0, { type: 'cursorMove', who: 'callum', to: 'A.switcher', duration: 0.5 }),
   at(1.5, { type: 'createCard', who: 'callum', card: 'a-switcher', label: 'Harbor · Relay', slot: 'A.switcher', kind: 'switcher' }),
@@ -150,44 +157,53 @@ const callumBuildsA: TimedEvent[] = [
   ...relayNav
     .slice(0, 7)
     .flatMap((label, i) =>
-      copyAt('callum', 8.5 + i * CALLUM_STEP, `t-r-${slug(label)}`, `a-r-${slug(label)}`, label, `A.relay.${i}`, 0.27, 0.42),
+      copyAt('callum', 7.7 + i * CALLUM_STEP, `t-r-${slug(label)}`, `a-r-${slug(label)}`, label, `A.relay.${i}`, 0.27, 0.42),
     ),
 ];
 
 const AGENT_STEP = 1.1;
-const agentCopies: [src: string, card: string, label: string, slot: string][] = [
+type Copy = [src: string, card: string, label: string, slot: string];
+const agentSteps: (Copy | 'merge')[] = [
   ['t-h-sites', 'b-sites', 'Sites', 'B.build.0'],
   ['t-h-environments', 'b-environments', 'Environments', 'B.build.1'],
   ['t-h-deployments', 'b-deployments', 'Deployments', 'B.build.2'],
   ['t-h-domains', 'b-domains', 'Domains', 'B.build.3'],
+  ['t-h-team', 'b-team', 'Team', 'B.account.0'],
+  ['t-r-users', 'b-users', 'Users', 'B.account.0'],
+  'merge', // Team and Users become People
+  ['t-h-billing', 'b-billing', 'Billing', 'B.account.1'],
+  ['t-h-settings', 'b-settings', 'Settings', 'B.account.2'],
+  ['t-r-integrations', 'b-integrations', 'Integrations', 'B.account.3'],
   ['t-r-audiences', 'b-audiences', 'Audiences', 'B.engage.0'],
   ['t-r-campaigns', 'b-campaigns', 'Campaigns', 'B.engage.1'],
   ['t-r-journeys', 'b-journeys', 'Journeys', 'B.engage.2'],
   ['t-r-content', 'b-content', 'Content', 'B.engage.3'],
   ['t-r-analytics', 'b-analytics', 'Analytics', 'B.measure.0'],
   ['t-h-logs', 'b-logs', 'Logs', 'B.measure.1'],
-  ['t-h-team', 'b-team', 'Team', 'B.account.0'],
-  ['t-r-users', 'b-users', 'Users', 'B.account.0'],
 ];
-const agentAccountRest: [string, string, string, string][] = [
-  ['t-h-billing', 'b-billing', 'Billing', 'B.account.1'],
-  ['t-h-settings', 'b-settings', 'Settings', 'B.account.2'],
-  ['t-r-integrations', 'b-integrations', 'Integrations', 'B.account.3'],
-];
-const MERGE_AT = 3.8 + agentCopies.length * AGENT_STEP; // Team and Users become People
-const agentBuildsB: TimedEvent[] = [
-  ...(['build', 'engage', 'measure', 'account'] as const).flatMap((g, i) => [
-    at(0.8 + i * 0.7, { type: 'cursorMove', who: 'agent', to: `B.${g}`, duration: 0.45 } as Action),
-    at(1.25 + i * 0.7, { type: 'createGroup', group: `B.${g}`, title: g[0].toUpperCase() + g.slice(1) } as Action),
-  ]),
-  ...agentCopies.flatMap(([src, card, label, slot], i) => copyAt('agent', 3.8 + i * AGENT_STEP, src, card, label, slot, 0.45, 0.6)),
-  at(MERGE_AT, { type: 'createCard', who: 'agent', card: 'b-people', label: 'People', slot: 'B.account.0' }),
-  at(MERGE_AT, { type: 'removeCard', card: 'b-team' }),
-  at(MERGE_AT, { type: 'removeCard', card: 'b-users' }),
-  ...agentAccountRest.flatMap(([src, card, label, slot], i) =>
-    copyAt('agent', MERGE_AT + 0.4 + i * AGENT_STEP, src, card, label, slot, 0.45, 0.6),
-  ),
-];
+// While Callum starts on his version, Claude sets out its four empty groups...
+const agentGroupsB: TimedEvent[] = (['build', 'engage', 'measure', 'account'] as const).flatMap((g, i) => [
+  at(1.0 + i * 1.5, { type: 'cursorMove', who: 'agent', to: `B.${g}`, duration: 0.6 } as Action),
+  at(1.6 + i * 1.5, { type: 'createGroup', group: `B.${g}`, title: g[0].toUpperCase() + g.slice(1) } as Action),
+]);
+// ...then fills them, timed from the start of its own thinking-aloud line (s2-02).
+const agentFillsB: TimedEvent[] = [];
+{
+  let t = -0.6;
+  for (const step of agentSteps) {
+    if (step === 'merge') {
+      agentFillsB.push(
+        at(t, { type: 'createCard', who: 'agent', card: 'b-people', label: 'People', slot: 'B.account.0' }),
+        at(t, { type: 'removeCard', card: 'b-team' }),
+        at(t, { type: 'removeCard', card: 'b-users' }),
+      );
+      t += 0.4;
+    } else {
+      agentFillsB.push(...copyAt('agent', t, ...step, 0.45, 0.6));
+      t += AGENT_STEP;
+    }
+  }
+}
 
 const cBuild = ['sites', 'environments', 'deployments', 'domains', 'logs'];
 const cEngage = ['audiences', 'campaigns', 'journeys', 'content', 'analytics'];
@@ -197,25 +213,53 @@ const title = (s: string) => s[0].toUpperCase() + s.slice(1);
 // ── The script ───────────────────────────────────────────────────────────────
 
 export const script: Segment[] = [
-  // Scene 1: Briefing. The call opens straight away; Callum explains the problem and the agent takes it down.
+  // Scene 0: the viewer starts on Claude's New page, opens Teammate and starts a session.
+  {
+    kind: 'beat',
+    id: 's0-tour',
+    scene: 0,
+    duration: tour.duration,
+    events: [
+      at(0, { type: 'view', to: 'new' }),
+      at(0.7, { type: 'pointer', to: 'nav-teammate' }),
+      at(1.8, { type: 'click' }),
+      at(1.95, { type: 'view', to: 'teammate' }),
+      at(2.5, { type: 'pointer', to: 'topic' }),
+      at(3.2, { type: 'click' }),
+      at(5.0, { type: 'pointer', to: 'start' }),
+      at(6.0, { type: 'click' }),
+      at(6.6, { type: 'pointer', to: null }),
+    ],
+  },
+
+  // Scene 1: Briefing. They say hello, Callum explains the problem and Claude takes it down.
   {
     kind: 'beat',
     id: 's1-open',
     scene: 1,
-    duration: 1.0,
+    duration: 1.2,
     events: [
       at(0, { type: 'view', to: 'session' }),
       at(0, { type: 'camera', zone: 'today', duration: 0 }),
-      at(0.4, { type: 'cursorMove', who: 'callum', to: { x: -70, y: 330 }, duration: 0.01 }),
-      at(0.7, { type: 'cursorMove', who: 'agent', to: { x: 440, y: 150 }, duration: 0.01 }),
+      at(0.5, { type: 'cursorMove', who: 'callum', to: { x: -70, y: 330 }, duration: 0.01 }),
+      at(0.8, { type: 'cursorMove', who: 'agent', to: { x: 440, y: 150 }, duration: 0.01 }),
     ],
+  },
+  { kind: 'line', id: 's1-hi-1', scene: 1, speaker: 'callum', delivery: '[cheerful]', text: 'Hey Claude. Can you hear me okay?' },
+  {
+    kind: 'line',
+    id: 's1-hi-2',
+    scene: 1,
+    speaker: 'agent',
+    delivery: '[warmly]',
+    text: 'Hey Callum. Loud and clear. What are we working on?',
   },
   {
     kind: 'line',
     id: 's1-01',
     scene: 1,
     speaker: 'callum',
-    text: "Okay, here's what we're working on. We sell two products. Harbor is where developers host their websites. Relay is where marketers run their campaigns. And each one has its own menu.",
+    text: 'So, we sell two products. Harbor is where developers host their websites. Relay is where marketers run their campaigns. And each one has its own menu.',
     events: [
       ...layOut('Harbor', 't-h', 'today.harbor', 'Harbor', harborNav),
       on('websites', { type: 'brief', label: 'Harbor', text: 'Where developers host their websites' }),
@@ -296,13 +340,13 @@ export const script: Segment[] = [
     kind: 'beat',
     id: 's2-work',
     scene: 2,
-    duration: 13.5,
+    duration: 2.0, // its events keep running under the lines that follow: both work and think aloud
     events: [
       at(0, { type: 'camera', zone: 'wide', duration: 1.4 }),
       at(0.2, { type: 'zone', zone: 'A' }),
       at(0.35, { type: 'zone', zone: 'B' }),
       ...callumBuildsA,
-      ...agentBuildsB,
+      ...agentGroupsB,
       at(2.0, {
         type: 'chip',
         id: 'chip-suites',
@@ -335,8 +379,25 @@ export const script: Segment[] = [
     id: 's2-01',
     scene: 2,
     speaker: 'callum',
+    delivery: '[muttering to himself while working]',
+    text: "Okay... switcher at the top. Then Harbor's menu underneath, exactly as it is.",
+  },
+  {
+    kind: 'line',
+    id: 's2-02',
+    scene: 2,
+    speaker: 'agent',
+    delivery: '[thinking aloud, quietly]',
+    text: "Sites, Environments, Deployments, Domains... that's all building. And Team and Users are the same people, so that's just People.",
+    events: agentFillsB,
+  },
+  {
+    kind: 'line',
+    id: 's2-03',
+    scene: 2,
+    speaker: 'callum',
+    delivery: '[muttering to himself]',
     text: '(half to himself) Billing twice. Settings twice. Yeah, okay, it does look a bit silly written down.',
-    delivery: '[muttering, half to himself]',
     events: [
       on('Billing', { type: 'cursorMove', who: 'callum', to: 't-r-billing', duration: 0.3 }),
       on('Billing', { type: 'createCard', who: 'callum', card: 'a-r-billing', label: 'Billing', slot: 'A.relay.7', from: 't-r-billing', duration: 0.45 }, 0.3),
@@ -347,9 +408,10 @@ export const script: Segment[] = [
   },
   {
     kind: 'line',
-    id: 's2-02',
+    id: 's2-04',
     scene: 2,
     speaker: 'agent',
+    delivery: '[amused]',
     text: "I'm leaving that one alone until you've finished.",
   },
   { kind: 'beat', id: 's2-settle', scene: 2, duration: 0.8 },
@@ -360,7 +422,7 @@ export const script: Segment[] = [
     id: 's3-01',
     scene: 3,
     speaker: 'agent',
-    text: "Mine's up. Four groups by job: Build, Engage, Measure, Account. No duplicates, and nobody has to—",
+    text: "Okay, mine's up. Four groups by job: Build, Engage, Measure, Account. No duplicates. What do you think?",
     events: [
       at(0, { type: 'camera', zone: 'AB', duration: 1.3 }),
       at(0.3, { type: 'cursorMove', who: 'callum', to: { x: 840, y: 330 }, duration: 0.6 }),
@@ -375,9 +437,8 @@ export const script: Segment[] = [
     id: 's3-02',
     scene: 3,
     speaker: 'callum',
-    gapBefore: -0.6, // Callum cuts in
-    delivery: '[jumping in]',
-    text: "Wait, hang on. It's tidy, but I don't think it survives real customers. I was on calls last week. Developers live in Harbor, marketers live in Relay, and they're different people. Your Measure group puts server logs next to campaign analytics. No marketer wants that.",
+    delivery: '[hesitant]',
+    text: "Honestly? It's tidy, but I don't think it survives real customers. I was on calls last week. Developers live in Harbor, marketers live in Relay, and they're different people. Your Measure group puts server logs next to campaign analytics. No marketer wants that.",
     events: [
       on('Developers', { type: 'cursorMove', who: 'callum', to: 'a-h-deployments', duration: 0.5 }),
       on('marketers', { type: 'cursorMove', who: 'callum', to: 'a-r-campaigns', duration: 0.5 }),
@@ -391,13 +452,13 @@ export const script: Segment[] = [
     scene: 3,
     speaker: 'agent',
     delivery: '[thoughtful]',
-    text: "I didn't have that, and it changes my view. If they're different people, grouping by job puts two audiences in one menu. I'll drop Measure.",
+    text: "Huh. I didn't have that, and it changes my view. If they're different people, grouping by job puts two audiences in one menu. So... Logs goes back under Build, Analytics under Engage, and Measure's gone.",
     events: [
-      on('two', { type: 'cursorMove', who: 'agent', to: 'b-logs', duration: 0.6 }),
-      on('menu', { type: 'drag', who: 'agent', card: 'b-logs', to: 'B.build.4', duration: 0.7 }),
-      on('menu', { type: 'cursorMove', who: 'agent', to: 'b-analytics', duration: 0.4 }, 0.75),
-      on('menu', { type: 'drag', who: 'agent', card: 'b-analytics', to: 'B.engage.4', duration: 0.75 }, 1.2),
-      on('menu', { type: 'removeGroup', group: 'B.measure' }, 2.0),
+      on('menu', { type: 'cursorMove', who: 'agent', to: 'b-logs', duration: 0.6 }),
+      on('Logs', { type: 'drag', who: 'agent', card: 'b-logs', to: 'B.build.4', duration: 0.7 }),
+      on('Build', { type: 'cursorMove', who: 'agent', to: 'b-analytics', duration: 0.4 }),
+      on('Analytics', { type: 'drag', who: 'agent', card: 'b-analytics', to: 'B.engage.4', duration: 0.75 }, 0.15),
+      on("Measure's", { type: 'removeGroup', group: 'B.measure' }, 0.3),
     ],
   },
   {
@@ -456,7 +517,7 @@ export const script: Segment[] = [
     id: 's4-01',
     scene: 4,
     speaker: 'callum',
-    text: 'So, keep the two apart, but name them for the people, not the products. And one Account area.',
+    text: 'So, keep the two apart, but name them for the people, not the products. And one Account area. Does that work?',
     gapBefore: 0.9,
     events: [
       at(-0.8, { type: 'camera', zone: 'all', duration: 1.4 }),
@@ -535,15 +596,15 @@ export const script: Segment[] = [
     scene: 4,
     speaker: 'agent',
     text: "Doing it now. I'll include where we disagreed and what changed, so it's there next time.",
-    events: [on('include', { type: 'cursorMove', who: 'agent', to: { x: 1330, y: 800 }, duration: 0.9 })],
+    events: [
+      on('include', { type: 'cursorMove', who: 'agent', to: { x: 1330, y: 800 }, duration: 0.9 }),
+      on('disagreed', { type: 'dim', zones: ['today', 'A', 'B'] }),
+      on('disagreed', { type: 'highlight', zone: 'C' }),
+    ],
   },
-  {
-    kind: 'beat',
-    id: 's4-hold',
-    scene: 4,
-    duration: 2.4,
-    events: [at(0.4, { type: 'dim', zones: ['today', 'A', 'B'] }), at(0.4, { type: 'highlight', zone: 'C' })],
-  },
+  { kind: 'line', id: 's4-bye-1', scene: 4, speaker: 'callum', delivery: '[warmly]', text: 'Perfect. Thanks, Claude. That was genuinely useful.' },
+  { kind: 'line', id: 's4-bye-2', scene: 4, speaker: 'agent', delivery: '[warmly]', text: 'Anytime. Speak soon, Callum.' },
+  { kind: 'beat', id: 's4-end', scene: 4, duration: 0.9 },
 
   // Scene 5: Decision record (text). Content and timing live in `record` above.
   { kind: 'beat', id: 's5-record', scene: 5, duration: record.timing.duration, events: [at(0, { type: 'view', to: 'record' })] },

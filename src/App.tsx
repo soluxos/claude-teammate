@@ -12,8 +12,9 @@ import { Canvas } from './components/session/Canvas';
 import { CallBar } from './components/session/CallBar';
 import { Captions } from './components/session/Captions';
 import { ActivityChips } from './components/session/ActivityChips';
-import { JoinOverlay } from './components/session/JoinOverlay';
-import { TopBar } from './components/TopBar';
+import { StartScreen } from './components/StartScreen';
+import { TourPointer } from './components/TourPointer';
+import { NewPage, TeammatePage } from './components/chat/Pages';
 
 export function App() {
   const [ctx, setCtx] = useState<{ player: Player; audio: AudioEngine } | null>(null);
@@ -89,29 +90,29 @@ function GoalBar() {
 }
 
 function Shell() {
-  const snap = useSnap();
-  // Before joining, Claude's full navigation is on screen with Teammate selected.
-  const view = snap.fresh ? 'lobby' : snap.state.view;
+  const view = useSnap().state.view;
   return (
     <div className="app" data-view={view}>
       <PlaybackBar />
       <div className="product">
         <Sidebar />
         <div className="chat-pane">
+          <NewPage />
+          <TeammatePage />
           <ChatView />
           <Rail />
         </div>
-        <div className="session-pane" aria-hidden={view === 'record'}>
-          <TopBar />
+        <div className="session-pane" aria-hidden={view !== 'session'}>
           <Canvas />
           <GoalBar />
           <ActivityChips />
           <Captions />
           <CallBar />
-          <JoinOverlay />
         </div>
+        <TourPointer />
         <div className="concept-label">Concept prototype</div>
       </div>
+      <StartScreen />
     </div>
   );
 }

@@ -1,89 +1,94 @@
 {
  "id": "s3-01",
- "text": "Mine's up. Four groups by job: Build, Engage, Measure, Account. No duplicates, and nobody has to—",
- "duration": 8.959999999999999,
+ "text": "Okay, mine's up. Four groups by job: Build, Engage, Measure, Account. No duplicates. What do you think?",
+ "duration": 8.8,
  "words": [
   {
-   "word": "Mine's",
+   "word": "Okay,",
    "start": 0,
-   "end": 0.32
+   "end": 0.56
+  },
+  {
+   "word": "mine's",
+   "start": 0.68,
+   "end": 0.88
   },
   {
    "word": "up.",
-   "start": 0.44,
-   "end": 0.64
-  },
-  {
-   "word": "Four",
-   "start": 1.04,
+   "start": 0.96,
    "end": 1.2
   },
   {
+   "word": "Four",
+   "start": 1.6,
+   "end": 1.76
+  },
+  {
    "word": "groups",
-   "start": 1.28,
-   "end": 1.6
+   "start": 1.84,
+   "end": 2.16
   },
   {
    "word": "by",
-   "start": 1.68,
-   "end": 1.84
+   "start": 2.24,
+   "end": 2.32
   },
   {
    "word": "job:",
-   "start": 2,
-   "end": 2.72
-  },
-  {
-   "word": "Build,",
-   "start": 2.92,
+   "start": 2.48,
    "end": 3.28
   },
   {
+   "word": "Build,",
+   "start": 3.36,
+   "end": 3.92
+  },
+  {
    "word": "Engage,",
-   "start": 3.44,
-   "end": 4.24
+   "start": 4.08,
+   "end": 4.92
   },
   {
    "word": "Measure,",
-   "start": 4.4,
-   "end": 4.96
+   "start": 5.12,
+   "end": 5.6
   },
   {
    "word": "Account.",
-   "start": 5.12,
-   "end": 5.68
+   "start": 5.84,
+   "end": 6.64
   },
   {
    "word": "No",
-   "start": 6.24,
-   "end": 6.32
+   "start": 6.88,
+   "end": 7.04
   },
   {
-   "word": "duplicates,",
-   "start": 6.4,
-   "end": 7.12
+   "word": "duplicates.",
+   "start": 7.12,
+   "end": 7.96
   },
   {
-   "word": "and",
-   "start": 7.24,
-   "end": 7.36
+   "word": "What",
+   "start": 8.16,
+   "end": 8.24
   },
   {
-   "word": "nobody",
-   "start": 7.6,
-   "end": 8
+   "word": "do",
+   "start": 8.32,
+   "end": 8.347
   },
   {
-   "word": "has",
-   "start": 8.08,
-   "end": 8.32
+   "word": "you",
+   "start": 8.373,
+   "end": 8.4
   },
   {
-   "word": "to—",
-   "start": 8.4,
-   "end": 8.96
+   "word": "think?",
+   "start": 8.48,
+   "end": 8.8
   }
  ],
- "lufs": -20.62,
- "gainDb": 0.62
+ "lufs": -21.2,
+ "gainDb": 1.2
 }

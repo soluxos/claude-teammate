@@ -1,5 +1,5 @@
 import { formatTime, usePlayer, useTime } from '../../engine/context';
-import { record } from '../../script/script';
+import { record, session } from '../../script/script';
 import { Icon } from '../Icon';
 import { TopBar } from '../TopBar';
 import { DecisionCard } from './DecisionCard';
@@ -21,13 +21,13 @@ export function ChatView() {
   const recordP = Math.max(0, Math.min(1, (local - r.streamStart) / (r.streamEnd - r.streamStart)));
 
   return (
-    <div className="chat">
-      <TopBar />
+    <div className="chat page page-record">
+      <TopBar crumbs={['Teammate', session.title]} />
       <div className="thread">
         <div className="thread-inner">
           <div className="session-chip">
             <span className="session-chip-dot" />
-            Working session · {formatTime(recordStart)} · Callum and Claude
+            Working session · {formatTime(recordStart - player.timeline.starts['s1-open'])} · Callum and Claude
           </div>
           {local >= 0.4 && (
             <div className="msg-agent">

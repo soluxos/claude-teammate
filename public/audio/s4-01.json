@@ -1,12 +1,12 @@
 {
  "id": "s4-01",
- "text": "So, keep the two apart, but name them for the people, not the products. And one Account area.",
- "duration": 7.44,
+ "text": "So, keep the two apart, but name them for the people, not the products. And one Account area. Does that work?",
+ "duration": 8.92,
  "words": [
   {
    "word": "So,",
    "start": 0,
-   "end": 0.4
+   "end": 0.48
   },
   {
    "word": "keep",
@@ -15,22 +15,22 @@
   },
   {
    "word": "the",
-   "start": 0.76,
-   "end": 0.8
+   "start": 0.8,
+   "end": 0.88
   },
   {
    "word": "two",
-   "start": 0.88,
+   "start": 0.96,
    "end": 1.04
   },
   {
    "word": "apart,",
    "start": 1.16,
-   "end": 1.92
+   "end": 2
   },
   {
    "word": "but",
-   "start": 2,
+   "start": 2.08,
    "end": 2.16
   },
   {
@@ -50,8 +50,8 @@
   },
   {
    "word": "the",
-   "start": 2.84,
-   "end": 2.88
+   "start": 2.88,
+   "end": 2.96
   },
   {
    "word": "people,",
@@ -65,35 +65,50 @@
   },
   {
    "word": "the",
-   "start": 4.12,
-   "end": 4.16
+   "start": 4.16,
+   "end": 4.24
   },
   {
    "word": "products.",
-   "start": 4.24,
-   "end": 5
+   "start": 4.32,
+   "end": 5.16
   },
   {
    "word": "And",
-   "start": 5.2,
-   "end": 5.52
+   "start": 5.44,
+   "end": 5.76
   },
   {
    "word": "one",
-   "start": 5.84,
-   "end": 6.08
+   "start": 6.16,
+   "end": 6.32
   },
   {
    "word": "Account",
-   "start": 6.16,
-   "end": 6.64
+   "start": 6.56,
+   "end": 6.8
   },
   {
    "word": "area.",
-   "start": 6.72,
-   "end": 7.44
+   "start": 6.88,
+   "end": 7.28
+  },
+  {
+   "word": "Does",
+   "start": 7.68,
+   "end": 7.84
+  },
+  {
+   "word": "that",
+   "start": 7.88,
+   "end": 7.92
+  },
+  {
+   "word": "work?",
+   "start": 8,
+   "end": 8.92
   }
  ],
- "lufs": -27.28,
- "gainDb": 6.51
+ "lufs": -26.4,
+ "gainDb": 6.4
 }

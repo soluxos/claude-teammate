@@ -1,7 +1,7 @@
 {
  "id": "s2-01",
  "text": "Okay... switcher at the top. Then Harbor's menu underneath, exactly as it is.",
- "duration": 7.04,
+ "duration": 6.895,
  "words": [
   {
    "word": "Okay...",
@@ -69,6 +69,6 @@
    "end": 7.04
   }
  ],
- "lufs": -31.06,
- "gainDb": 11.06
+ "lufs": -31.39,
+ "gainDb": 11.39
 }

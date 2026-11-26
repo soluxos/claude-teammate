@@ -57,6 +57,12 @@ npm run audio -- --force
 
 `--only` regenerates the whole scene containing that line (or a comma-separated list of lines), because a line is only natural in the context of its conversation. The model is not deterministic, so each run gives a slightly different performance: if a scene sounds off, run it again.
 
+Clean handovers: the model's timings are only approximate where one speaker hands over to the other, so each cut is moved to the quietest moment near the boundary. Whole scenes are kept in `.audio-cache/` (git-ignored), so the lines can be cut again without calling the API:
+
+```bash
+npm run audio -- --recut
+```
+
 Matching the two voices' loudness: after cutting, each line's loudness is measured (integrated LUFS, EBU R128) and the gain needed to reach -20 LUFS is saved in its json. The player applies that gain, with a limiter for the loudest peaks, so neither voice is louder than the other. To re-measure without calling the API:
 
 ```bash

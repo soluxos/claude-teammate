@@ -1,7 +1,7 @@
 {
  "id": "s4-01",
  "text": "So, keep the two apart, but name them for the people, not the products. And one Account area. Does that work?",
- "duration": 8.92,
+ "duration": 8.535,
  "words": [
   {
    "word": "So,",
@@ -109,6 +109,6 @@
    "end": 8.92
   }
  ],
- "lufs": -26.4,
- "gainDb": 6.4
+ "lufs": -27.64,
+ "gainDb": 7.64
 }

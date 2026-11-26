@@ -1,7 +1,7 @@
 {
  "id": "s1-hi-1",
  "text": "Hey Claude. Can you hear me okay?",
- "duration": 2.093,
+ "duration": 2.055,
  "words": [
   {
    "word": "Hey",
@@ -39,6 +39,6 @@
    "end": 2.093
   }
  ],
- "lufs": -23.51,
- "gainDb": 3.51
+ "lufs": -23.94,
+ "gainDb": 3.94
 }

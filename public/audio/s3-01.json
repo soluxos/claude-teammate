@@ -1,7 +1,7 @@
 {
  "id": "s3-01",
  "text": "Okay, mine's up. Four groups by job: Build, Engage, Measure, Account. No duplicates. What do you think?",
- "duration": 8.8,
+ "duration": 9.025,
  "words": [
   {
    "word": "Okay,",
@@ -89,6 +89,6 @@
    "end": 8.8
   }
  ],
- "lufs": -21.2,
- "gainDb": 1.2
+ "lufs": -21.6,
+ "gainDb": 1.6
 }

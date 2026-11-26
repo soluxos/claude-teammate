@@ -2117,22 +2117,36 @@ button:focus-visible {
   --rail-w: 340px;
 }
 .rail {
-  gap: 8px;
-  padding-bottom: 0;
+  gap: 10px;
 }
-.rail-label {
+.rail-tabs {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 6px;
+  gap: 2px;
+  margin-top: 4px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--surface-card);
+  flex: none;
 }
-.rail-live-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
+.rail-tabs button {
+  flex: 1;
+  height: 28px;
+  border-radius: 7px;
+  font-size: 13px;
   font-weight: var(--w-control);
   color: var(--ink-muted);
+  transition:
+    background 150ms ease-out,
+    color 150ms ease-out;
+}
+.rail-tabs button:hover {
+  color: var(--ink);
+}
+.rail-tabs button[aria-selected='true'] {
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(0, 0, 0, 0.06);
+  color: var(--ink);
+  font-weight: var(--w-header);
 }
 .tx {
   flex: 1;

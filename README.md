@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-Open the printed URL at about 1440 by 900. The start screen sets out the problem Teammate solves and the case used in the demo; click **Play the demo** to begin. The demo then runs by itself: it opens Teammate from Claude's New page, starts a session, and goes straight into the call. Callum and Claude say hello, Callum briefs Claude on the problem, both think aloud while they build their own versions, and they finish with a decision record in chat.
+Open the printed URL at about 1440 by 900. The start screen states the problem in one line; click **Play the demo** to begin. The demo then runs by itself: it opens Teammate from Claude's New page, starts a session, and goes straight into the call. Callum and Claude say hello, Callum briefs Claude on the problem, both think aloud while they build their own versions, and they finish with a decision record in chat.
 
 During the call, the left-hand panel has two tabs: the session brief Claude takes down, and a live transcript of every line as it is spoken, with what Claude noted and what it went off and did. Click any line to jump to that moment. The same transcript sits under the decision record at the end, so the session can be read back afterwards.
 

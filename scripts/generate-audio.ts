@@ -3,6 +3,7 @@
 //   npm run audio                  generate scenes whose lines, voices or settings changed
 //   npm run audio -- --only s3-03  regenerate the scene containing that line (comma-separate for several)
 //   npm run audio -- --force       regenerate everything
+//   npm run audio -- --level       only re-measure loudness of the existing files (no API calls)
 //
 // Each scene is generated as ONE conversation with the ElevenLabs Text to Dialogue endpoint:
 //   POST https://api.elevenlabs.io/v1/text-to-dialogue/with-timestamps
@@ -12,7 +13,7 @@
 // mp3 per line, with word timings, which is what the player loads.
 // The API key is read from the environment and is never printed or written anywhere.
 
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -30,6 +31,8 @@ const OUTPUT_FORMAT = 'mp3_44100_128';
 // Below the default of 0.5 for a wider emotional range: colleagues, not presenters.
 const SETTINGS = { stability: 0.4 };
 const MAX_CHARS = 1800; // the endpoint is reliable up to about 2,000 characters per request
+const TARGET_LUFS = -20; // every line is played back at this loudness, so neither voice is louder
+const PEAK_CEILING = 2; // dBTP after gain. The player's limiter catches the few peaks that pass 0
 
 const apiKey = process.env.ELEVENLABS_API_KEY;
 const voices: Record<Speaker, string | undefined> = {
@@ -45,6 +48,7 @@ type Manifest = Record<string, { hash: string }>;
 
 const args = process.argv.slice(2);
 const force = args.includes('--force');
+const levelOnly = args.includes('--level');
 const onlyAt = args.indexOf('--only');
 const only = onlyAt >= 0 ? (args[onlyAt + 1] ?? '').split(',').filter(Boolean) : null;
 
@@ -94,6 +98,33 @@ function toWords(a: Alignment, from: number, to: number, origin: number): Word[]
   return words;
 }
 
+/**
+ * Measures a line's integrated loudness (LUFS, EBU R128) and returns the playback gain that brings
+ * it to the target. The gain is stored beside the word timings and applied by the player, so the
+ * audio itself is not re-encoded.
+ */
+function measure(file: string): { lufs: number; gainDb: number } {
+  // ffmpeg prints the measurement to stderr.
+  const out = spawnSync('ffmpeg', ['-hide_banner', '-nostats', '-i', file, '-af', 'loudnorm=print_format=json', '-f', 'null', '-'], {
+    encoding: 'utf8',
+  }).stderr;
+  const stats = JSON.parse(out.slice(out.lastIndexOf('{'), out.lastIndexOf('}') + 1));
+  const lufs = Number(stats.input_i);
+  const peak = Number(stats.input_tp);
+  if (!Number.isFinite(lufs)) return { lufs: TARGET_LUFS, gainDb: 0 };
+  const gainDb = Math.max(-12, Math.min(12, TARGET_LUFS - lufs, PEAK_CEILING - peak));
+  return { lufs, gainDb: Math.round(gainDb * 100) / 100 };
+}
+
+/** Writes loudness into a line's json, keeping whatever word timings are there. */
+function writeLevel(id: string, text: string) {
+  const json = path.join(OUT, `${id}.json`);
+  const existing = fs.existsSync(json) ? JSON.parse(fs.readFileSync(json, 'utf8')) : { id, text, words: [] };
+  const level = measure(path.join(OUT, `${id}.mp3`));
+  fs.writeFileSync(json, JSON.stringify({ ...existing, ...level }, null, 1));
+  return level;
+}
+
 async function synthesise(group: Line[]): Promise<Dialogue> {
   const res = await fetch(`https://api.elevenlabs.io/v1/text-to-dialogue/with-timestamps?output_format=${OUTPUT_FORMAT}`, {
     method: 'POST',
@@ -108,7 +139,22 @@ async function synthesise(group: Line[]): Promise<Dialogue> {
   return (await res.json()) as Dialogue;
 }
 
+function levelExisting() {
+  const report: Record<Speaker, number[]> = { agent: [], callum: [] };
+  for (const line of lines) {
+    if (!fs.existsSync(path.join(OUT, `${line.id}.mp3`))) continue;
+    const { lufs, gainDb } = writeLevel(line.id, spoken(line));
+    report[line.speaker].push(lufs + gainDb);
+    console.log(`  ${line.id}  ${line.speaker.padEnd(6)}  ${lufs.toFixed(1)} LUFS  ${gainDb >= 0 ? '+' : ''}${gainDb.toFixed(1)} dB`);
+  }
+  for (const who of ['callum', 'agent'] as const) {
+    const v = report[who];
+    if (v.length) console.log(`${who}: plays back between ${Math.min(...v).toFixed(1)} and ${Math.max(...v).toFixed(1)} LUFS (target ${TARGET_LUFS})`);
+  }
+}
+
 async function main() {
+  if (levelOnly) return levelExisting();
   if (!apiKey) fail('ELEVENLABS_API_KEY is not set. Copy .env.example to .env and fill it in.');
   if (!voices.agent || !voices.callum) fail('Set ELEVENLABS_VOICE_AGENT and ELEVENLABS_VOICE_CALLUM in .env.');
   try {
@@ -155,13 +201,10 @@ async function main() {
       const to = Math.max(...segs.map((s) => s.character_end_index));
       const words = data.alignment ? toWords(data.alignment, from, to, start) : [];
       const json = path.join(OUT, `${line.id}.json`);
-      if (words.length === expected) {
-        fs.writeFileSync(json, JSON.stringify({ id: line.id, text: spoken(line), duration: end - start, words }, null, 1));
-        console.log(`  ${line.id}  ${line.speaker.padEnd(6)}  ${(end - start).toFixed(1)}s`);
-      } else {
-        fs.rmSync(json, { force: true }); // the player falls back to evenly paced words for this line
-        console.log(`  ${line.id}  ${line.speaker.padEnd(6)}  ${(end - start).toFixed(1)}s  (no usable word timings: ${words.length} of ${expected})`);
-      }
+      const usable = words.length === expected; // otherwise the player falls back to evenly paced words
+      fs.writeFileSync(json, JSON.stringify({ id: line.id, text: spoken(line), duration: end - start, words: usable ? words : [] }, null, 1));
+      const { gainDb } = writeLevel(line.id, spoken(line));
+      console.log(`  ${line.id}  ${line.speaker.padEnd(6)}  ${(end - start).toFixed(1)}s  ${gainDb >= 0 ? '+' : ''}${gainDb.toFixed(1)} dB${usable ? '' : `  (no usable word timings: ${words.length} of ${expected})`}`);
       made++;
     });
     manifest[chunk.key] = { hash };

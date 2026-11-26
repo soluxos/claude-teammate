@@ -152,6 +152,39 @@ button:focus-visible {
   border: 1px solid #4a463f;
   font-size: 11px;
 }
+.playback-volume {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.playback-volume input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 76px;
+  height: 4px;
+  margin: 0;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--on-dark-soft) var(--fill), #3a3733 var(--fill));
+  cursor: pointer;
+}
+.playback-volume input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--on-dark);
+}
+.playback-volume input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--on-dark);
+}
+.playback-volume input:focus-visible {
+  outline: 2px solid var(--on-dark-soft);
+  outline-offset: 4px;
+}
 .playback .playback-speed {
   width: 44px;
   font-size: 12px;

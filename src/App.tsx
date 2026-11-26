@@ -38,6 +38,7 @@ export function App() {
     if (!ctx) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.target instanceof HTMLInputElement) return; // the volume slider uses the arrow keys itself
       if (e.code === 'Space') {
         e.preventDefault();
         ctx.player.toggle();

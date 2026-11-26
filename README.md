@@ -19,7 +19,7 @@ Controls (the dark bar at the top is prototype chrome, not part of the concept):
 
 - Space: play or pause. Left and right arrows: previous or next scene.
 - Drag the scrubber to any point. The canvas is rebuilt for that moment.
-- `1x` / `1.25x` toggles speed. `CC` in the call bar toggles captions.
+- The speaker icon and slider set the volume (remembered between visits). `1x` / `1.25x` toggles speed. `CC` in the call bar toggles captions.
 
 Without audio files the prototype still plays end to end: captions advance at reading pace, voice rings use a synthetic envelope, and the bar shows "Audio not generated".
 
@@ -47,6 +47,14 @@ npm run audio -- --force
 ```
 
 `--only` regenerates the whole scene containing that line (or a comma-separated list of lines), because a line is only natural in the context of its conversation. The model is not deterministic, so each run gives a slightly different performance: if a scene sounds off, run it again.
+
+Matching the two voices' loudness: after cutting, each line's loudness is measured (integrated LUFS, EBU R128) and the gain needed to reach -20 LUFS is saved in its json. The player applies that gain, with a limiter for the loudest peaks, so neither voice is louder than the other. To re-measure without calling the API:
+
+```bash
+npm run audio -- --level
+```
+
+Recordings in the override folder are played as they are, so level those yourself.
 
 Shaping delivery, in `src/script/script.ts`:
 

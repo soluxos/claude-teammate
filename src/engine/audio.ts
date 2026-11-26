@@ -20,7 +20,7 @@ async function fetchAudio(url: string): Promise<ArrayBuffer | null> {
   }
 }
 
-async function fetchWords(url: string): Promise<{ duration?: number; words: WordTiming[] } | null> {
+async function fetchWords(url: string): Promise<{ duration?: number; words: WordTiming[]; gainDb?: number } | null> {
   try {
     const res = await fetch(url);
     if (!res.ok || !(res.headers.get('content-type') ?? '').includes('json')) return null;
@@ -31,14 +31,29 @@ async function fetchWords(url: string): Promise<{ duration?: number; words: Word
   }
 }
 
-type Channel = { el: HTMLAudioElement; analyser: AnalyserNode; samples: Uint8Array<ArrayBuffer>; id: string | null };
+type Channel = { el: HTMLAudioElement; analyser: AnalyserNode; gain: GainNode; samples: Uint8Array<ArrayBuffer>; id: string | null };
+
+const VOLUME_KEY = 'working-session-volume';
+function storedVolume(): number {
+  try {
+    const v = Number(localStorage.getItem(VOLUME_KEY) ?? '1');
+    return Number.isFinite(v) ? Math.max(0, Math.min(1, v)) : 1;
+  } catch {
+    return 1;
+  }
+}
 
 export class AudioEngine implements ClockSource {
   private ctx: AudioContext | null = null;
   // Two channels, used by alternate lines, so an interrupting line can sound over the one it cuts off.
   private channels: Channel[] = [];
   private urls: Record<string, string> = {};
+  // Per-line gain that brings every line to the same loudness, measured at build time.
+  private lineGain: Record<string, number> = {};
+  private master: GainNode | null = null;
   private unlocked = false;
+  /** Playback volume, 0 to 1. Remembered between visits. */
+  volume = storedVolume();
   /** 'none' | 'partial' | 'full' once load() has run. */
   coverage: 'none' | 'partial' | 'full' = 'none';
 
@@ -65,6 +80,7 @@ export class AudioEngine implements ClockSource {
         const aligned = hasJson ? await fetchWords(`${dir}${line.id}.json`) : null;
         // Alignment must match the script's words one for one, or word anchors would drift.
         const usable = aligned && aligned.words.length === spokenWords(line.text).length;
+        if (aligned?.gainDb) this.lineGain[line.id] = 10 ** (aligned.gainDb / 20);
         // A line ends shortly after its last word, so trailing silence in the file costs no time
         // and an interruption lands on speech.
         if (usable) duration = Math.min(duration, aligned.words[aligned.words.length - 1].end + 0.2);
@@ -84,14 +100,27 @@ export class AudioEngine implements ClockSource {
       if (!this.ctx) {
         const Ctx = window.AudioContext ?? (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
         const ctx = (this.ctx = new Ctx());
+        const master = (this.master = ctx.createGain());
+        master.gain.value = this.volume;
+        // A limiter, so lines boosted to match the other voice cannot clip on their loudest peaks.
+        const limiter = ctx.createDynamicsCompressor();
+        limiter.threshold.value = -2;
+        limiter.knee.value = 0;
+        limiter.ratio.value = 20;
+        limiter.attack.value = 0.002;
+        limiter.release.value = 0.08;
+        limiter.connect(master);
+        master.connect(ctx.destination);
         this.channels = [0, 1].map(() => {
           const el = new Audio();
           el.preload = 'auto';
           const analyser = ctx.createAnalyser();
           analyser.fftSize = 512;
+          // The analyser sits before the gains, so the voice rings do not shrink when the volume is turned down.
+          const gain = ctx.createGain();
           ctx.createMediaElementSource(el).connect(analyser);
-          analyser.connect(ctx.destination);
-          return { el, analyser, samples: new Uint8Array(512), id: null };
+          analyser.connect(gain).connect(limiter);
+          return { el, analyser, gain, samples: new Uint8Array(512), id: null };
         });
       }
       if (this.ctx.state !== 'running') void this.ctx.resume().then(() => (this.unlocked = true)).catch(() => {});
@@ -104,6 +133,16 @@ export class AudioEngine implements ClockSource {
       }
     } catch {
       // No audio support: the performance runs on estimated timing.
+    }
+  }
+
+  setVolume(volume: number) {
+    this.volume = Math.max(0, Math.min(1, volume));
+    if (this.master && this.ctx) this.master.gain.setTargetAtTime(this.volume, this.ctx.currentTime, 0.02);
+    try {
+      localStorage.setItem(VOLUME_KEY, String(this.volume));
+    } catch {
+      // Private browsing: the setting just lasts for this visit.
     }
   }
 
@@ -128,6 +167,7 @@ export class AudioEngine implements ClockSource {
     const local = t - line.start;
     if (ch.id !== line.line.id) {
       ch.id = line.line.id;
+      ch.gain.gain.value = this.lineGain[line.line.id] ?? 1;
       el.src = url;
       el.currentTime = local;
       el.playbackRate = speed;

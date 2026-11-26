@@ -115,6 +115,8 @@ export interface ClockSource {
   /** Called every frame with the lines sounding now (two while one speaker interrupts the other).
    *  Returns the audio's idea of "now" for the newest line, if it is actually playing. */
   sync(lines: BuiltLine[], t: number, playing: boolean, speed: number): number | null;
+  /** Told once where every line sits on the timeline. */
+  prepare(lines: BuiltLine[]): void;
   unlock(): void;
 }
 
@@ -131,6 +133,7 @@ export class Player {
     public timeline: Timeline,
     private audio: ClockSource,
   ) {
+    audio.prepare(timeline.lines);
     this.snapshot = { state: initialState(), playing: false, speed: 1, instant: true, captions: true, fresh: true, ended: false };
     this.seek(0);
   }

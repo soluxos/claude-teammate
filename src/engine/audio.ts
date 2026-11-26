@@ -1,14 +1,11 @@
 // Audio queue, analyser and alignment lookups.
-// Two <audio> elements are reused for every line, so a single user gesture unlocks sound in every browser.
+// Every line has its own preloaded <audio> element, so speakers hand over without a gap or a jump.
 
 import audioIndex from 'virtual:audio-index';
-import { spokenWords, type Line } from '../script/script';
+import { spokenWords, type Line, type Speaker } from '../script/script';
 import { estimateTiming, type BuiltLine, type ClockSource, type LineTiming, type WordTiming } from './timeline';
 
 const BASE = `${import.meta.env.BASE_URL}audio/`;
-const SILENCE =
-  'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=';
-
 async function fetchAudio(url: string): Promise<ArrayBuffer | null> {
   try {
     const res = await fetch(url);
@@ -31,7 +28,18 @@ async function fetchWords(url: string): Promise<{ duration?: number; words: Word
   }
 }
 
-type Channel = { el: HTMLAudioElement; analyser: AnalyserNode; gain: GainNode; samples: Uint8Array<ArrayBuffer>; id: string | null };
+/** One line of speech: its own preloaded element, so it can start instantly and overlap its neighbours. */
+type Voice = {
+  el: HTMLAudioElement;
+  speaker: Speaker;
+  length: number; // seconds of audio in the file
+  start: number; // where the line sits on the timeline
+  gain: number; // brings the line to the shared loudness, measured at build time
+  primed: boolean;
+  priming: boolean;
+  startedAt: number;
+  done: boolean;
+};
 
 const VOLUME_KEY = 'working-session-volume';
 function storedVolume(): number {
@@ -45,11 +53,9 @@ function storedVolume(): number {
 
 export class AudioEngine implements ClockSource {
   private ctx: AudioContext | null = null;
-  // Two channels, used by alternate lines, so an interrupting line can sound over the one it cuts off.
-  private channels: Channel[] = [];
-  private urls: Record<string, string> = {};
-  // Per-line gain that brings every line to the same loudness, measured at build time.
-  private lineGain: Record<string, number> = {};
+  private voices: Record<string, Voice> = {};
+  private analysers: Partial<Record<Speaker, AnalyserNode>> = {};
+  private samples = new Uint8Array(512);
   private master: GainNode | null = null;
   private unlocked = false;
   /** Playback volume, 0 to 1. Remembered between visits. */
@@ -75,12 +81,14 @@ export class AudioEngine implements ClockSource {
         } catch {
           return;
         }
-        this.urls[line.id] = URL.createObjectURL(new Blob([bytes], { type: 'audio/mpeg' }));
+        const el = new Audio(URL.createObjectURL(new Blob([bytes], { type: 'audio/mpeg' })));
+        el.preload = 'auto';
+        this.voices[line.id] = { el, speaker: line.speaker, length: duration, start: 0, gain: 1, primed: false, priming: false, startedAt: 0, done: false };
         const hasJson = (override ? audioIndex.overrideAligned : audioIndex.aligned).includes(line.id);
         const aligned = hasJson ? await fetchWords(`${dir}${line.id}.json`) : null;
         // Alignment must match the script's words one for one, or word anchors would drift.
         const usable = aligned && aligned.words.length === spokenWords(line.text).length;
-        if (aligned?.gainDb) this.lineGain[line.id] = 10 ** (aligned.gainDb / 20);
+        if (aligned?.gainDb) this.voices[line.id].gain = 10 ** (aligned.gainDb / 20);
         // A line ends shortly after its last word, so trailing silence in the file costs no time
         // and an interruption lands on speech.
         if (usable) duration = Math.min(duration, aligned.words[aligned.words.length - 1].end + 0.2);
@@ -92,6 +100,14 @@ export class AudioEngine implements ClockSource {
     const have = Object.keys(timings).length;
     this.coverage = have === 0 ? 'none' : have === lines.length ? 'full' : 'partial';
     return timings;
+  }
+
+  /** Tells each voice where its line sits on the timeline. */
+  prepare(lines: BuiltLine[]) {
+    for (const line of lines) {
+      const v = this.voices[line.line.id];
+      if (v) v.start = line.start;
+    }
   }
 
   /** Must be called from a user gesture. Safe to call repeatedly. */
@@ -111,25 +127,37 @@ export class AudioEngine implements ClockSource {
         limiter.release.value = 0.08;
         limiter.connect(master);
         master.connect(ctx.destination);
-        this.channels = [0, 1].map(() => {
-          const el = new Audio();
-          el.preload = 'auto';
-          const analyser = ctx.createAnalyser();
+        // One analyser per speaker, before the volume control, so the voice rings ignore the volume.
+        for (const who of ['callum', 'agent'] as const) {
+          const analyser = (this.analysers[who] = ctx.createAnalyser());
           analyser.fftSize = 512;
-          // The analyser sits before the gains, so the voice rings do not shrink when the volume is turned down.
+          analyser.connect(limiter);
+        }
+        for (const v of Object.values(this.voices)) {
           const gain = ctx.createGain();
-          ctx.createMediaElementSource(el).connect(analyser);
-          analyser.connect(gain).connect(limiter);
-          return { el, analyser, gain, samples: new Uint8Array(512), id: null };
-        });
+          gain.gain.value = v.gain;
+          ctx.createMediaElementSource(v.el).connect(gain).connect(this.analysers[v.speaker]!);
+        }
       }
       if (this.ctx.state !== 'running') void this.ctx.resume().then(() => (this.unlocked = true)).catch(() => {});
       else this.unlocked = true;
-      // Playing each element once inside the gesture lets it play later without one.
-      for (const ch of this.channels) {
-        if (ch.id) continue;
-        ch.el.src = SILENCE;
-        ch.el.play().catch(() => {});
+      // Playing each element once, muted, inside the gesture lets it start later without one (Safari).
+      for (const v of Object.values(this.voices)) {
+        if (v.primed || v.priming || !v.el.paused) continue;
+        v.priming = true;
+        v.el.muted = true;
+        v.el
+          .play()
+          .then(() => {
+            v.el.pause();
+            v.el.currentTime = 0;
+            v.primed = true;
+          })
+          .catch(() => {})
+          .finally(() => {
+            v.el.muted = false;
+            v.priming = false;
+          });
       }
     } catch {
       // No audio support: the performance runs on estimated timing.
@@ -146,56 +174,52 @@ export class AudioEngine implements ClockSource {
     }
   }
 
+  /**
+   * Starts and stops voices so each one sounds for the whole length of its file from its line's start.
+   * A line's tail is never cut when the next speaker begins: it simply plays out underneath.
+   */
   sync(lines: BuiltLine[], t: number, playing: boolean, speed: number): number | null {
+    const newest = lines[lines.length - 1]?.line.id;
+    const now = performance.now();
     let master: number | null = null;
-    this.channels.forEach((ch, i) => {
-      const line = lines.filter((l) => l.index % 2 === i).pop() ?? null;
-      const now = this.syncChannel(ch, line, t, playing, speed);
-      if (line && line === lines[lines.length - 1]) master = now;
-    });
+    for (const [id, v] of Object.entries(this.voices)) {
+      const { el } = v;
+      const local = t - v.start;
+      if (!playing || !this.unlocked || local < 0 || local >= v.length) {
+        if (!el.paused && !v.priming) el.pause();
+        v.done = false;
+        continue;
+      }
+      if (v.priming || v.done) continue;
+      if (el.ended) {
+        v.done = true;
+        continue;
+      }
+      if (el.paused) {
+        // Already preloaded, so this starts within a few milliseconds: no seek unless we were scrubbed.
+        if (Math.abs(el.currentTime - local) > 0.04) el.currentTime = local;
+        el.playbackRate = speed;
+        el.play().catch(() => {});
+        v.startedAt = now;
+        continue;
+      }
+      if (el.playbackRate !== speed) el.playbackRate = speed;
+      // Only a scrub moves the audio. In normal play the timeline follows the audio instead.
+      if (now - v.startedAt > 600 && Math.abs(el.currentTime - local) > 0.3) el.currentTime = local;
+      else if (id === newest && el.readyState >= 3 && el.currentTime > 0) master = v.start + el.currentTime;
+    }
     return master;
-  }
-
-  private syncChannel(ch: Channel, line: BuiltLine | null, t: number, playing: boolean, speed: number): number | null {
-    const { el } = ch;
-    const url = line ? this.urls[line.line.id] : undefined;
-    if (!playing || !line || !url || !this.unlocked) {
-      if (!el.paused) el.pause();
-      if (!line || !url) ch.id = null;
-      return null;
-    }
-    const local = t - line.start;
-    if (ch.id !== line.line.id) {
-      ch.id = line.line.id;
-      ch.gain.gain.value = this.lineGain[line.line.id] ?? 1;
-      el.src = url;
-      el.currentTime = local;
-      el.playbackRate = speed;
-      el.play().catch(() => {});
-      return null;
-    }
-    if (el.playbackRate !== speed) el.playbackRate = speed;
-    if (el.ended) return null;
-    if (el.paused) {
-      el.currentTime = local;
-      el.play().catch(() => {});
-      return null;
-    }
-    if (Math.abs(el.currentTime - local) > 0.3) {
-      el.currentTime = local; // the timeline was scrubbed
-      return null;
-    }
-    return el.readyState >= 3 ? line.start + el.currentTime : null;
   }
 
   /** Current loudness of a line, 0 to 1, or null when its audio is not actually sounding. */
   level(line: BuiltLine): number | null {
-    const ch = this.channels[line.index % 2];
-    if (!ch || ch.id !== line.line.id || ch.el.paused) return null;
-    ch.analyser.getByteTimeDomainData(ch.samples);
+    const v = this.voices[line.line.id];
+    const analyser = this.analysers[line.line.speaker];
+    if (!v || !analyser || v.el.paused) return null;
+    analyser.getByteTimeDomainData(this.samples);
     let sum = 0;
-    for (const v of ch.samples) sum += ((v - 128) / 128) ** 2;
-    return Math.min(1, Math.sqrt(sum / ch.samples.length) * 5);
+    for (const x of this.samples) sum += ((x - 128) / 128) ** 2;
+    return Math.min(1, Math.sqrt(sum / this.samples.length) * 5);
   }
 }
 

@@ -83,7 +83,7 @@ Drop a recording at `public/audio/override/{id}.mp3` (for example `s1-02.mp3`) a
 - `src/script/layouts.ts`: named card positions for each zone.
 - `src/engine/timeline.ts`: builds a flat list of absolute event times from line durations and gaps, and runs the clock. Audio is the master clock while a line is sounding.
 - `src/engine/state.ts`: canvas state as a pure function of the events that have fired. Scrubbing resets and replays events up to the target time without animation.
-- `src/engine/audio.ts`: two reusable audio elements (so a single click unlocks sound in every browser, and one speaker can talk over the other) with an analyser each for the voice rings.
+- `src/engine/audio.ts`: one preloaded audio element per line, so speakers hand over without a gap and one can talk over the other. A single click unlocks them all. Each speaker has an analyser for the voice rings.
 - `scripts/generate-audio.ts`: the build-time ElevenLabs script.
 
 ## Deploying

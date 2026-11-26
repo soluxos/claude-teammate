@@ -12,6 +12,7 @@ import { Canvas } from './components/session/Canvas';
 import { CallBar } from './components/session/CallBar';
 import { Captions } from './components/session/Captions';
 import { ActivityChips } from './components/session/ActivityChips';
+import { ShareOverlay } from './components/session/ShareOverlay';
 import { StartScreen } from './components/StartScreen';
 import { TourPointer } from './components/TourPointer';
 import { NewPage, TeammatePage } from './components/chat/Pages';
@@ -104,6 +105,7 @@ function Shell() {
         </div>
         <div className="session-pane" aria-hidden={view !== 'session'}>
           <Canvas />
+          <ShareOverlay />
           <GoalBar />
           <ActivityChips />
           <Captions />

@@ -2,7 +2,9 @@ import { memo, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnap } from '../../engine/context';
 import type { CardS, CursorS, GroupS, NoteS } from '../../engine/state';
-import { CARD_H, cameraRects, suites, zones, type ZoneId } from '../../script/layouts';
+import { CARD_H, cameraRects, zones, type ZoneId } from '../../script/layouts';
+import { sites } from '../../script/sites';
+import { MockSite } from './MockSite';
 import type { Speaker } from '../../script/script';
 
 type Bezier = [number, number, number, number];
@@ -252,21 +254,10 @@ const Note = memo(function Note({ n, tilt, m }: { n: NoteS; tilt: number; m: Mot
         {!research && ' · Claude'}
       </div>
       {research && (
-        <div className="suites">
-          {suites.map((s) => (
-            <div key={s.name} className="suite">
-              <div className="suite-name">{s.name}</div>
-              <div className="suite-top" data-merged={s.products === 1}>
-                {Array.from({ length: s.products }, (_, i) => (
-                  <i key={i} />
-                ))}
-              </div>
-              <div className="suite-lines">
-                <i />
-                <i />
-                <i />
-              </div>
-              <div className="suite-account">Account</div>
+        <div className="site-thumbs" data-pulse={n.pulse}>
+          {sites.map((site) => (
+            <div key={site.name} className="site-thumb">
+              <MockSite site={site} />
             </div>
           ))}
         </div>

@@ -22,7 +22,11 @@ npm install
 npm run dev
 ```
 
-Open the printed URL at about 1440 by 900 and click **Play the demo** on the start screen. The demo then runs by itself: it opens Teammate from Claude's New page, starts a session, and goes straight into the call. Callum and Claude say hello, Callum briefs Claude on the problem, both think aloud while they build their own versions, and they finish with a decision record in chat.
+Open the printed URL at about 1440 by 900. The start screen sets out the problem Teammate solves and the case used in the demo; click **Play the demo** to begin. The demo then runs by itself: it opens Teammate from Claude's New page, starts a session, and goes straight into the call. Callum and Claude say hello, Callum briefs Claude on the problem, both think aloud while they build their own versions, and they finish with a decision record in chat.
+
+During the call, the left-hand panel keeps a live transcript: every line as it is spoken, what Claude noted, and what it went off and did. Click any line to jump to that moment. The same transcript sits under the decision record at the end, so the session can be read back afterwards.
+
+When Claude brings its research, it shares six example products over the canvas, like a screen share on a call. They are fictional suites drawn in HTML (`src/script/sites.ts`, `src/components/session/MockSite.tsx`); none of the brands is real.
 
 Controls (the dark bar at the top is prototype chrome, not part of the concept):
 

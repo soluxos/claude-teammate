@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { formatTime, usePlayer, useTime } from '../../engine/context';
 import { record, session } from '../../script/script';
 import { Icon } from '../Icon';
 import { TopBar } from '../TopBar';
 import { DecisionCard } from './DecisionCard';
+import { Transcript } from './Transcript';
 
 /** Reveals whole words, so streamed text never shows half a word. */
 export function streamed(text: string, p: number): string {
@@ -18,6 +20,7 @@ export function ChatView() {
   const recordStart = player.timeline.starts['s5-record'];
   const local = t - recordStart;
   const r = record.timing;
+  const [showTranscript, setShowTranscript] = useState(false);
   const recordP = Math.max(0, Math.min(1, (local - r.streamStart) / (r.streamEnd - r.streamStart)));
 
   return (
@@ -42,9 +45,20 @@ export function ChatView() {
                   </div>
                 )}
                 {local >= r.replay && (
-                  <button className="btn-secondary replay-button" onClick={() => player.restart()}>
-                    Replay
-                  </button>
+                  <div className="record-actions">
+                    <button className="btn-secondary" onClick={() => setShowTranscript((v) => !v)} aria-expanded={showTranscript}>
+                      {showTranscript ? 'Hide transcript' : 'Read the transcript'}
+                    </button>
+                    <button className="btn-secondary" onClick={() => player.restart()}>
+                      Replay
+                    </button>
+                  </div>
+                )}
+                {local >= r.replay && showTranscript && (
+                  <div className="record-transcript">
+                    <div className="record-transcript-head">Transcript · click any line to jump back to that moment</div>
+                    <Transcript all />
+                  </div>
                 )}
               </div>
             </div>

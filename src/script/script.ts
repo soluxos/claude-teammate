@@ -33,7 +33,8 @@ export type Action =
   | { type: 'tag'; target: string; text: string }
   | { type: 'dim'; zones: string[] }
   | { type: 'highlight'; zone: string }
-  | { type: 'brief'; label: string; text: string }; // a line in the session brief the agent keeps
+  | { type: 'brief'; label: string; text: string } // a line in the session brief the agent keeps
+  | { type: 'share'; what: string | null }; // Claude puts something up over the canvas for both to look at
 
 export type NoteSpec = { id: string; kicker: string; text: string; slot: string; kind?: 'note' | 'research' };
 
@@ -356,7 +357,7 @@ export const script: Segment[] = [
           id: 'research',
           kind: 'research', // shown as six small examples, not just a claim
           kicker: 'Research · 6 multi-product suites',
-          text: '4 keep products separate at the top level. All 6 have a single account, billing and people area.',
+          text: '4 of 6 keep their products apart. All 6 have one account area.',
           slot: 'research',
         },
       }),
@@ -468,13 +469,13 @@ export const script: Segment[] = [
     speaker: 'agent',
     text: "But I'm keeping one part. Look at these six. Every one has a single account area, even the four that keep their products apart. And our own decision log says Billing is already one system.",
     events: [
-      // Show the examples, then come back.
-      on('keeping', { type: 'camera', zone: 'research', duration: 1.1 }),
+      // Claude puts the six examples up for both of them, like sharing a screen, then takes them down.
       on('keeping', { type: 'cursorMove', who: 'agent', to: 'research', duration: 0.9 }),
-      on('Every', { type: 'pulse', target: 'research', duration: 5 }),
-      on('our', { type: 'cursorMove', who: 'agent', to: 'note.2', duration: 0.5 }),
-      on('our', { type: 'pulse', target: 'note.2', duration: 3 }, 0.2),
-      on('system', { type: 'camera', zone: 'AB', duration: 1.2 }, 0.7),
+      on('Look', { type: 'share', what: 'research' }),
+      on('Every', { type: 'pulse', target: 'research', duration: 5.5 }),
+      on('our', { type: 'share', what: null }),
+      on('our', { type: 'cursorMove', who: 'agent', to: 'note.2', duration: 0.5 }, 0.1),
+      on('our', { type: 'pulse', target: 'note.2', duration: 3 }, 0.3),
     ],
   },
   {

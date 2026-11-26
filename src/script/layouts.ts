@@ -34,22 +34,13 @@ export const groupLayouts: Record<string, GroupLayout> = {
 
 const special: Record<string, { x: number; y: number; w?: number }> = {
   'A.switcher': { x: 464, y: 54, w: 324 },
-  research: { x: 904, y: 312 },
+  research: { x: 904, y: 306 },
   'note.2': { x: 1368, y: 336 },
 };
 
 export const NOTE_W = 216;
 export const RESEARCH_W = 440;
 
-/** Fictional suites the agent looked at. `products` is how many they keep apart at the top (1 = merged). */
-export const suites = [
-  { name: 'Corvane', products: 3 },
-  { name: 'Plentia', products: 2 },
-  { name: 'Tandril', products: 1 },
-  { name: 'Mereo', products: 4 },
-  { name: 'Ubiqo', products: 2 },
-  { name: 'Novaro', products: 1 },
-];
 
 /** A slot is `${groupId}.${rowIndex}` or one of the special names above. */
 export function slotPos(slot: string): { x: number; y: number; w: number } {
@@ -91,7 +82,6 @@ export const cameraRects: Record<string, Rect> = {
   AB: union(zones.A, zones.B),
   all: union(zones.A, zones.B, zones.C),
   C: { x: zones.C.x - 60, y: zones.C.y - 20, w: zones.C.w + 120, h: zones.C.h + 30 },
-  research: { x: 880, y: 250, w: 720, h: 300 },
 };
 
 export const harborNav = ['Sites', 'Environments', 'Deployments', 'Domains', 'Logs', 'Team', 'Billing', 'Settings'];

@@ -1,11 +1,9 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { useSnap } from '../../engine/context';
 import { session } from '../../script/script';
 import { Icon } from '../Icon';
+import { Transcript } from './Transcript';
 
-/** Beside the canvas: the brief the assistant takes down as Callum explains the problem. */
+/** Beside the canvas: the session's live transcript, kept so anyone can come back and see what happened. */
 export function Rail() {
-  const { state, instant } = useSnap();
   return (
     <div className="rail">
       <div className="rail-head">
@@ -16,28 +14,13 @@ export function Rail() {
         <span>Teammate</span>
         {session.title}
       </div>
-      <div className="rail-label">Session brief</div>
-      <div className="rail-thread">
-        {state.brief.length === 0 && <p className="rail-empty">Claude notes what you are working on here as you explain it.</p>}
-        <AnimatePresence initial={false}>
-          {state.brief.map((item) => (
-            <motion.div
-              key={item.label}
-              className="brief-item"
-              data-kind={item.label.includes('idea') ? 'idea' : undefined}
-              initial={instant ? false : { opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-            >
-              <span>{item.label}</span>
-              {item.text}
-            </motion.div>
-          ))}
-        </AnimatePresence>
+      <div className="rail-label">
+        Transcript
+        <span className="rail-live-pill">
+          <span className="live-dot" /> Live
+        </span>
       </div>
-      <div className="rail-live">
-        <span className="live-dot" /> Working session in progress
-      </div>
+      <Transcript />
     </div>
   );
 }

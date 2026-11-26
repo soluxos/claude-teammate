@@ -41,6 +41,7 @@ export type CanvasState = {
   dim: string[];
   highlight: string | null;
   brief: { label: string; text: string }[];
+  share: string | null; // what Claude is showing over the canvas, like a screen share
 };
 
 /** Primitive, instantaneous state changes. Actions with a duration compile to several. */
@@ -106,6 +107,7 @@ export function initialState(): CanvasState {
     dim: [],
     highlight: null,
     brief: [],
+    share: null,
   };
 }
 
@@ -115,7 +117,7 @@ function resolvePoint(s: CanvasState, to: string | { x: number; y: number }): { 
   const card = s.cards[to];
   if (card) return { x: card.x + HOT.x, y: card.y + HOT.y };
   const note = s.notes[to];
-  if (note) return { x: note.x + note.w - 40, y: note.y + (note.kind === 'research' ? 128 : 70) }; // below the examples, not on them
+  if (note) return { x: note.x + note.w - 40, y: note.y + (note.kind === 'research' ? 214 : 70) }; // below the examples, not on them
   const group = groupLayouts[to];
   if (group) return { x: group.x + 70, y: group.y + 14 };
   if (isSlot(to)) {
@@ -266,6 +268,8 @@ export function apply(s: CanvasState, p: Prim): CanvasState {
       return { ...s, highlight: p.zone };
     case 'brief':
       return { ...s, brief: [...s.brief, { label: p.label, text: p.text }] };
+    case 'share':
+      return { ...s, share: p.what };
     case 'ring':
     case 'chip':
       return s; // compiled away by expand()

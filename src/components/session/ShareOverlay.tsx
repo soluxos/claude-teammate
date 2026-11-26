@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useSnap } from '../../engine/context';
 import { sites } from '../../script/sites';
 import { MockSite } from './MockSite';
+import { SpeakerMark } from '../SpeakerMark';
 
 /** Claude puts its research up over the canvas, the way someone shares their screen on a call. */
 export function ShareOverlay() {
@@ -20,7 +21,9 @@ export function ShareOverlay() {
         >
           <div className="share-head">
             <span className="share-badge">
-              <span className="share-avatar">✦</span> Claude is sharing
+              <span className="share-avatar">
+                <SpeakerMark who="agent" size={11} />
+              </span> Claude is sharing
             </span>
             <span className="share-title">How 6 multi-product suites handle their navigation</span>
           </div>

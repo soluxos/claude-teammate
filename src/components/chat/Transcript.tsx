@@ -2,6 +2,7 @@ import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { formatTime, usePlayer, useTime } from '../../engine/context';
 import type { BuiltLine, Timeline } from '../../engine/timeline';
 import { splitDirection } from '../../script/script';
+import { SpeakerMark } from '../SpeakerMark';
 
 const NAMES = { callum: 'Callum', agent: 'Claude' } as const;
 
@@ -37,7 +38,9 @@ const Line = memo(function Line({ bl, origin, upTo, onJump }: { bl: BuiltLine; o
   return (
     <button className="tx-line" data-who={bl.line.speaker} data-live={live || undefined} onClick={() => onJump(bl.start)} title="Jump to this moment">
       <span className="tx-who">
-        <span className="tx-avatar">{bl.line.speaker === 'agent' ? '✦' : 'C'}</span>
+        <span className="tx-avatar">
+          <SpeakerMark who={bl.line.speaker} size={11} />
+        </span>
         {NAMES[bl.line.speaker]}
         <time>{formatTime(bl.start - origin)}</time>
       </span>

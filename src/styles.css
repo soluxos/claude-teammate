@@ -2663,3 +2663,38 @@ button:focus-visible {
   font-size: 7.5px;
   color: #6a737d;
 }
+
+/* Captions: one short phrase at a time, sized to its words, so they read as captions rather than paragraphs. */
+.captions {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: max-content;
+  max-width: min(600px, calc(100% - 80px));
+  padding: 7px 14px 8px;
+  border-radius: 10px;
+  text-align: left;
+}
+.captions .caption-name {
+  flex: none;
+  font-size: 12px;
+}
+.captions p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 21px;
+}
+.captions .now {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+/* Speaker badges hold a drawn mark, centred exactly. */
+.tx-avatar,
+.share-avatar {
+  line-height: 0;
+}
+.tx-avatar svg,
+.share-avatar svg {
+  display: block;
+}

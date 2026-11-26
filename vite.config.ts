@@ -20,6 +20,8 @@ function audioIndex(): Plugin {
     aligned: list(dir, '.json'),
     overrides: list(path.join(dir, 'override'), '.mp3'),
     overrideAligned: list(path.join(dir, 'override'), '.json'),
+    // Optional licensed brand fonts the user supplies: public/brand/anthropic-sans.woff2 and anthropic-serif.woff2
+    brand: list(path.resolve(import.meta.dirname, 'public/brand'), '.woff2'),
   });
   return {
     name: 'audio-index',

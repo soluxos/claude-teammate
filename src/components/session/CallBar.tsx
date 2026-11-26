@@ -4,7 +4,7 @@ import type { Speaker } from '../../script/script';
 
 const people: { who: Speaker; name: string; initial: string }[] = [
   { who: 'callum', name: 'Callum', initial: 'C' },
-  { who: 'agent', name: 'Assistant', initial: 'A' },
+  { who: 'agent', name: 'Claude', initial: '✦' },
 ];
 
 export function CallBar() {

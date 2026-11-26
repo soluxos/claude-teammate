@@ -11,7 +11,7 @@ export type ZoneId = 'today' | 'A' | 'B' | 'C';
 export const zones: Record<ZoneId, Rect & { title: string; subtitle: string }> = {
   today: { x: 0, y: 0, w: 372, h: 550, title: 'Today', subtitle: 'Two products, two navigations' },
   A: { x: 440, y: 0, w: 372, h: 550, title: 'Option A', subtitle: 'Callum · product switcher' },
-  B: { x: 880, y: 0, w: 720, h: 550, title: 'Option B', subtitle: 'Assistant · by job' },
+  B: { x: 880, y: 0, w: 720, h: 550, title: 'Option B', subtitle: 'Claude · by job' },
   C: { x: 747, y: 610, w: 546, h: 380, title: 'Option C', subtitle: 'Together · workspaces by role' },
 };
 

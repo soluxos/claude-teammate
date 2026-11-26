@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 declare module 'virtual:audio-index' {
-  const index: { generated: string[]; aligned: string[]; overrides: string[]; overrideAligned: string[] };
+  const index: { generated: string[]; aligned: string[]; overrides: string[]; overrideAligned: string[]; brand: string[] };
   export default index;
 }
 declare module '@fontsource-variable/inter';

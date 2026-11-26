@@ -13,7 +13,7 @@ const EASE: Record<Speaker | 'none', { x: Bezier; y: Bezier }> = {
   none: { x: [0.3, 0, 0.2, 1], y: [0.3, 0, 0.2, 1] },
 };
 const SOFT: Bezier = [0.2, 0.7, 0.2, 1];
-const NAMES: Record<Speaker, string> = { callum: 'Callum', agent: 'Assistant' };
+const NAMES: Record<Speaker, string> = { callum: 'Callum', agent: 'Claude' };
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -249,7 +249,7 @@ const Note = memo(function Note({ n, tilt, m }: { n: NoteS; tilt: number; m: Mot
     >
       <div className="note-kicker">
         <span className="note-dot" /> {n.kicker}
-        {!research && ' · Assistant'}
+        {!research && ' · Claude'}
       </div>
       {research && (
         <div className="suites">

@@ -271,7 +271,7 @@ export const script: Segment[] = [
       on('Team', { type: 'cursorMove', who: 'agent', to: 't-h-team', duration: 0.5 }),
       on('Users', { type: 'cursorMove', who: 'agent', to: 't-r-users', duration: 0.5 }),
       on('group', { type: 'cursorMove', who: 'agent', to: { x: 430, y: 240 }, duration: 0.9 }),
-      on('doing', { type: 'brief', label: "Assistant's idea", text: 'Group the menu by what people are doing, not by product' }, 0.4),
+      on('doing', { type: 'brief', label: "Claude's idea", text: 'Group the menu by what people are doing, not by product' }, 0.4),
     ],
   },
   {

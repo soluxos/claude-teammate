@@ -13,6 +13,7 @@ import { CallBar } from './components/session/CallBar';
 import { Captions } from './components/session/Captions';
 import { ActivityChips } from './components/session/ActivityChips';
 import { JoinOverlay } from './components/session/JoinOverlay';
+import { TopBar } from './components/TopBar';
 
 export function App() {
   const [ctx, setCtx] = useState<{ player: Player; audio: AudioEngine } | null>(null);
@@ -88,7 +89,9 @@ function GoalBar() {
 }
 
 function Shell() {
-  const view = useSnap().state.view;
+  const snap = useSnap();
+  // Before joining, Claude's full navigation is on screen with Teammate selected.
+  const view = snap.fresh ? 'lobby' : snap.state.view;
   return (
     <div className="app" data-view={view}>
       <PlaybackBar />
@@ -98,7 +101,8 @@ function Shell() {
           <ChatView />
           <Rail />
         </div>
-        <div className="session-pane" aria-hidden={view !== 'session'}>
+        <div className="session-pane" aria-hidden={view === 'record'}>
+          <TopBar />
           <Canvas />
           <GoalBar />
           <ActivityChips />

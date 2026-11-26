@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnap } from '../../engine/context';
 import { session } from '../../script/script';
-import { Mark } from '../Mark';
+import { Icon } from '../Icon';
 
 /** Beside the canvas: the brief the assistant takes down as Callum explains the problem. */
 export function Rail() {
@@ -9,12 +9,16 @@ export function Rail() {
   return (
     <div className="rail">
       <div className="rail-head">
-        <Mark size={18} />
-        <span>{session.title}</span>
+        <Icon name="sidebar" />
+        <span className="wordmark">Claude</span>
+      </div>
+      <div className="rail-title">
+        <span>Teammate</span>
+        {session.title}
       </div>
       <div className="rail-label">Session brief</div>
       <div className="rail-thread">
-        {state.brief.length === 0 && <p className="rail-empty">The assistant notes what you are working on here as you explain it.</p>}
+        {state.brief.length === 0 && <p className="rail-empty">Claude notes what you are working on here as you explain it.</p>}
         <AnimatePresence initial={false}>
           {state.brief.map((item) => (
             <motion.div

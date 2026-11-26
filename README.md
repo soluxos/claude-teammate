@@ -1,8 +1,17 @@
-# Working session: concept prototype
+# Teammate: concept prototype
 
-A scripted, playable prototype of a "working session": a voice call over a shared canvas where a person and an AI assistant solve an open-ended design problem together. It is a performance, not a product. Nothing calls a language model at runtime; every word, cursor movement and card movement is authored in `src/script/script.ts` and played back in sync with pre-generated audio.
+A scripted, playable prototype of "Teammate", a concept feature for Claude: a working session (a voice call over a shared canvas) where a person and Claude solve an open-ended design problem together. This is a private design exercise and is not an Anthropic product. It is a performance, not a product. Nothing calls a language model at runtime; every word, cursor movement and card movement is authored in `src/script/script.ts` and played back in sync with pre-generated audio.
 
-The build spec lives outside this repo; `DESIGN.md` holds the visual reference the interface follows.
+The build spec lives outside this repo.
+
+## Visual styling
+
+The interface follows Claude's own light theme: layout, colours, type sizes, weights, radii and spacing were measured from the live app and are set as tokens at the top of `src/styles.css`. Two things are stand-ins, because the originals are licensed and are not in this repo:
+
+- Typefaces: the CSS asks for `anthropic-sans` and `anthropic-serif` first and falls back to Inter and Source Serif 4. If you have a licence, drop `anthropic-sans.woff2` and `anthropic-serif.woff2` into `public/brand/` and restart; they are picked up automatically.
+- Icons: drawn for this prototype in `src/components/Icon.tsx` to sit in the same positions and sizes.
+
+`DESIGN.md` describes Claude's marketing site and is kept only for reference.
 
 ## Setup
 

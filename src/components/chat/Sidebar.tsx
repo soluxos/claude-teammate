@@ -1,27 +1,61 @@
 import { session } from '../../script/script';
-import { Mark } from '../Mark';
+import { Icon } from '../Icon';
 
-const recents = [session.title, 'Onboarding checklist copy', 'Research synthesis, round two', 'Empty states audit', 'Pricing page critique', 'Icon naming conventions'];
+const nav = [
+  { icon: 'plus', label: 'New' },
+  { icon: 'search', label: 'Search' },
+  { icon: 'projects', label: 'Projects' },
+  { icon: 'artifacts', label: 'Artifacts' },
+  { icon: 'teammate', label: 'Teammate', selected: true, badge: 'New' },
+  { icon: 'customize', label: 'Customize' },
+] as const;
 
+const recents = ['Onboarding checklist copy', 'Research synthesis, round two', 'Empty states audit', 'Pricing page critique', 'Icon naming conventions'];
+
+/** Claude's navigation, with the concept feature, Teammate, as one more item in it. */
 export function Sidebar() {
   return (
     <aside className="sidebar">
-      <div className="sidebar-brand">
-        <Mark /> <span>Assistant</span>
+      <div className="sb-top">
+        <Icon name="sidebar" />
+        <span className="wordmark">Claude</span>
+        <div className="seg">
+          <span className="on">
+            <Icon name="chat" size={18} />
+          </span>
+          <span>
+            <Icon name="code" size={18} />
+          </span>
+        </div>
       </div>
-      <button className="sidebar-new" tabIndex={-1}>
-        <span>+</span> New conversation
-      </button>
-      <div className="sidebar-label">Recent</div>
+      <nav>
+        {nav.map((item) => (
+          <div key={item.label} className="sb-row" data-selected={'selected' in item}>
+            <Icon name={item.icon} />
+            <span>{item.label}</span>
+            {'badge' in item && <em>{item.badge}</em>}
+          </div>
+        ))}
+      </nav>
+      <div className="sb-label">
+        Teammate sessions <Icon name="chevron" size={14} />
+      </div>
       <ul>
-        {recents.map((title, i) => (
-          <li key={title} className={i === 0 ? 'selected' : undefined}>
-            {title}
-          </li>
+        <li className="selected">{session.title}</li>
+        <li>Checkout flow review</li>
+      </ul>
+      <div className="sb-label">
+        Recents <Icon name="chevron" size={14} />
+      </div>
+      <ul className="grow">
+        {recents.map((title) => (
+          <li key={title}>{title}</li>
         ))}
       </ul>
-      <div className="sidebar-user">
-        <span className="avatar person">C</span> Callum
+      <div className="sb-user">
+        <span className="avatar-sm">C</span>
+        <span>Callum</span>
+        <Icon name="chevron" size={14} />
       </div>
     </aside>
   );

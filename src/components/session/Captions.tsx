@@ -1,7 +1,7 @@
 import { usePlayer, useSnap, useTime } from '../../engine/context';
 import { splitDirection } from '../../script/script';
 
-const NAMES = { callum: 'Callum', agent: 'Assistant' } as const;
+const NAMES = { callum: 'Callum', agent: 'Claude' } as const;
 
 export function Captions() {
   const player = usePlayer();

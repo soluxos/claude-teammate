@@ -1,6 +1,7 @@
 import { formatTime, usePlayer, useTime } from '../../engine/context';
-import { record, session } from '../../script/script';
-import { Mark } from '../Mark';
+import { record } from '../../script/script';
+import { Icon } from '../Icon';
+import { TopBar } from '../TopBar';
 import { DecisionCard } from './DecisionCard';
 
 /** Reveals whole words, so streamed text never shows half a word. */
@@ -21,18 +22,15 @@ export function ChatView() {
 
   return (
     <div className="chat">
-      <header className="chat-head">{session.title}</header>
+      <TopBar />
       <div className="thread">
         <div className="thread-inner">
           <div className="session-chip">
             <span className="session-chip-dot" />
-            Working session · {formatTime(recordStart)} · Callum and Assistant
+            Working session · {formatTime(recordStart)} · Callum and Claude
           </div>
           {local >= 0.4 && (
             <div className="msg-agent">
-              <div className="msg-agent-mark" data-thinking={recordP === 0}>
-                <Mark size={22} />
-              </div>
               <div className="msg-agent-body">
                 <DecisionCard progress={recordP} />
                 {local >= r.saved && (
@@ -56,16 +54,14 @@ export function ChatView() {
       <div className="composer-wrap">
         <div className="composer">
           <div className="composer-text" data-empty="true">
-            Reply to Assistant
+            Reply to Claude
           </div>
-          <div className="composer-row">
-            <span className="composer-plus">+</span>
-            <span className="composer-send">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-                <path d="M8 13V3M8 3L3.5 7.5M8 3l4.5 4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-          </div>
+          <Icon name="enter" size={18} />
+        </div>
+        <div className="composer-row">
+          <Icon name="plus" size={18} />
+          <Icon name="mic" size={18} />
+          <span className="composer-mode">Teammate</span>
         </div>
       </div>
     </div>

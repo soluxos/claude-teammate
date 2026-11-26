@@ -1,97 +1,97 @@
 {
  "id": "s4-01",
  "text": "So, keep the two apart, but name them for the people, not the products. And one Account area.",
- "duration": 7.802,
+ "duration": 7.44,
  "words": [
   {
    "word": "So,",
    "start": 0,
-   "end": 0.36
+   "end": 0.4
   },
   {
    "word": "keep",
-   "start": 0.476,
-   "end": 0.65
+   "start": 0.56,
+   "end": 0.72
   },
   {
    "word": "the",
-   "start": 0.685,
-   "end": 0.755
+   "start": 0.76,
+   "end": 0.8
   },
   {
    "word": "two",
-   "start": 0.789,
-   "end": 0.894
+   "start": 0.88,
+   "end": 1.04
   },
   {
    "word": "apart,",
-   "start": 0.94,
-   "end": 1.66
+   "start": 1.16,
+   "end": 1.92
   },
   {
    "word": "but",
-   "start": 1.939,
-   "end": 2.101
+   "start": 2,
+   "end": 2.16
   },
   {
    "word": "name",
-   "start": 2.183,
-   "end": 2.45
+   "start": 2.24,
+   "end": 2.48
   },
   {
    "word": "them",
-   "start": 2.485,
-   "end": 2.601
+   "start": 2.56,
+   "end": 2.64
   },
   {
    "word": "for",
-   "start": 2.647,
-   "end": 2.752
+   "start": 2.72,
+   "end": 2.8
   },
   {
    "word": "the",
-   "start": 2.786,
-   "end": 2.856
+   "start": 2.84,
+   "end": 2.88
   },
   {
    "word": "people,",
-   "start": 2.902,
-   "end": 3.471
+   "start": 3.04,
+   "end": 3.76
   },
   {
    "word": "not",
-   "start": 3.913,
-   "end": 4.133
+   "start": 3.92,
+   "end": 4.08
   },
   {
    "word": "the",
-   "start": 4.18,
-   "end": 4.249
+   "start": 4.12,
+   "end": 4.16
   },
   {
    "word": "products.",
-   "start": 4.296,
-   "end": 5.074
+   "start": 4.24,
+   "end": 5
   },
   {
    "word": "And",
-   "start": 6.385,
-   "end": 6.536
+   "start": 5.2,
+   "end": 5.52
   },
   {
    "word": "one",
-   "start": 6.641,
-   "end": 6.78
+   "start": 5.84,
+   "end": 6.08
   },
   {
    "word": "Account",
-   "start": 6.803,
-   "end": 7.094
+   "start": 6.16,
+   "end": 6.64
   },
   {
    "word": "area.",
-   "start": 7.152,
-   "end": 7.802
+   "start": 6.72,
+   "end": 7.44
   }
  ]
 }

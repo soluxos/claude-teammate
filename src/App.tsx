@@ -74,6 +74,18 @@ export function App() {
   );
 }
 
+/** The goal stays on screen from the moment Callum states it. */
+function GoalBar() {
+  const goal = useSnap().state.brief.find((b) => b.label === 'Goal');
+  if (!goal) return null;
+  return (
+    <div className="goal">
+      <span>Working on</span>
+      {goal.text}
+    </div>
+  );
+}
+
 function Shell() {
   const view = useSnap().state.view;
   return (
@@ -87,6 +99,7 @@ function Shell() {
         </div>
         <div className="session-pane" aria-hidden={view !== 'session'}>
           <Canvas />
+          <GoalBar />
           <ActivityChips />
           <Captions />
           <CallBar />

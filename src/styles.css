@@ -892,6 +892,84 @@ button:focus-visible {
       0 0 0 7px rgba(204, 120, 92, 0.28);
   }
 }
+.note.research {
+  padding: 12px 14px;
+  border-radius: var(--r-card);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 12px;
+  color: var(--body);
+}
+.note.research[data-pulse='true'] {
+  animation: none;
+}
+.suites {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin: 4px 0 9px;
+}
+.suite {
+  padding: 5px 5px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.suite-name {
+  margin-bottom: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+.suite-top {
+  display: flex;
+  gap: 2px;
+  height: 9px;
+}
+.suite-top i {
+  flex: 1;
+  border-radius: 2px;
+  background: var(--person);
+  opacity: 0.75;
+}
+.suite-top[data-merged='true'] i {
+  background: var(--muted-soft);
+  opacity: 0.5;
+}
+.suite-lines {
+  display: grid;
+  gap: 3px;
+  margin: 5px 0;
+}
+.suite-lines i {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line);
+}
+.suite-lines i:nth-child(2) {
+  width: 70%;
+}
+.suite-lines i:nth-child(3) {
+  width: 85%;
+}
+.suite-account {
+  padding: 1px 0;
+  border-radius: 3px;
+  background: var(--agent);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+.note.research[data-pulse='true'] .suite-account {
+  animation: accountPulse 1s ease-in-out infinite;
+}
+@keyframes accountPulse {
+  50% {
+    box-shadow: 0 0 0 4px rgba(204, 120, 92, 0.35);
+    transform: scale(1.08);
+  }
+}
 .note-kicker {
   display: flex;
   align-items: center;
@@ -946,6 +1024,33 @@ button:focus-visible {
 }
 .cursor.agent .cursor-tag {
   background: var(--agent-strong);
+}
+
+/* What the session is for, pinned once the goal has been said */
+.goal {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: var(--r-card);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: 0 2px 10px rgba(20, 20, 19, 0.06);
+  font-family: var(--serif);
+  font-size: 16px;
+  animation: rise 400ms var(--ease);
+}
+.goal span {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
 }
 
 /* Join screen */

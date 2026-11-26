@@ -1,172 +1,182 @@
 {
  "id": "s3-04",
- "text": "But I'm keeping one part. Every suite I looked at has one account area, even the four that keep their products apart. And our own decision log says Billing is already one system.",
- "duration": 12.167,
+ "text": "But I'm keeping one part. Look at these six. Every one has a single account area, even the four that keep their products apart. And our own decision log says Billing is already one system.",
+ "duration": 12.88000000000001,
  "words": [
   {
    "word": "But",
    "start": 0,
-   "end": 0.186
+   "end": 0.720000000000006
   },
   {
    "word": "I'm",
-   "start": 0.221,
-   "end": 0.313
+   "start": 0.8000000000000043,
+   "end": 0.9600000000000009
   },
   {
    "word": "keeping",
-   "start": 0.383,
-   "end": 0.685
+   "start": 1.0400000000000063,
+   "end": 1.3600000000000065
   },
   {
    "word": "one",
-   "start": 0.755,
-   "end": 0.917
+   "start": 1.5200000000000031,
+   "end": 1.6800000000000068
   },
   {
    "word": "part.",
-   "start": 0.975,
-   "end": 1.463
+   "start": 1.7600000000000051,
+   "end": 2.440000000000005
   },
   {
-   "word": "Every",
-   "start": 2.02,
-   "end": 2.322
-  },
-  {
-   "word": "suite",
-   "start": 2.392,
-   "end": 2.694
-  },
-  {
-   "word": "I",
-   "start": 2.728,
-   "end": 2.752
-  },
-  {
-   "word": "looked",
-   "start": 2.81,
-   "end": 3.019
+   "word": "Look",
+   "start": 2.720000000000006,
+   "end": 2.8000000000000043
   },
   {
    "word": "at",
-   "start": 3.065,
-   "end": 3.228
+   "start": 2.8800000000000026,
+   "end": 2.960000000000001
+  },
+  {
+   "word": "these",
+   "start": 3.0800000000000054,
+   "end": 3.200000000000003
+  },
+  {
+   "word": "six.",
+   "start": 3.280000000000001,
+   "end": 3.9200000000000017
+  },
+  {
+   "word": "Every",
+   "start": 4.160000000000004,
+   "end": 4.400000000000006
+  },
+  {
+   "word": "one",
+   "start": 4.560000000000002,
+   "end": 4.720000000000006
   },
   {
    "word": "has",
-   "start": 3.634,
-   "end": 3.82
+   "start": 4.800000000000004,
+   "end": 4.960000000000001
   },
   {
-   "word": "one",
-   "start": 3.924,
-   "end": 4.098
+   "word": "a",
+   "start": 5,
+   "end": 5.040000000000006
+  },
+  {
+   "word": "single",
+   "start": 5.200000000000003,
+   "end": 5.440000000000005
   },
   {
    "word": "account",
-   "start": 4.122,
-   "end": 4.458
+   "start": 5.520000000000003,
+   "end": 5.920000000000002
   },
   {
    "word": "area,",
-   "start": 4.516,
-   "end": 4.992
+   "start": 6,
+   "end": 6.640000000000001
   },
   {
    "word": "even",
-   "start": 5.399,
-   "end": 5.677
+   "start": 6.720000000000006,
+   "end": 6.880000000000003
   },
   {
    "word": "the",
-   "start": 5.724,
-   "end": 5.793
+   "start": 6.960000000000001,
+   "end": 7.040000000000006
   },
   {
    "word": "four",
-   "start": 5.863,
-   "end": 6.13
+   "start": 7.1200000000000045,
+   "end": 7.280000000000001
   },
   {
    "word": "that",
-   "start": 6.188,
-   "end": 6.293
+   "start": 7.3600000000000065,
+   "end": 7.440000000000005
   },
   {
    "word": "keep",
-   "start": 6.339,
-   "end": 6.49
+   "start": 7.520000000000003,
+   "end": 7.600000000000001
   },
   {
    "word": "their",
-   "start": 6.536,
-   "end": 6.653
+   "start": 7.680000000000007,
+   "end": 7.760000000000005
   },
   {
    "word": "products",
-   "start": 6.687,
-   "end": 6.978
+   "start": 7.920000000000002,
+   "end": 8.080000000000005
   },
   {
    "word": "apart.",
-   "start": 7.012,
-   "end": 7.488
+   "start": 8.160000000000004,
+   "end": 8.720000000000006
   },
   {
    "word": "And",
-   "start": 8.243,
-   "end": 8.382
+   "start": 9.200000000000003,
+   "end": 9.280000000000001
   },
   {
    "word": "our",
-   "start": 8.44,
-   "end": 8.545
+   "start": 9.360000000000007,
+   "end": 9.520000000000003
   },
   {
    "word": "own",
-   "start": 8.591,
-   "end": 8.696
+   "start": 9.600000000000001,
+   "end": 9.680000000000007
   },
   {
    "word": "decision",
-   "start": 8.731,
-   "end": 9.125
+   "start": 9.880000000000003,
+   "end": 10.080000000000005
   },
   {
    "word": "log",
-   "start": 9.183,
-   "end": 9.404
+   "start": 10.160000000000004,
+   "end": 10.400000000000006
   },
   {
    "word": "says",
-   "start": 9.706,
-   "end": 9.915
+   "start": 10.520000000000003,
+   "end": 10.64
   },
   {
    "word": "Billing",
-   "start": 9.996,
-   "end": 10.298
+   "start": 10.720000000000006,
+   "end": 11.040000000000006
   },
   {
    "word": "is",
-   "start": 10.344,
-   "end": 10.414
+   "start": 11.120000000000005,
+   "end": 11.280000000000001
   },
   {
    "word": "already",
-   "start": 10.461,
-   "end": 10.762
+   "start": 11.360000000000007,
+   "end": 11.840000000000003
   },
   {
    "word": "one",
-   "start": 10.832,
-   "end": 10.995
+   "start": 11.920000000000002,
+   "end": 12.080000000000005
   },
   {
    "word": "system.",
-   "start": 11.029,
-   "end": 12.167
+   "start": 12.160000000000004,
+   "end": 12.880000000000003
   }
  ]
 }

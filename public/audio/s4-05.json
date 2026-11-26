@@ -1,57 +1,57 @@
 {
  "id": "s4-05",
- "text": "Before we commit, yeah. Agreed. Can you write it up?",
- "duration": 5.201,
+ "text": "Before we commit. Yeah, agreed. Can you write it up?",
+ "duration": 3.6000000000000014,
  "words": [
   {
    "word": "Before",
-   "start": 0,
-   "end": 0.476
+   "start": 0.2740000000000009,
+   "end": 0.3200000000000003
   },
   {
    "word": "we",
-   "start": 0.511,
-   "end": 0.615
+   "start": 0.35999999999999943,
+   "end": 0.3999999999999986
   },
   {
-   "word": "commit,",
-   "start": 0.673,
-   "end": 1.219
+   "word": "commit.",
+   "start": 0.4799999999999969,
+   "end": 1.2000000000000028
   },
   {
-   "word": "yeah.",
-   "start": 1.347,
-   "end": 1.788
+   "word": "Yeah,",
+   "start": 1.3200000000000003,
+   "end": 1.6000000000000014
   },
   {
-   "word": "Agreed.",
-   "start": 2.067,
-   "end": 2.659
+   "word": "agreed.",
+   "start": 1.6799999999999997,
+   "end": 2.3200000000000003
   },
   {
    "word": "Can",
-   "start": 3.971,
-   "end": 4.11
+   "start": 2.5600000000000023,
+   "end": 2.719999999999999
   },
   {
    "word": "you",
-   "start": 4.156,
-   "end": 4.238
+   "start": 2.759999999999998,
+   "end": 2.799999999999997
   },
   {
    "word": "write",
-   "start": 4.272,
-   "end": 4.47
+   "start": 2.8800000000000026,
+   "end": 2.960000000000001
   },
   {
    "word": "it",
-   "start": 4.505,
-   "end": 4.574
+   "start": 3.039999999999999,
+   "end": 3.1199999999999974
   },
   {
    "word": "up?",
-   "start": 4.621,
-   "end": 5.201
+   "start": 3.200000000000003,
+   "end": 3.6000000000000014
   }
  ]
 }

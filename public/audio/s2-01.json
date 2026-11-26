@@ -1,77 +1,77 @@
 {
  "id": "s2-01",
  "text": "Billing twice. Settings twice. Yeah, okay, it does look a bit silly written down.",
- "duration": 7.105,
+ "duration": 6.719999999999999,
  "words": [
   {
    "word": "Billing",
-   "start": 0,
-   "end": 0.372
+   "start": 0.449,
+   "end": 0.48
   },
   {
    "word": "twice.",
-   "start": 0.43,
-   "end": 0.987
+   "start": 0.56,
+   "end": 1.48
   },
   {
    "word": "Settings",
-   "start": 1.37,
-   "end": 1.834
+   "start": 1.76,
+   "end": 2.24
   },
   {
    "word": "twice.",
-   "start": 1.869,
-   "end": 2.485
+   "start": 2.32,
+   "end": 3.2
   },
   {
    "word": "Yeah,",
-   "start": 3.007,
-   "end": 3.39
+   "start": 3.52,
+   "end": 3.84
   },
   {
    "word": "okay,",
-   "start": 3.46,
-   "end": 4.214
+   "start": 3.92,
+   "end": 4.64
   },
   {
    "word": "it",
-   "start": 4.598,
-   "end": 4.737
+   "start": 4.72,
+   "end": 4.88
   },
   {
    "word": "does",
-   "start": 4.841,
-   "end": 5.097
+   "start": 4.96,
+   "end": 5.12
   },
   {
    "word": "look",
-   "start": 5.155,
-   "end": 5.306
+   "start": 5.2,
+   "end": 5.28
   },
   {
    "word": "a",
-   "start": 5.341,
-   "end": 5.364
+   "start": 5.307,
+   "end": 5.333
   },
   {
    "word": "bit",
-   "start": 5.41,
-   "end": 5.55
+   "start": 5.36,
+   "end": 5.44
   },
   {
    "word": "silly",
-   "start": 5.608,
-   "end": 5.828
+   "start": 5.6,
+   "end": 5.84
   },
   {
    "word": "written",
-   "start": 5.863,
-   "end": 6.084
+   "start": 5.96,
+   "end": 6.08
   },
   {
    "word": "down.",
-   "start": 6.13,
-   "end": 7.105
+   "start": 6.16,
+   "end": 6.72
   }
  ]
 }

@@ -1,317 +1,347 @@
 {
  "id": "s1-04",
- "text": "Before I tidy anything: I don't agree with it yet, and I'd rather say so now than polish something I'd argue against. These six cards are three things. Two Billing pages, two Settings pages, and Team and Users, which are the same thing under different names. A switcher keeps all six. I'd organise by what people are doing instead of by product.",
- "duration": 23.359,
+ "text": "Hang on, before I write anything up. I don't agree with it yet, and I'd rather say so now than polish something I'd argue against. A switcher keeps every duplicate. These six cards are really three things: two Billing, two Settings, and Team and Users, which are the same thing with different names. I'd group the menu by what people are doing, not by which product they bought.",
+ "duration": 24.000000000000007,
  "words": [
   {
-   "word": "Before",
-   "start": 0,
-   "end": 0.313
+   "word": "Hang",
+   "start": 0.0800000000000054,
+   "end": 0.240000000000002
+  },
+  {
+   "word": "on,",
+   "start": 0.3200000000000074,
+   "end": 0.720000000000006
+  },
+  {
+   "word": "before",
+   "start": 0.8800000000000026,
+   "end": 1.0400000000000063
   },
   {
    "word": "I",
-   "start": 0.348,
-   "end": 0.372
+   "start": 1.1200000000000045,
+   "end": 1.2000000000000028
   },
   {
-   "word": "tidy",
-   "start": 0.441,
-   "end": 0.72
+   "word": "write",
+   "start": 1.3600000000000065,
+   "end": 1.5200000000000031
   },
   {
-   "word": "anything:",
-   "start": 0.766,
-   "end": 1.3
+   "word": "anything",
+   "start": 1.6000000000000085,
+   "end": 1.9200000000000088
+  },
+  {
+   "word": "up.",
+   "start": 2.000000000000007,
+   "end": 2.5600000000000023
   },
   {
    "word": "I",
-   "start": 1.95,
-   "end": 1.997
+   "start": 2.6400000000000077,
+   "end": 2.720000000000006
   },
   {
    "word": "don't",
-   "start": 2.067,
-   "end": 2.241
+   "start": 2.760000000000005,
+   "end": 2.8800000000000026
   },
   {
    "word": "agree",
-   "start": 2.276,
-   "end": 2.473
+   "start": 2.960000000000008,
+   "end": 3.200000000000003
   },
   {
    "word": "with",
-   "start": 2.508,
-   "end": 2.612
+   "start": 3.2800000000000082,
+   "end": 3.3600000000000065
   },
   {
    "word": "it",
-   "start": 2.647,
-   "end": 2.705
+   "start": 3.440000000000005,
+   "end": 3.520000000000003
   },
   {
    "word": "yet,",
-   "start": 2.74,
-   "end": 3.1
+   "start": 3.680000000000007,
+   "end": 4.080000000000005
   },
   {
    "word": "and",
-   "start": 3.657,
-   "end": 3.796
+   "start": 4.200000000000003,
+   "end": 4.320000000000007
   },
   {
    "word": "I'd",
-   "start": 3.843,
-   "end": 3.936
+   "start": 4.3600000000000065,
+   "end": 4.480000000000004
   },
   {
    "word": "rather",
-   "start": 3.971,
-   "end": 4.168
+   "start": 4.6000000000000085,
+   "end": 4.720000000000006
   },
   {
    "word": "say",
-   "start": 4.226,
-   "end": 4.365
+   "start": 4.800000000000004,
+   "end": 4.960000000000008
   },
   {
    "word": "so",
-   "start": 4.412,
-   "end": 4.528
+   "start": 5.040000000000006,
+   "end": 5.200000000000003
   },
   {
    "word": "now",
-   "start": 4.598,
-   "end": 4.76
+   "start": 5.280000000000008,
+   "end": 5.6000000000000085
   },
   {
    "word": "than",
-   "start": 4.83,
-   "end": 4.957
+   "start": 5.720000000000006,
+   "end": 5.840000000000003
   },
   {
    "word": "polish",
-   "start": 5.016,
-   "end": 5.294
+   "start": 5.920000000000009,
+   "end": 6.240000000000002
   },
   {
    "word": "something",
-   "start": 5.329,
-   "end": 5.619
+   "start": 6.400000000000006,
+   "end": 6.560000000000002
   },
   {
    "word": "I'd",
-   "start": 5.666,
-   "end": 5.805
+   "start": 6.6000000000000085,
+   "end": 6.720000000000006
   },
   {
    "word": "argue",
-   "start": 5.84,
-   "end": 6.107
+   "start": 6.800000000000004,
+   "end": 7.040000000000006
   },
   {
    "word": "against.",
-   "start": 6.13,
-   "end": 6.653
-  },
-  {
-   "word": "These",
-   "start": 7.535,
-   "end": 7.755
-  },
-  {
-   "word": "six",
-   "start": 7.79,
-   "end": 7.976
-  },
-  {
-   "word": "cards",
-   "start": 8.046,
-   "end": 8.382
-  },
-  {
-   "word": "are",
-   "start": 8.44,
-   "end": 8.603
-  },
-  {
-   "word": "three",
-   "start": 8.638,
-   "end": 8.858
-  },
-  {
-   "word": "things.",
-   "start": 8.893,
-   "end": 9.462
-  },
-  {
-   "word": "Two",
-   "start": 10.019,
-   "end": 10.205
-  },
-  {
-   "word": "Billing",
-   "start": 10.263,
-   "end": 10.495
-  },
-  {
-   "word": "pages,",
-   "start": 10.542,
-   "end": 11.169
-  },
-  {
-   "word": "two",
-   "start": 11.389,
-   "end": 11.598
-  },
-  {
-   "word": "Settings",
-   "start": 11.668,
-   "end": 12.016
-  },
-  {
-   "word": "pages,",
-   "start": 12.062,
-   "end": 12.654
-  },
-  {
-   "word": "and",
-   "start": 13.014,
-   "end": 13.165
-  },
-  {
-   "word": "Team",
-   "start": 13.235,
-   "end": 13.514
-  },
-  {
-   "word": "and",
-   "start": 13.595,
-   "end": 13.746
-  },
-  {
-   "word": "Users,",
-   "start": 13.85,
-   "end": 14.466
-  },
-  {
-   "word": "which",
-   "start": 14.721,
-   "end": 14.907
-  },
-  {
-   "word": "are",
-   "start": 14.942,
-   "end": 15.023
-  },
-  {
-   "word": "the",
-   "start": 15.058,
-   "end": 15.127
-  },
-  {
-   "word": "same",
-   "start": 15.174,
-   "end": 15.418
-  },
-  {
-   "word": "thing",
-   "start": 15.464,
-   "end": 15.685
-  },
-  {
-   "word": "under",
-   "start": 15.766,
-   "end": 15.963
-  },
-  {
-   "word": "different",
-   "start": 16.01,
-   "end": 16.288
-  },
-  {
-   "word": "names.",
-   "start": 16.335,
-   "end": 16.869
+   "start": 7.280000000000008,
+   "end": 8.080000000000005
   },
   {
    "word": "A",
-   "start": 17.751,
-   "end": 17.821
+   "start": 8.160000000000004,
+   "end": 8.240000000000002
   },
   {
    "word": "switcher",
-   "start": 17.89,
-   "end": 18.216
+   "start": 8.320000000000007,
+   "end": 8.880000000000003
   },
   {
    "word": "keeps",
-   "start": 18.262,
-   "end": 18.494
+   "start": 8.960000000000008,
+   "end": 9.280000000000008
   },
   {
-   "word": "all",
-   "start": 18.529,
-   "end": 18.657
+   "word": "every",
+   "start": 9.360000000000007,
+   "end": 9.680000000000007
   },
   {
-   "word": "six.",
-   "start": 18.726,
-   "end": 19.284
+   "word": "duplicate.",
+   "start": 10.000000000000007,
+   "end": 10.800000000000004
   },
   {
-   "word": "I'd",
-   "start": 19.69,
-   "end": 19.853
+   "word": "These",
+   "start": 10.880000000000003,
+   "end": 11.120000000000005
   },
   {
-   "word": "organise",
-   "start": 19.899,
-   "end": 20.282
+   "word": "six",
+   "start": 11.240000000000002,
+   "end": 11.360000000000007
   },
   {
-   "word": "by",
-   "start": 20.317,
-   "end": 20.41
-  },
-  {
-   "word": "what",
-   "start": 20.445,
-   "end": 20.561
-  },
-  {
-   "word": "people",
-   "start": 20.607,
-   "end": 20.839
+   "word": "cards",
+   "start": 11.440000000000005,
+   "end": 11.840000000000003
   },
   {
    "word": "are",
-   "start": 20.874,
-   "end": 20.967
+   "start": 11.920000000000009,
+   "end": 12.000000000000007
   },
   {
-   "word": "doing",
-   "start": 21.014,
-   "end": 21.246
+   "word": "really",
+   "start": 12.200000000000003,
+   "end": 12.400000000000006
   },
   {
-   "word": "instead",
-   "start": 21.315,
-   "end": 21.571
+   "word": "three",
+   "start": 12.520000000000003,
+   "end": 12.640000000000008
   },
   {
-   "word": "of",
-   "start": 21.606,
-   "end": 21.652
+   "word": "things:",
+   "start": 12.720000000000006,
+   "end": 13.520000000000003
+  },
+  {
+   "word": "two",
+   "start": 13.600000000000009,
+   "end": 13.760000000000005
+  },
+  {
+   "word": "Billing,",
+   "start": 13.840000000000003,
+   "end": 14.480000000000004
+  },
+  {
+   "word": "two",
+   "start": 14.560000000000002,
+   "end": 14.640000000000008
+  },
+  {
+   "word": "Settings,",
+   "start": 14.800000000000004,
+   "end": 15.440000000000005
+  },
+  {
+   "word": "and",
+   "start": 15.560000000000002,
+   "end": 15.680000000000007
+  },
+  {
+   "word": "Team",
+   "start": 15.840000000000003,
+   "end": 16.160000000000004
+  },
+  {
+   "word": "and",
+   "start": 16.240000000000002,
+   "end": 16.320000000000007
+  },
+  {
+   "word": "Users,",
+   "start": 16.480000000000004,
+   "end": 17.28000000000001
+  },
+  {
+   "word": "which",
+   "start": 17.360000000000007,
+   "end": 17.440000000000005
+  },
+  {
+   "word": "are",
+   "start": 17.480000000000004,
+   "end": 17.520000000000003
+  },
+  {
+   "word": "the",
+   "start": 17.60000000000001,
+   "end": 17.680000000000007
+  },
+  {
+   "word": "same",
+   "start": 17.800000000000004,
+   "end": 17.92000000000001
+  },
+  {
+   "word": "thing",
+   "start": 18.000000000000007,
+   "end": 18.240000000000002
+  },
+  {
+   "word": "with",
+   "start": 18.320000000000007,
+   "end": 18.400000000000006
+  },
+  {
+   "word": "different",
+   "start": 18.520000000000003,
+   "end": 18.640000000000008
+  },
+  {
+   "word": "names.",
+   "start": 18.720000000000006,
+   "end": 19.680000000000007
+  },
+  {
+   "word": "I'd",
+   "start": 19.760000000000005,
+   "end": 19.92000000000001
+  },
+  {
+   "word": "group",
+   "start": 20.000000000000007,
+   "end": 20.160000000000004
+  },
+  {
+   "word": "the",
+   "start": 20.200000000000003,
+   "end": 20.240000000000002
+  },
+  {
+   "word": "menu",
+   "start": 20.320000000000007,
+   "end": 20.560000000000002
   },
   {
    "word": "by",
-   "start": 21.71,
-   "end": 21.803
+   "start": 20.640000000000008,
+   "end": 20.800000000000004
   },
   {
-   "word": "product.",
-   "start": 21.861,
-   "end": 23.359
+   "word": "what",
+   "start": 20.880000000000003,
+   "end": 20.960000000000008
+  },
+  {
+   "word": "people",
+   "start": 21.080000000000005,
+   "end": 21.200000000000003
+  },
+  {
+   "word": "are",
+   "start": 21.320000000000007,
+   "end": 21.440000000000005
+  },
+  {
+   "word": "doing,",
+   "start": 21.680000000000007,
+   "end": 22.080000000000005
+  },
+  {
+   "word": "not",
+   "start": 22.160000000000004,
+   "end": 22.320000000000007
+  },
+  {
+   "word": "by",
+   "start": 22.400000000000006,
+   "end": 22.480000000000004
+  },
+  {
+   "word": "which",
+   "start": 22.60000000000001,
+   "end": 22.720000000000006
+  },
+  {
+   "word": "product",
+   "start": 22.92000000000001,
+   "end": 23.120000000000005
+  },
+  {
+   "word": "they",
+   "start": 23.200000000000003,
+   "end": 23.28000000000001
+  },
+  {
+   "word": "bought.",
+   "start": 23.320000000000007,
+   "end": 24.000000000000007
   }
  ]
 }

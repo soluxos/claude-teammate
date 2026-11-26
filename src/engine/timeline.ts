@@ -201,7 +201,7 @@ export class Player {
     this.t = Math.max(0, Math.min(this.timeline.total, t));
     const { state, index } = stateAt(this.timeline, this.t);
     this.index = index;
-    this.set({ state, instant: true, ...this.flags() });
+    this.set({ state, instant: true, ...this.flags(), ...(this.t > 0 ? { fresh: false } : {}) });
     this.timeSubs.forEach((fn) => fn());
   }
 

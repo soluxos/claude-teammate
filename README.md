@@ -25,16 +25,18 @@ Without audio files the prototype still plays end to end: captions advance at re
 
 ## Generating audio: `npm run audio`
 
-Audio is generated once with ElevenLabs and committed, so the browser never sees an API key.
+Audio is generated once with ElevenLabs and committed, so the browser never sees an API key. It needs `ffmpeg` on your PATH (for example `brew install ffmpeg`).
 
-1. Copy `.env.example` to `.env` (git-ignored) and set `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_AGENT` and `ELEVENLABS_VOICE_CALLUM`. Pick two clearly different voices: the agent warm, unhurried and mid-pitched; Callum a conversational British male voice. `ELEVENLABS_MODEL` is optional (default `eleven_multilingual_v2`).
+Each scene is generated as one conversation with the ElevenLabs Text to Dialogue endpoint (model `eleven_v4` by default), so the two voices react to each other instead of reading isolated lines. The scene is then cut into one mp3 per line with word timings. This is what makes the delivery sound natural; generating lines one at a time sounds noticeably flatter.
+
+1. Copy `.env.example` to `.env` (git-ignored) and set `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_AGENT` and `ELEVENLABS_VOICE_CALLUM`. `ELEVENLABS_MODEL` is optional.
 2. Run:
 
 ```bash
 npm run audio
 ```
 
-For each spoken line this writes `public/audio/{id}.mp3` and `public/audio/{id}.json` (word-level timings derived from the character alignment), and records a hash in `public/audio/manifest.json`. Lines whose text, voice and settings are unchanged are skipped.
+This writes `public/audio/{id}.mp3` and `public/audio/{id}.json` for every spoken line and records a hash per scene in `public/audio/manifest.json`. Scenes whose lines, voices and settings are unchanged are skipped.
 
 ```bash
 npm run audio -- --only s3-03
@@ -44,9 +46,15 @@ npm run audio -- --only s3-03
 npm run audio -- --force
 ```
 
-`--only` takes one id or a comma-separated list. Parentheticals such as "(pause)" are stripped before text is sent and expressed through `gapBefore` and per-line `voice` settings in the script instead. The key is never printed or written to a file.
+`--only` regenerates the whole scene containing that line (or a comma-separated list of lines), because a line is only natural in the context of its conversation. The model is not deterministic, so each run gives a slightly different performance: if a scene sounds off, run it again.
 
-Restart `npm run dev` or rebuild after adding audio if the page does not pick it up. Then run `npm run check` to confirm the total runtime is still between 2.5 and 4 minutes (it estimates from reading pace, so also check the time shown in the playback bar).
+Shaping delivery, in `src/script/script.ts`:
+
+- `delivery` on a line adds audio tags for the voice model, such as `[jumping in]`, `[thoughtful]` or `[exhales]`. Tags are never shown or captioned.
+- End a line with a dash ("Can you write that up as a—") and the voice breaks off. Give the next line a negative `gapBefore` and it starts over the end of that line: an interruption.
+- Parentheticals such as "(pause)" are stripped before text is sent and shown only in captions.
+
+The key is never printed or written to a file. Restart `npm run dev` or rebuild after adding audio if the page does not pick it up. The total runtime is shown at the right of the scrubber; keep it under four minutes.
 
 ## Recording your own lines: the override folder
 
@@ -59,7 +67,6 @@ Drop a recording at `public/audio/override/{id}.mp3` (for example `s1-02.mp3`) a
 - `src/engine/timeline.ts`: builds a flat list of absolute event times from line durations and gaps, and runs the clock. Audio is the master clock while a line is sounding.
 - `src/engine/state.ts`: canvas state as a pure function of the events that have fired. Scrubbing resets and replays events up to the target time without animation.
 - `src/engine/audio.ts`: two reusable audio elements (so a single click unlocks sound in every browser, and one speaker can talk over the other) with an analyser each for the voice rings.
-- Interruptions: give a line a negative `gapBefore` and it starts over the end of the previous line. End the interrupted line's text with a dash so the voice breaks off.
 - `scripts/generate-audio.ts`: the build-time ElevenLabs script.
 
 ## Deploying

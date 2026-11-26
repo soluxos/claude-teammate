@@ -24,16 +24,16 @@ export type Action =
   | { type: 'removeGroup'; group: string }
   | { type: 'ring'; who: Speaker; cards: string[]; duration?: number; includeTitle?: boolean }
   | { type: 'pulse'; target: string; duration?: number }
-  | { type: 'chip'; id: string; label: string; resolveAfter: number; note?: { id: string; kicker: string; text: string; slot: string } }
+  | { type: 'chip'; id: string; label: string; resolveAfter: number; note?: NoteSpec }
   | { type: 'link'; from: string; to: string }
   | { type: 'tag'; target: string; text: string }
   | { type: 'dim'; zones: string[] }
   | { type: 'highlight'; zone: string }
   | { type: 'brief'; label: string; text: string }; // a line in the session brief the agent keeps
 
-export type TimedEvent = { at: At; action: Action };
+export type NoteSpec = { id: string; kicker: string; text: string; slot: string; kind?: 'note' | 'research' };
 
-export type VoiceSettings = { stability?: number; similarity_boost?: number; style?: number; speed?: number };
+export type TimedEvent = { at: At; action: Action };
 
 export type Line = {
   kind: 'line';
@@ -43,7 +43,7 @@ export type Line = {
   text: string; // exactly as in the spec, without bracketed stage directions
   gapBefore?: number; // seconds of silence before the line, default 0.3. Negative: interrupts the previous line
   events?: TimedEvent[];
-  voice?: VoiceSettings; // per-line delivery tweaks for audio generation
+  delivery?: string; // audio tags for the voice model, e.g. '[jumping in]'. Never shown or captioned
 };
 
 export type Beat = {
@@ -99,7 +99,7 @@ export const record = {
   ],
   saved: 'Saved to project memory',
   // seconds from the start of scene 5
-  timing: { streamStart: 0.8, streamEnd: 7.0, saved: 7.6, replay: 8.2, duration: 9.5 },
+  timing: { streamStart: 0.8, streamEnd: 7.0, saved: 7.6, replay: 8.0, duration: 8.8 },
 };
 
 // ── Authoring helpers ────────────────────────────────────────────────────────
@@ -215,12 +215,12 @@ export const script: Segment[] = [
     id: 's1-01',
     scene: 1,
     speaker: 'callum',
-    text: "Thanks for joining. Quick background, so you know what we're working on. We make two products. Harbor is website hosting, for developers. Relay is a marketing tool, for marketers.",
+    text: "Okay, here's what we're working on. We sell two products. Harbor is where developers host their websites. Relay is where marketers run their campaigns. And each one has its own menu.",
     events: [
       ...layOut('Harbor', 't-h', 'today.harbor', 'Harbor', harborNav),
-      on('developers', { type: 'brief', label: 'Harbor', text: 'Website hosting, used by developers' }),
+      on('websites', { type: 'brief', label: 'Harbor', text: 'Where developers host their websites' }),
       ...layOut('Relay', 't-r', 'today.relay', 'Relay', relayNav),
-      on('marketers', { type: 'brief', label: 'Relay', text: 'Marketing tool, used by marketers' }),
+      on('campaigns', { type: 'brief', label: 'Relay', text: 'Where marketers run their campaigns' }),
     ],
   },
   {
@@ -228,23 +228,25 @@ export const script: Segment[] = [
     id: 's1-02',
     scene: 1,
     speaker: 'agent',
-    text: "Okay. I've put both navigations on the board as they are today.",
-    events: [on('both', { type: 'cursorMove', who: 'agent', to: { x: 430, y: 250 }, duration: 0.9 })],
+    text: 'Got them. Both menus are on the board.',
+    events: [on('Both', { type: 'cursorMove', who: 'agent', to: { x: 430, y: 250 }, duration: 0.9 })],
   },
   {
     kind: 'line',
     id: 's1-03',
     scene: 1,
     speaker: 'callum',
-    text: "They've always been sold separately. But a third of our customers now have both, and they're complaining about jumping between two menus. So the job is one navigation that covers both products. I'm thinking a product switcher at the top, and we leave both navs as they are. Can you tidy that into a—",
+    text: "Here's the problem. A third of our customers now pay for both, and to them it feels like two separate apps. Two menus to learn. Two Billing pages, so nobody knows where their invoice is. What we need is one menu that works across both products. My idea's simple: put a switcher at the top, and keep both menus as they are. Can you write that up as a—",
     events: [
       on('third', { type: 'cursorMove', who: 'callum', to: { x: -40, y: 210 }, duration: 0.5 }),
-      on('jumping', { type: 'cursorMove', who: 'callum', to: 't-h-logs', duration: 0.5 }),
-      on('two', { type: 'cursorMove', who: 'callum', to: 't-r-content', duration: 0.5 }),
-      on('menus', { type: 'brief', label: 'Problem', text: 'A third of customers have both products and jump between two menus' }),
-      on('covers', { type: 'brief', label: 'Goal', text: 'One navigation that covers both products' }),
+      on('apps', { type: 'brief', label: 'Problem', text: 'A third of customers pay for both, and it feels like two separate apps' }),
+      on('menus', { type: 'cursorMove', who: 'callum', to: 't-h-billing', duration: 0.6 }),
+      // He shows the duplicate rather than describing it.
+      on('Billing', { type: 'ring', who: 'callum', cards: ['t-h-billing', 't-r-billing'], duration: 5 }),
+      on('invoice', { type: 'cursorMove', who: 'callum', to: 't-r-billing', duration: 0.5 }),
+      on('one', { type: 'brief', label: 'Goal', text: 'One menu that works across both products' }, 0.4),
       on('switcher', { type: 'cursorMove', who: 'callum', to: { x: 180, y: 30 }, duration: 0.6 }),
-      on('navs', { type: 'brief', label: "Callum's idea", text: 'A product switcher at the top, both navigations left as they are' }),
+      on('keep', { type: 'brief', label: "Callum's idea", text: 'A switcher at the top, both menus kept as they are' }, 0.6),
     ],
   },
   {
@@ -254,21 +256,22 @@ export const script: Segment[] = [
     scene: 1,
     speaker: 'agent',
     gapBefore: -0.6,
-    text: "Before I tidy anything: I don't agree with it yet, and I'd rather say so now than polish something I'd argue against. These six cards are three things. Two Billing pages, two Settings pages, and Team and Users, which are the same thing under different names. A switcher keeps all six. I'd organise by what people are doing instead of by product.",
+    delivery: '[jumping in]',
+    text: "Hang on, before I write anything up. I don't agree with it yet, and I'd rather say so now than polish something I'd argue against. A switcher keeps every duplicate. These six cards are really three things: two Billing, two Settings, and Team and Users, which are the same thing with different names. I'd group the menu by what people are doing, not by which product they bought.",
     events: [
       on('polish', { type: 'cursorMove', who: 'agent', to: 't-h-team', duration: 0.9 }),
       on('These', {
         type: 'ring',
         who: 'agent',
         cards: ['t-h-team', 't-h-billing', 't-h-settings', 't-r-users', 't-r-billing', 't-r-settings'],
-        duration: 11,
+        duration: 10,
       }),
       on('Billing', { type: 'cursorMove', who: 'agent', to: 't-r-billing', duration: 0.6 }),
       on('Settings', { type: 'cursorMove', who: 'agent', to: 't-h-settings', duration: 0.6 }),
       on('Team', { type: 'cursorMove', who: 'agent', to: 't-h-team', duration: 0.5 }),
       on('Users', { type: 'cursorMove', who: 'agent', to: 't-r-users', duration: 0.5 }),
-      on('organise', { type: 'cursorMove', who: 'agent', to: { x: 430, y: 240 }, duration: 0.9 }),
-      on('organise', { type: 'brief', label: "Assistant's idea", text: 'Organise by what people are doing, not by product' }, 1.2),
+      on('group', { type: 'cursorMove', who: 'agent', to: { x: 430, y: 240 }, duration: 0.9 }),
+      on('doing', { type: 'brief', label: "Assistant's idea", text: 'Group the menu by what people are doing, not by product' }, 0.4),
     ],
   },
   {
@@ -306,10 +309,11 @@ export const script: Segment[] = [
         label: 'Checking how 6 multi-product suites handle this',
         resolveAfter: 8,
         note: {
-          id: 'note.1',
-          kicker: 'Research',
-          text: '6 suites checked. 4 keep products separate at the top level. All 6 have a single account, billing and people area.',
-          slot: 'note.1',
+          id: 'research',
+          kind: 'research', // shown as six small examples, not just a claim
+          kicker: 'Research · 6 multi-product suites',
+          text: '4 keep products separate at the top level. All 6 have a single account, billing and people area.',
+          slot: 'research',
         },
       }),
       at(10.8, {
@@ -332,7 +336,7 @@ export const script: Segment[] = [
     scene: 2,
     speaker: 'callum',
     text: '(half to himself) Billing twice. Settings twice. Yeah, okay, it does look a bit silly written down.',
-    voice: { stability: 0.4 },
+    delivery: '[muttering, half to himself]',
     events: [
       on('Billing', { type: 'cursorMove', who: 'callum', to: 't-r-billing', duration: 0.3 }),
       on('Billing', { type: 'createCard', who: 'callum', card: 'a-r-billing', label: 'Billing', slot: 'A.relay.7', from: 't-r-billing', duration: 0.45 }, 0.3),
@@ -371,8 +375,9 @@ export const script: Segment[] = [
     id: 's3-02',
     scene: 3,
     speaker: 'callum',
-    gapBefore: -0.55, // Callum cuts in
-    text: "Sorry, let me stop you there. It's tidy, but I don't think it survives real customers. I was on calls last week. Developers live in Harbor, marketers live in Relay, and they're different people. Your Measure group puts server logs next to campaign analytics. No marketer wants that.",
+    gapBefore: -0.6, // Callum cuts in
+    delivery: '[jumping in]',
+    text: "Wait, hang on. It's tidy, but I don't think it survives real customers. I was on calls last week. Developers live in Harbor, marketers live in Relay, and they're different people. Your Measure group puts server logs next to campaign analytics. No marketer wants that.",
     events: [
       on('Developers', { type: 'cursorMove', who: 'callum', to: 'a-h-deployments', duration: 0.5 }),
       on('marketers', { type: 'cursorMove', who: 'callum', to: 'a-r-campaigns', duration: 0.5 }),
@@ -385,6 +390,7 @@ export const script: Segment[] = [
     id: 's3-03',
     scene: 3,
     speaker: 'agent',
+    delivery: '[thoughtful]',
     text: "I didn't have that, and it changes my view. If they're different people, grouping by job puts two audiences in one menu. I'll drop Measure.",
     events: [
       on('two', { type: 'cursorMove', who: 'agent', to: 'b-logs', duration: 0.6 }),
@@ -399,12 +405,15 @@ export const script: Segment[] = [
     id: 's3-04',
     scene: 3,
     speaker: 'agent',
-    text: "But I'm keeping one part. Every suite I looked at has one account area, even the four that keep their products apart. And our own decision log says Billing is already one system.",
+    text: "But I'm keeping one part. Look at these six. Every one has a single account area, even the four that keep their products apart. And our own decision log says Billing is already one system.",
     events: [
-      on('keeping', { type: 'cursorMove', who: 'agent', to: 'note.1', duration: 0.8 }),
-      on('Every', { type: 'pulse', target: 'note.1', duration: 3 }),
+      // Show the examples, then come back.
+      on('keeping', { type: 'camera', zone: 'research', duration: 1.1 }),
+      on('keeping', { type: 'cursorMove', who: 'agent', to: 'research', duration: 0.9 }),
+      on('Every', { type: 'pulse', target: 'research', duration: 5 }),
       on('our', { type: 'cursorMove', who: 'agent', to: 'note.2', duration: 0.5 }),
       on('our', { type: 'pulse', target: 'note.2', duration: 3 }, 0.2),
+      on('system', { type: 'camera', zone: 'AB', duration: 1.2 }, 0.7),
     ],
   },
   {
@@ -420,8 +429,9 @@ export const script: Segment[] = [
     id: 's3-06',
     scene: 3,
     speaker: 'agent',
-    gapBefore: -0.55, // the agent cuts in
-    text: "Sorry to cut in, but I'd push back on that. It's what customers with both products complain about most, and it's the cheapest part to fix. If we leave it out, we ship a switcher and the complaints stay. I'd rather we draw it in and mark who owns it. It's your call, though.",
+    gapBefore: -0.6, // the agent cuts in
+    delivery: '[jumping in]',
+    text: "Can I push back on that? It's what customers with both products complain about most, and it's the cheapest part to fix. If we leave it out, we ship a switcher and the complaints stay. I'd rather we draw it in and mark who owns it. It's your call, though.",
     events: [
       on('customers', { type: 'cursorMove', who: 'agent', to: 'b-billing', duration: 0.8 }),
       on('ship', { type: 'cursorMove', who: 'agent', to: 'a-switcher', duration: 0.9 }),
@@ -434,6 +444,7 @@ export const script: Segment[] = [
     id: 's3-07',
     scene: 3,
     speaker: 'callum',
+    delivery: '[exhales]',
     text: "(pause) No, that's fair. Put it in and flag it as a dependency.",
     gapBefore: 1.5,
     events: [on('Put', { type: 'cursorMove', who: 'callum', to: { x: 1000, y: 590 }, duration: 0.7 })],
@@ -494,6 +505,7 @@ export const script: Segment[] = [
     id: 's4-03',
     scene: 4,
     speaker: 'callum',
+    delivery: '[impressed]',
     text: 'As the join between the two. I like that. Then the nav opens on whichever workspace matches your role.',
     events: [
       on('join', { type: 'cursorMove', who: 'callum', to: { x: 928, y: 742 }, duration: 0.5 }),
@@ -516,7 +528,7 @@ export const script: Segment[] = [
     ],
   },
   // Callum finishes the sentence for it.
-  { kind: 'line', id: 's4-05', scene: 4, speaker: 'callum', gapBefore: -0.45, text: 'Before we commit, yeah. Agreed. Can you write it up?' },
+  { kind: 'line', id: 's4-05', scene: 4, speaker: 'callum', gapBefore: -0.5, delivery: '[jumping in]', text: 'Before we commit. Yeah, agreed. Can you write it up?' },
   {
     kind: 'line',
     id: 's4-06',
@@ -529,7 +541,7 @@ export const script: Segment[] = [
     kind: 'beat',
     id: 's4-hold',
     scene: 4,
-    duration: 2.6,
+    duration: 2.4,
     events: [at(0.4, { type: 'dim', zones: ['today', 'A', 'B'] }), at(0.4, { type: 'highlight', zone: 'C' })],
   },
 

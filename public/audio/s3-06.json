@@ -1,277 +1,257 @@
 {
  "id": "s3-06",
- "text": "Sorry to cut in, but I'd push back on that. It's what customers with both products complain about most, and it's the cheapest part to fix. If we leave it out, we ship a switcher and the complaints stay. I'd rather we draw it in and mark who owns it. It's your call, though.",
- "duration": 17.88,
+ "text": "Can I push back on that? It's what customers with both products complain about most, and it's the cheapest part to fix. If we leave it out, we ship a switcher and the complaints stay. I'd rather we draw it in and mark who owns it. It's your call, though.",
+ "duration": 15.840000000000018,
  "words": [
   {
-   "word": "Sorry",
-   "start": 0,
-   "end": 0.29
+   "word": "Can",
+   "start": 0.07999999999999119,
+   "end": 0.15999999999998948
   },
   {
-   "word": "to",
-   "start": 0.325,
-   "end": 0.383
-  },
-  {
-   "word": "cut",
-   "start": 0.43,
-   "end": 0.557
-  },
-  {
-   "word": "in,",
-   "start": 0.627,
-   "end": 0.906
-  },
-  {
-   "word": "but",
-   "start": 1.265,
-   "end": 1.416
-  },
-  {
-   "word": "I'd",
-   "start": 1.463,
-   "end": 1.567
+   "word": "I",
+   "start": 0.23999999999998778,
+   "end": 0.3199999999999932
   },
   {
    "word": "push",
-   "start": 1.602,
-   "end": 1.788
+   "start": 0.3999999999999915,
+   "end": 0.47999999999998977
   },
   {
    "word": "back",
-   "start": 1.834,
-   "end": 1.974
+   "start": 0.5599999999999881,
+   "end": 0.7199999999999918
   },
   {
    "word": "on",
-   "start": 2.032,
-   "end": 2.113
+   "start": 0.79999999999999,
+   "end": 0.8799999999999883
   },
   {
-   "word": "that.",
-   "start": 2.148,
-   "end": 2.554
+   "word": "that?",
+   "start": 0.9599999999999866,
+   "end": 1.6799999999999926
   },
   {
    "word": "It's",
-   "start": 3.309,
-   "end": 3.483
+   "start": 1.7199999999999918,
+   "end": 1.8399999999999892
   },
   {
    "word": "what",
-   "start": 3.506,
-   "end": 3.634
+   "start": 1.9599999999999866,
+   "end": 2.079999999999991
   },
   {
    "word": "customers",
-   "start": 3.704,
-   "end": 4.098
+   "start": 2.319999999999993,
+   "end": 2.559999999999988
   },
   {
    "word": "with",
-   "start": 4.133,
-   "end": 4.261
+   "start": 2.6799999999999926,
+   "end": 2.79999999999999
   },
   {
    "word": "both",
-   "start": 4.307,
-   "end": 4.505
+   "start": 2.8799999999999883,
+   "end": 3.1199999999999903
   },
   {
    "word": "products",
-   "start": 4.551,
-   "end": 4.911
+   "start": 3.1999999999999886,
+   "end": 3.519999999999989
   },
   {
    "word": "complain",
-   "start": 4.957,
-   "end": 5.294
+   "start": 3.599999999999987,
+   "end": 3.999999999999993
   },
   {
    "word": "about",
-   "start": 5.329,
-   "end": 5.55
+   "start": 4.079999999999991,
+   "end": 4.319999999999993
   },
   {
    "word": "most,",
-   "start": 5.608,
-   "end": 6.072
+   "start": 4.559999999999988,
+   "end": 5.11999999999999
   },
   {
    "word": "and",
-   "start": 6.177,
-   "end": 6.327
+   "start": 5.279999999999987,
+   "end": 5.439999999999991
   },
   {
    "word": "it's",
-   "start": 6.374,
-   "end": 6.478
+   "start": 5.519999999999989,
+   "end": 5.679999999999993
   },
   {
    "word": "the",
-   "start": 6.502,
-   "end": 6.571
+   "start": 5.759999999999991,
+   "end": 5.839999999999989
   },
   {
    "word": "cheapest",
-   "start": 6.606,
-   "end": 6.966
+   "start": 5.9199999999999875,
+   "end": 6.319999999999993
   },
   {
    "word": "part",
-   "start": 7.012,
-   "end": 7.198
+   "start": 6.439999999999991,
+   "end": 6.559999999999988
   },
   {
    "word": "to",
-   "start": 7.221,
-   "end": 7.279
+   "start": 6.639999999999986,
+   "end": 6.719999999999985
   },
   {
    "word": "fix.",
-   "start": 7.349,
-   "end": 7.906
+   "start": 6.9199999999999875,
+   "end": 7.599999999999994
   },
   {
    "word": "If",
-   "start": 8.661,
-   "end": 8.789
+   "start": 7.679999999999993,
+   "end": 7.759999999999991
   },
   {
    "word": "we",
-   "start": 8.824,
-   "end": 8.893
+   "start": 7.839999999999989,
+   "end": 7.9199999999999875
   },
   {
    "word": "leave",
-   "start": 8.951,
-   "end": 9.149
+   "start": 7.999999999999986,
+   "end": 8.079999999999984
   },
   {
    "word": "it",
-   "start": 9.172,
-   "end": 9.242
+   "start": 8.159999999999997,
+   "end": 8.239999999999995
   },
   {
    "word": "out,",
-   "start": 9.288,
-   "end": 9.683
+   "start": 8.319999999999993,
+   "end": 8.719999999999985
   },
   {
    "word": "we",
-   "start": 9.938,
-   "end": 10.066
+   "start": 8.799999999999983,
+   "end": 8.959999999999994
   },
   {
    "word": "ship",
-   "start": 10.124,
-   "end": 10.31
+   "start": 9.039999999999992,
+   "end": 9.11999999999999
   },
   {
    "word": "a",
-   "start": 10.356,
-   "end": 10.379
+   "start": 9.199999999999989,
+   "end": 9.279999999999987
   },
   {
    "word": "switcher",
-   "start": 10.414,
-   "end": 10.844
+   "start": 9.439999999999984,
+   "end": 9.83999999999999
   },
   {
    "word": "and",
-   "start": 10.983,
-   "end": 11.146
+   "start": 9.879999999999995,
+   "end": 9.919999999999987
   },
   {
    "word": "the",
-   "start": 11.192,
-   "end": 11.262
+   "start": 9.959999999999994,
+   "end": 9.999999999999986
   },
   {
    "word": "complaints",
-   "start": 11.297,
-   "end": 11.715
+   "start": 10.079999999999984,
+   "end": 10.639999999999986
   },
   {
    "word": "stay.",
-   "start": 11.738,
-   "end": 12.214
+   "start": 10.83999999999999,
+   "end": 11.599999999999994
   },
   {
    "word": "I'd",
-   "start": 12.969,
-   "end": 13.12
+   "start": 11.639999999999986,
+   "end": 11.83999999999999
   },
   {
    "word": "rather",
-   "start": 13.166,
-   "end": 13.387
+   "start": 11.959999999999994,
+   "end": 12.079999999999984
   },
   {
    "word": "we",
-   "start": 13.433,
-   "end": 13.491
+   "start": 12.159999999999997,
+   "end": 12.239999999999995
   },
   {
    "word": "draw",
-   "start": 13.538,
-   "end": 13.712
+   "start": 12.319999999999993,
+   "end": 12.559999999999988
   },
   {
    "word": "it",
-   "start": 13.758,
-   "end": 13.828
+   "start": 12.639999999999986,
+   "end": 12.719999999999985
   },
   {
    "word": "in",
-   "start": 13.886,
-   "end": 14.025
+   "start": 12.799999999999983,
+   "end": 13.039999999999992
   },
   {
    "word": "and",
-   "start": 14.165,
-   "end": 14.304
+   "start": 13.11999999999999,
+   "end": 13.199999999999989
   },
   {
    "word": "mark",
-   "start": 14.362,
-   "end": 14.559
+   "start": 13.279999999999987,
+   "end": 13.519999999999996
   },
   {
    "word": "who",
-   "start": 14.606,
-   "end": 14.699
+   "start": 13.599999999999994,
+   "end": 13.679999999999993
   },
   {
    "word": "owns",
-   "start": 14.757,
-   "end": 14.977
+   "start": 13.799999999999983,
+   "end": 13.919999999999987
   },
   {
    "word": "it.",
-   "start": 15.024,
-   "end": 15.337
+   "start": 13.999999999999986,
+   "end": 14.719999999999985
   },
   {
    "word": "It's",
-   "start": 15.987,
-   "end": 16.173
+   "start": 14.759999999999991,
+   "end": 14.879999999999995
   },
   {
    "word": "your",
-   "start": 16.196,
-   "end": 16.347
+   "start": 14.959999999999994,
+   "end": 15.039999999999992
   },
   {
    "word": "call,",
-   "start": 16.405,
-   "end": 16.638
+   "start": 15.11999999999999,
+   "end": 15.359999999999985
   },
   {
    "word": "though.",
-   "start": 16.661,
-   "end": 17.88
+   "start": 15.439999999999984,
+   "end": 15.83999999999999
   }
  ]
 }

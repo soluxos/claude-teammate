@@ -1,137 +1,137 @@
 {
  "id": "s4-02",
  "text": "Yes. And there's one thing both groups touch. Marketers publish to sites, developers run them. What if Sites is the one item that shows in both?",
- "duration": 10.17,
+ "duration": 10.719999999999999,
  "words": [
   {
    "word": "Yes.",
    "start": 0,
-   "end": 0.662
+   "end": 0.7599999999999989
   },
   {
    "word": "And",
-   "start": 1.068,
-   "end": 1.207
+   "start": 0.96,
+   "end": 1.04
   },
   {
    "word": "there's",
-   "start": 1.254,
-   "end": 1.44
+   "start": 1.12,
+   "end": 1.3600000000000003
   },
   {
    "word": "one",
-   "start": 1.498,
-   "end": 1.672
+   "start": 1.4400000000000004,
+   "end": 1.5999999999999988
   },
   {
    "word": "thing",
-   "start": 1.73,
-   "end": 1.974
+   "start": 1.6799999999999988,
+   "end": 1.919999999999999
   },
   {
    "word": "both",
-   "start": 2.078,
-   "end": 2.299
+   "start": 2.079999999999999,
+   "end": 2.3199999999999994
   },
   {
    "word": "groups",
-   "start": 2.345,
-   "end": 2.589
+   "start": 2.3999999999999995,
+   "end": 2.7199999999999998
   },
   {
    "word": "touch.",
-   "start": 2.624,
-   "end": 3.123
+   "start": 2.8,
+   "end": 3.3600000000000003
   },
   {
    "word": "Marketers",
-   "start": 3.529,
-   "end": 4.052
+   "start": 3.919999999999999,
+   "end": 4.4799999999999995
   },
   {
    "word": "publish",
-   "start": 4.122,
-   "end": 4.423
+   "start": 4.56,
+   "end": 4.96
   },
   {
    "word": "to",
-   "start": 4.47,
-   "end": 4.528
+   "start": 5.04,
+   "end": 5.12
   },
   {
    "word": "sites,",
-   "start": 4.598,
-   "end": 5.108
+   "start": 5.36,
+   "end": 5.839999999999999
   },
   {
    "word": "developers",
-   "start": 5.178,
-   "end": 5.7
+   "start": 6.159999999999999,
+   "end": 6.4799999999999995
   },
   {
    "word": "run",
-   "start": 5.77,
-   "end": 5.956
+   "start": 6.64,
+   "end": 6.8
   },
   {
    "word": "them.",
-   "start": 6.014,
-   "end": 6.316
+   "start": 6.88,
+   "end": 7.2
   },
   {
    "word": "What",
-   "start": 6.966,
-   "end": 7.187
+   "start": 7.759999999999999,
+   "end": 7.839999999999999
   },
   {
    "word": "if",
-   "start": 7.245,
-   "end": 7.326
+   "start": 7.919999999999999,
+   "end": 7.999999999999999
   },
   {
    "word": "Sites",
-   "start": 7.396,
-   "end": 7.721
+   "start": 8.16,
+   "end": 8.639999999999997
   },
   {
    "word": "is",
-   "start": 7.767,
-   "end": 7.848
+   "start": 8.719999999999999,
+   "end": 8.799999999999997
   },
   {
    "word": "the",
-   "start": 7.895,
-   "end": 7.964
+   "start": 8.879999999999999,
+   "end": 8.959999999999997
   },
   {
    "word": "one",
-   "start": 8.034,
-   "end": 8.231
+   "start": 9.04,
+   "end": 9.2
   },
   {
    "word": "item",
-   "start": 8.301,
-   "end": 8.626
+   "start": 9.279999999999998,
+   "end": 9.52
   },
   {
    "word": "that",
-   "start": 8.673,
-   "end": 8.777
+   "start": 9.599999999999998,
+   "end": 9.68
   },
   {
    "word": "shows",
-   "start": 8.812,
-   "end": 9.044
+   "start": 9.759999999999998,
+   "end": 10
   },
   {
    "word": "in",
-   "start": 9.091,
-   "end": 9.16
+   "start": 10.079999999999998,
+   "end": 10.16
   },
   {
    "word": "both?",
-   "start": 9.218,
-   "end": 10.17
+   "start": 10.239999999999998,
+   "end": 10.719999999999999
   }
  ]
 }

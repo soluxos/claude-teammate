@@ -1,7 +1,7 @@
 // Canvas state as a pure function of the primitive events that have fired.
 
-import { CARD_H, CARD_W, NOTE_W, groupLayouts, isSlot, slotPos, zoneOf, type Rect } from '../script/layouts';
-import type { Action, Speaker } from '../script/script';
+import { CARD_H, CARD_W, NOTE_W, RESEARCH_W, groupLayouts, isSlot, slotPos, zoneOf, type Rect } from '../script/layouts';
+import type { Action, NoteSpec, Speaker } from '../script/script';
 
 export type CardS = {
   id: string;
@@ -19,7 +19,7 @@ export type CardS = {
   linked?: boolean;
 };
 export type GroupS = { id: string; title: string; subtitle?: string; x: number; y: number; zone: string };
-export type NoteS = { id: string; kicker: string; text: string; x: number; y: number; pulse: boolean };
+export type NoteS = { id: string; kind: 'note' | 'research'; kicker: string; text: string; x: number; y: number; w: number; pulse: boolean };
 export type RingS = { id: string; who: Speaker; rects: Rect[] };
 export type CursorS = { x: number; y: number; visible: boolean; dur: number };
 export type ChipS = { id: string; label: string; done: boolean };
@@ -49,7 +49,7 @@ export type Prim =
   | { type: 'ringOn'; id: string; who: Speaker; cards: string[]; includeTitle?: boolean }
   | { type: 'pulseOff'; target: string }
   | { type: 'chipShow'; id: string; label: string }
-  | { type: 'chipResolve'; id: string; note?: { id: string; kicker: string; text: string; slot: string } }
+  | { type: 'chipResolve'; id: string; note?: NoteSpec }
   | { type: 'chipHide'; id: string };
 
 export type TimedPrim = { t: number; seq: number; prim: Prim };
@@ -113,7 +113,7 @@ function resolvePoint(s: CanvasState, to: string | { x: number; y: number }): { 
   const card = s.cards[to];
   if (card) return { x: card.x + HOT.x, y: card.y + HOT.y };
   const note = s.notes[to];
-  if (note) return { x: note.x + NOTE_W - 40, y: note.y + 70 };
+  if (note) return { x: note.x + note.w - 40, y: note.y + (note.kind === 'research' ? 128 : 70) }; // below the examples, not on them
   const group = groupLayouts[to];
   if (group) return { x: group.x + 70, y: group.y + 14 };
   if (isSlot(to)) {
@@ -240,7 +240,7 @@ export function apply(s: CanvasState, p: Prim): CanvasState {
       const chips = s.chips.map((c) => (c.id === p.id ? { ...c, done: true } : c));
       if (!p.note) return { ...s, chips };
       const pos = slotPos(p.note.slot);
-      return { ...s, chips, notes: { ...s.notes, [p.note.id]: { id: p.note.id, kicker: p.note.kicker, text: p.note.text, x: pos.x, y: pos.y, pulse: false } } };
+      return { ...s, chips, notes: { ...s.notes, [p.note.id]: { id: p.note.id, kind: p.note.kind ?? 'note', kicker: p.note.kicker, text: p.note.text, x: pos.x, y: pos.y, w: p.note.kind === 'research' ? RESEARCH_W : NOTE_W, pulse: false } } };
     }
     case 'chipHide':
       return { ...s, chips: s.chips.filter((c) => c.id !== p.id) };

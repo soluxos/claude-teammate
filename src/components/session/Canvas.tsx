@@ -2,7 +2,7 @@ import { memo, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnap } from '../../engine/context';
 import type { CardS, CursorS, GroupS, NoteS } from '../../engine/state';
-import { CARD_H, NOTE_W, cameraRects, zones, type ZoneId } from '../../script/layouts';
+import { CARD_H, cameraRects, suites, zones, type ZoneId } from '../../script/layouts';
 import type { Speaker } from '../../script/script';
 
 type Bezier = [number, number, number, number];
@@ -237,18 +237,40 @@ const Card = memo(function Card({ c, dim, m }: { c: CardS; dim: boolean; m: Moti
 }, same);
 
 const Note = memo(function Note({ n, tilt, m }: { n: NoteS; tilt: number; m: Motion }) {
+  const research = n.kind === 'research';
   return (
     <motion.div
-      className="note"
+      className={research ? 'note research' : 'note'}
       data-pulse={n.pulse}
-      style={{ left: n.x, top: n.y, width: NOTE_W }}
-      initial={m.instant ? false : m.reduced ? { opacity: 0, rotate: tilt } : { opacity: 0, y: -46, scale: 0.86, rotate: 0 }}
-      animate={{ opacity: 1, y: 0, scale: 1, rotate: tilt }}
+      style={{ left: n.x, top: n.y, width: n.w }}
+      initial={m.instant ? false : m.reduced ? { opacity: 0 } : { opacity: 0, y: -46, scale: 0.86, rotate: 0 }}
+      animate={{ opacity: 1, y: 0, scale: 1, rotate: research ? 0 : tilt }}
       transition={{ duration: m.d(0.45), ease: SOFT }}
     >
       <div className="note-kicker">
-        <span className="note-dot" /> {n.kicker} · Assistant
+        <span className="note-dot" /> {n.kicker}
+        {!research && ' · Assistant'}
       </div>
+      {research && (
+        <div className="suites">
+          {suites.map((s) => (
+            <div key={s.name} className="suite">
+              <div className="suite-name">{s.name}</div>
+              <div className="suite-top" data-merged={s.products === 1}>
+                {Array.from({ length: s.products }, (_, i) => (
+                  <i key={i} />
+                ))}
+              </div>
+              <div className="suite-lines">
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="suite-account">Account</div>
+            </div>
+          ))}
+        </div>
+      )}
       {n.text}
     </motion.div>
   );

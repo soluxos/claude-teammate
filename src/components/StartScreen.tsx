@@ -10,7 +10,7 @@ export function StartScreen() {
       <div className="start-inner">
         <div className="start-kicker">Design exercise · concept prototype</div>
         <h1>
-          <span>Teammate:</span> Claude as a colleague who pushes back.
+          <span>Teammate:</span> work with Claude like another person.
         </h1>
         <dl className="start-brief">
           <div>
@@ -19,16 +19,13 @@ export function StartScreen() {
           </div>
           <div>
             <dt>What isn’t good enough</dt>
-            <dd>
-              On open-ended problems, chat is turn-taking. I lead and Claude agrees, or Claude leads and I accept. Either way the real thinking
-              stays with one of us.
-            </dd>
+            <dd>Chat is turn-taking: I ask, Claude answers. It’s a tool I direct, not someone I think alongside.</dd>
           </div>
           <div>
             <dt>How an agent could do more</dt>
             <dd>
-              Claude acts as another person on the team, with its own opinions and its own view on how to solve the task. It researches in
-              seconds, and it reasons with me until we land on something better than either of us started with.
+              Claude joins the way another person would. It has its own opinions and its own view on how to solve the task, researches in
+              seconds, and reasons it through with me until we get somewhere neither of us would alone.
             </dd>
           </div>
         </dl>
@@ -37,7 +34,7 @@ export function StartScreen() {
             <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>
               <path d="M3 1.8v8.4L10 6z" fill="currentColor" />
             </svg>
-            Play the demo
+            Play an example session
           </button>
           <small>Sound on · {formatTime(player.timeline.total)}</small>
         </div>

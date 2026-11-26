@@ -27,8 +27,8 @@ export function StartScreen() {
           <div>
             <dt>How an agent could do more</dt>
             <dd>
-              Claude joins a live call over a shared canvas. It holds its own view, builds a rival idea alongside mine, brings research, and
-              argues its case until we land on something better than either of us started with.
+              Claude acts as another person on the team, with its own opinions and its own view on how to solve the task. It researches in
+              seconds, and it reasons with me until we land on something better than either of us started with.
             </dd>
           </div>
         </dl>

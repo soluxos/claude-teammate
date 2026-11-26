@@ -24,7 +24,7 @@ export function StartScreen() {
           <div>
             <dt>How an agent could do more</dt>
             <dd>
-              Claude joins the way another person would. It has its own opinions and its own view on how to solve the task, researches in
+              Claude joins the way another teammate would. It has its own opinions and its own view on how to solve the task, researches in
               seconds, and reasons it through with me until we get somewhere neither of us would alone.
             </dd>
           </div>

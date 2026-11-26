@@ -113,7 +113,7 @@ export type Snapshot = {
 
 export interface ClockSource {
   /** Called every frame. Returns the audio's idea of "now" for the line, if it is actually playing. */
-  sync(line: BuiltLine | null, t: number, playing: boolean, speed: number, inSession: boolean): number | null;
+  sync(line: BuiltLine | null, t: number, playing: boolean, speed: number): number | null;
   unlock(): void;
 }
 
@@ -146,7 +146,7 @@ export class Player {
   }
   stop() {
     cancelAnimationFrame(this.raf);
-    this.audio.sync(null, this.t, false, 1, false);
+    this.audio.sync(null, this.t, false, 1);
   }
 
   subscribeTime = (fn: () => void) => (this.timeSubs.add(fn), () => void this.timeSubs.delete(fn));
@@ -178,7 +178,7 @@ export class Player {
     this.last = now;
     const { playing, speed, state } = this.snapshot;
     const line = this.lineAt(this.t);
-    const audioNow = this.audio.sync(line, this.t, playing, speed, state.view === 'session');
+    const audioNow = this.audio.sync(line, this.t, playing, speed);
     if (!playing) return;
 
     let next = this.t + dt * speed;

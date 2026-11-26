@@ -38,7 +38,6 @@ export class AudioEngine implements ClockSource {
   private samples = new Uint8Array(512);
   private urls: Record<string, string> = {};
   private currentId: string | null = null;
-  private tone: GainNode | null = null;
   private unlocked = false;
   /** 'none' | 'partial' | 'full' once load() has run. */
   coverage: 'none' | 'partial' | 'full' = 'none';
@@ -88,7 +87,6 @@ export class AudioEngine implements ClockSource {
         this.analyser.fftSize = 512;
         this.ctx.createMediaElementSource(this.el).connect(this.analyser);
         this.analyser.connect(this.ctx.destination);
-        this.startRoomTone(this.ctx);
       }
       if (this.ctx.state !== 'running') void this.ctx.resume().then(() => (this.unlocked = true)).catch(() => {});
       else this.unlocked = true;
@@ -101,34 +99,8 @@ export class AudioEngine implements ClockSource {
     }
   }
 
-  /** A very quiet bed of filtered noise so silences in the session do not feel dead. */
-  private startRoomTone(ctx: AudioContext) {
-    const seconds = 4;
-    const buffer = ctx.createBuffer(1, ctx.sampleRate * seconds, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    let last = 0;
-    for (let i = 0; i < data.length; i++) {
-      last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02; // brown-ish noise
-      data[i] = last * 3.5;
-    }
-    const src = ctx.createBufferSource();
-    src.buffer = buffer;
-    src.loop = true;
-    const low = ctx.createBiquadFilter();
-    low.type = 'lowpass';
-    low.frequency.value = 520;
-    const high = ctx.createBiquadFilter();
-    high.type = 'highpass';
-    high.frequency.value = 70;
-    this.tone = ctx.createGain();
-    this.tone.gain.value = 0;
-    src.connect(low).connect(high).connect(this.tone).connect(ctx.destination);
-    src.start();
-  }
-
-  sync(line: BuiltLine | null, t: number, playing: boolean, speed: number, inSession: boolean): number | null {
-    const { el, ctx } = this;
-    if (this.tone && ctx) this.tone.gain.setTargetAtTime(playing && inSession ? 0.05 : 0, ctx.currentTime, 0.4);
+  sync(line: BuiltLine | null, t: number, playing: boolean, speed: number): number | null {
+    const { el } = this;
     if (!el) return null;
     const url = line ? this.urls[line.line.id] : undefined;
     if (!playing || !line || !url || !this.unlocked) {

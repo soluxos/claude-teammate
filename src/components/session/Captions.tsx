@@ -8,7 +8,8 @@ const NAMES = { callum: 'Callum', agent: 'Claude' } as const;
 const MAX_WORDS = 20;
 
 /**
- * Splits a line into caption-sized chunks of at most two lines, the way live captions page through speech.
+ * Splits a line into caption-sized chunks of at most two lines. Words fill a chunk as they are said;
+ * when it is full, the next chunk starts on a clean box, so the caption never grows past two lines.
  * Whole sentences are grouped while they fit; a longer one is cut into even pieces, at a comma where there is one nearby.
  */
 function phrases(words: WordTiming[]): number[][] {
@@ -73,11 +74,14 @@ export function Captions() {
       <p>
         <span className="caption-name">{NAMES[line.line.speaker]}</span>
         {direction && chunk === chunks[0] && <em>({direction}) </em>}
-        {chunk.map((i) => (
-          <span key={i} className={i === current ? 'now' : i < current ? 'said' : undefined}>
-            {line.words[i].word}{' '}
-          </span>
-        ))}
+        {/* Live captions: a word appears once it has been said, never before. */}
+        {chunk
+          .filter((i) => i <= current)
+          .map((i) => (
+            <span key={i} className={i === current ? 'now' : 'said'}>
+              {line.words[i].word}{' '}
+            </span>
+          ))}
       </p>
     </div>
   );

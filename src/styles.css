@@ -2664,7 +2664,13 @@ button:focus-visible {
   color: #6a737d;
 }
 
-/* Captions: the speaker's name inline, at the same size as the words, and at most two lines. */
+/* Captions: live, so left-aligned, in a box that fits its words up to a maximum width.
+   The speaker's name is inline at the same size as the words. The box is one line high until the text wraps, never more than two. */
+.captions {
+  width: max-content;
+  max-width: min(760px, calc(100% - 80px));
+  text-align: left;
+}
 .captions .caption-name {
   margin-right: 8px;
   font-size: inherit;

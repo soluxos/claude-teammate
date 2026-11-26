@@ -8,15 +8,30 @@ export function StartScreen() {
   return (
     <div className="start">
       <div className="start-inner">
-        <div className="start-kicker">Concept prototype · a new mode for Claude</div>
-        <p className="start-problem">Today, Claude works for you, or instead of you. Never with you.</p>
+        <div className="start-kicker">Design exercise · concept prototype</div>
         <h1>
           <span>Teammate:</span> Claude as a colleague who pushes back.
         </h1>
-        <p className="start-lede">
-          You and Claude meet on a live call over a shared canvas. Claude holds its own view, builds a competing idea alongside yours, and argues
-          its case, until you land on an answer neither of you started with.
-        </p>
+        <dl className="start-brief">
+          <div>
+            <dt>The product</dt>
+            <dd>Claude. I use it every day for design work, and it’s where I most want a second opinion.</dd>
+          </div>
+          <div>
+            <dt>What isn’t good enough</dt>
+            <dd>
+              On open-ended problems, chat is turn-taking. I lead and Claude agrees, or Claude leads and I accept. Either way the real thinking
+              stays with one of us.
+            </dd>
+          </div>
+          <div>
+            <dt>How an agent could do more</dt>
+            <dd>
+              Claude joins a live call over a shared canvas. It holds its own view, builds a rival idea alongside mine, brings research, and
+              argues its case until we land on something better than either of us started with.
+            </dd>
+          </div>
+        </dl>
         <div className="start-go">
           <button autoFocus onClick={() => player.restart()}>
             <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>

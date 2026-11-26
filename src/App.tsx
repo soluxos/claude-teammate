@@ -28,7 +28,7 @@ export function App() {
       if (cancelled) return;
       player = new Player(buildTimeline(script, timings), audio);
       player.start();
-      if (import.meta.env.DEV) (window as unknown as { __player: Player }).__player = player; // for timing passes
+      if (import.meta.env.DEV) Object.assign(window, { __player: player, __audio: audio }); // for timing and audio passes
       setCtx({ player, audio });
     });
     return () => {

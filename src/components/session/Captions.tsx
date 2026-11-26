@@ -1,60 +1,13 @@
-import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePlayer, useSnap, useTime } from '../../engine/context';
-import type { BuiltLine, WordTiming } from '../../engine/timeline';
+import type { BuiltLine } from '../../engine/timeline';
 import { splitDirection } from '../../script/script';
 
 const NAMES = { callum: 'Callum', agent: 'Claude' } as const;
-// About two lines at caption size. Chunks are built to fit, so the two-line clamp never hides a word.
-const MAX_WORDS = 20;
 const PAD_X = 18;
 const PAD_Y = 10;
-
-/**
- * Splits a line into caption-sized chunks of at most two lines. Words fill a chunk as they are said;
- * when it is full, the next chunk starts on a clean box, so the caption never grows past two lines.
- * Whole sentences are grouped while they fit; a longer one is cut into even pieces, at a comma where there is one nearby.
- */
-function phrases(words: WordTiming[]): number[][] {
-  const sentences: number[][] = [];
-  let cur: number[] = [];
-  words.forEach((w, i) => {
-    cur.push(i);
-    if (/[.?!…—]$/.test(w.word)) {
-      sentences.push(cur);
-      cur = [];
-    }
-  });
-  if (cur.length) sentences.push(cur);
-
-  const merged: number[][] = [];
-  for (const sentence of sentences) {
-    const prev = merged[merged.length - 1];
-    if (prev && prev.length + sentence.length <= MAX_WORDS) prev.push(...sentence);
-    else merged.push([...sentence]);
-  }
-
-  const out: number[][] = [];
-  for (const chunk of merged) {
-    let rest = chunk;
-    while (rest.length > MAX_WORDS) {
-      const pieces = Math.ceil(rest.length / MAX_WORDS);
-      const target = Math.ceil(rest.length / pieces);
-      let cut = target;
-      for (const d of [0, 1, -1, 2, -2, 3, -3]) {
-        const k = target + d;
-        if (k >= 3 && k <= MAX_WORDS && k < rest.length - 2 && /[,;:]$/.test(words[rest[k - 1]].word)) {
-          cut = k;
-          break;
-        }
-      }
-      out.push(rest.slice(0, cut));
-      rest = rest.slice(cut);
-    }
-    out.push(rest);
-  }
-  return out;
-}
+const MAX_LINES = 2;
 
 export function Captions() {
   const player = usePlayer();
@@ -71,52 +24,54 @@ export function Captions() {
 }
 
 /**
- * One box for the whole call: it stays up between lines and changes speaker in place.
- * The text is laid out at its natural width, then the box eases to that size, so a new word or a
- * new line grows the bar smoothly instead of snapping it.
+ * Live captions, as a call app shows them. Nothing is known ahead: words are added as they are said,
+ * and once there are more than two lines the older ones roll up out of view.
+ * The bar fits a short answer while it is still on one line; once a turn wraps, the bar is at full
+ * width and holds still while lines roll up inside it.
  */
 function CaptionBox({ line, t }: { line: BuiltLine; t: number }) {
-  const chunks = useMemo(() => phrases(line.words), [line]);
   const text = useRef<HTMLParagraphElement>(null);
-  const [size, setSize] = useState<{ w: number; h: number } | null>(null);
+  const [size, setSize] = useState<{ w: number; h: number; lh: number } | null>(null);
 
   const local = t - line.start;
   const { direction } = splitDirection(line.line.text);
-  let current = -1;
-  line.words.forEach((w, i) => {
-    if (local >= w.start) current = i;
-  });
-  const chunk = chunks.find((c) => c.includes(current)) ?? chunks[0] ?? [];
-  const shown = chunk.filter((i) => i <= current);
+  const said = line.words.filter((w) => local >= w.start);
 
   useLayoutEffect(() => {
     const el = text.current;
     if (!el) return;
     const w = el.offsetWidth;
     const h = el.offsetHeight;
-    if (!size || size.w !== w || size.h !== h) setSize({ w, h });
+    const lh = parseFloat(getComputedStyle(el).lineHeight) || 23;
+    if (!size || size.w !== w || size.h !== h || size.lh !== lh) setSize({ w, h, lh });
   });
+
+  const lines = size ? Math.max(1, Math.round(size.h / size.lh)) : 1;
+  const viewH = size ? Math.min(lines, MAX_LINES) * size.lh : undefined;
+  const roll = size && viewH ? Math.max(0, size.h - viewH) : 0;
 
   return (
     <motion.div
       className={`captions ${line.line.speaker}`}
       aria-live="off"
-      style={size ? { width: size.w + PAD_X * 2, height: size.h + PAD_Y * 2 } : undefined}
-      initial={{ opacity: 0, y: 8 }}
+      style={size && viewH ? { width: size.w + PAD_X * 2, height: viewH + PAD_Y * 2 } : undefined}
+      initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 6 }}
-      transition={{ duration: 0.28, ease: [0.2, 0.7, 0.2, 1] }}
+      exit={{ opacity: 0, y: 4 }}
+      transition={{ duration: 0.2, ease: [0.2, 0.7, 0.2, 1] }}
     >
-      <p ref={text}>
-        <span className="caption-name">{NAMES[line.line.speaker]}</span>
-        {direction && chunk === chunks[0] && <em>({direction}) </em>}
-        {/* Live captions: a word appears once it has been said, never before. */}
-        {shown.map((i) => (
-          <span key={`${line.line.id}-${i}`} className={i === current ? 'word now' : 'word'}>
-            {line.words[i].word}{' '}
-          </span>
-        ))}
-      </p>
+      <div className="captions-view" style={size && viewH ? { width: size.w, height: viewH } : undefined}>
+        {/* Keyed by line, so a new speaker starts a fresh block rather than rolling the old one away. */}
+        <p key={line.line.id} ref={text} style={{ transform: `translateY(${-roll}px)` }}>
+          <span className="caption-name">{NAMES[line.line.speaker]}</span>
+          {direction && <em>({direction}) </em>}
+          {said.map((w, i) => (
+            <span key={i} className="word">
+              {w.word}{' '}
+            </span>
+          ))}
+        </p>
+      </div>
     </motion.div>
   );
 }

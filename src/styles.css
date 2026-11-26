@@ -2664,8 +2664,14 @@ button:focus-visible {
   color: #6a737d;
 }
 
-/* Captions: name above, at most two lines of speech below. */
+/* Captions: the speaker's name inline, at the same size as the words, and at most two lines. */
+.captions .caption-name {
+  margin-right: 8px;
+  font-size: inherit;
+  font-weight: var(--w-header);
+}
 .captions p {
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

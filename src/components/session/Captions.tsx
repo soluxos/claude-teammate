@@ -70,8 +70,8 @@ export function Captions() {
   const chunk = chunks.find((c) => c.includes(current)) ?? chunks[0] ?? [];
   return (
     <div className={`captions ${line.line.speaker}`} aria-live="off">
-      <span className="caption-name">{NAMES[line.line.speaker]}</span>
       <p>
+        <span className="caption-name">{NAMES[line.line.speaker]}</span>
         {direction && chunk === chunks[0] && <em>({direction}) </em>}
         {chunk.map((i) => (
           <span key={i} className={i === current ? 'now' : i < current ? 'said' : undefined}>

@@ -2,19 +2,24 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { usePlayer, useSnap } from '../engine/context';
 import { record } from '../script/script';
 
-// What happened in the session, in the brief's own terms.
-const split = [
-  { label: 'Claude did on its own', text: 'Researched six suites, read the decision log, built its own option, and wrote up the decision.' },
-  { label: 'Claude checked first', text: 'Said it disagreed before writing anything up, and asked before pulling Account into scope.' },
-  { label: 'You still decided', text: 'What was in scope, which structure to go with, and to test it before committing.' },
-];
-
-// Everything people do with Claude alone in chat today could be a session instead.
-const uses = [
-  { title: 'Designing a UI', text: 'Mocks up a rival layout beside yours, and says which one it would ship.' },
-  { title: 'Building a prototype', text: 'Wires up the flow while you shape it, and flags what won’t hold up.' },
-  { title: 'Writing code', text: 'Questions the approach before you build it, then takes the tests while you do.' },
-  { title: 'Writing and research', text: 'Brings the evidence while you talk, and drafts the case against your idea.' },
+// What I would do next, as the brief asks. Same layout as the start screen.
+const next = [
+  {
+    label: 'Beyond this example',
+    text: 'Run the same session for designing a UI, building a prototype and writing code: anywhere people work with Claude on their own today.',
+  },
+  {
+    label: 'Test it with people',
+    text: 'Put real designers and engineers in sessions, and watch for when pushback helps and when it gets in the way.',
+  },
+  {
+    label: 'Set how hard it pushes',
+    text: 'Let people choose between a Claude that challenges them and one that backs them up, and change it per session.',
+  },
+  {
+    label: 'Make it live',
+    text: 'Swap the script for a real model, so Claude reacts to what you actually say and draw.',
+  },
 ];
 
 /** The prototype's closing screen, outside Claude's interface like the start screen. */
@@ -30,42 +35,28 @@ export function Outro() {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="outro"
+          className="start outro"
           initial={instant ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <div className="outro-inner">
-            <div className="start-kicker">Teammate · what you just saw</div>
-            <h1>Claude did more of the work. You still made the calls.</h1>
-            <div className="outro-split">
-              {split.map((s) => (
-                <div key={s.label}>
-                  <span>{s.label}</span>
-                  {s.text}
+          <div className="start-inner">
+            <div className="start-kicker">Teammate · next steps</div>
+            <h1>What I’d do next.</h1>
+            <dl className="start-brief">
+              {next.map((n) => (
+                <div key={n.label}>
+                  <dt>{n.label}</dt>
+                  <dd>{n.text}</dd>
                 </div>
               ))}
-            </div>
-
-            <h2>Not just navigation. Anything you do with Claude alone today.</h2>
-            <div className="outro-uses">
-              {uses.map((u) => (
-                <div key={u.title}>
-                  <b>{u.title}</b>
-                  {u.text}
-                </div>
-              ))}
-            </div>
-
-            <div className="outro-go">
-              <button className="outro-primary" onClick={() => player.restart()}>
-                Replay
-              </button>
-              <button className="outro-secondary" onClick={backToRecord}>
+            </dl>
+            <div className="start-go">
+              <button onClick={() => player.restart()}>Replay</button>
+              <button className="start-secondary" onClick={backToRecord}>
                 Back to the decision record
               </button>
-              <small>Assumes models a year or two better: quick enough to research mid-sentence, with the judgement to disagree well.</small>
             </div>
           </div>
         </motion.div>

@@ -1,0 +1,67 @@
+{
+ "id": "s3-07",
+ "text": "No, that's fair. Put it in and flag it as a dependency.",
+ "duration": 4.04,
+ "words": [
+  {
+   "word": "No,",
+   "start": 0,
+   "end": 0.209
+  },
+  {
+   "word": "that's",
+   "start": 0.232,
+   "end": 0.43
+  },
+  {
+   "word": "fair.",
+   "start": 0.488,
+   "end": 0.964
+  },
+  {
+   "word": "Put",
+   "start": 1.567,
+   "end": 1.776
+  },
+  {
+   "word": "it",
+   "start": 1.811,
+   "end": 1.881
+  },
+  {
+   "word": "in",
+   "start": 1.95,
+   "end": 2.136
+  },
+  {
+   "word": "and",
+   "start": 2.218,
+   "end": 2.357
+  },
+  {
+   "word": "flag",
+   "start": 2.473,
+   "end": 2.763
+  },
+  {
+   "word": "it",
+   "start": 2.821,
+   "end": 2.879
+  },
+  {
+   "word": "as",
+   "start": 2.914,
+   "end": 3.007
+  },
+  {
+   "word": "a",
+   "start": 3.053,
+   "end": 3.077
+  },
+  {
+   "word": "dependency.",
+   "start": 3.135,
+   "end": 4.04
+  }
+ ]
+}

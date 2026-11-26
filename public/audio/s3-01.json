@@ -1,0 +1,67 @@
+{
+ "id": "s3-01",
+ "text": "Mine's up. Four groups by job: Build, Engage, Measure, Account. No duplicates.",
+ "duration": 6.13,
+ "words": [
+  {
+   "word": "Mine's",
+   "start": 0,
+   "end": 0.406
+  },
+  {
+   "word": "up.",
+   "start": 0.488,
+   "end": 0.789
+  },
+  {
+   "word": "Four",
+   "start": 1.045,
+   "end": 1.265
+  },
+  {
+   "word": "groups",
+   "start": 1.312,
+   "end": 1.591
+  },
+  {
+   "word": "by",
+   "start": 1.649,
+   "end": 1.823
+  },
+  {
+   "word": "job:",
+   "start": 1.904,
+   "end": 2.287
+  },
+  {
+   "word": "Build,",
+   "start": 2.403,
+   "end": 2.891
+  },
+  {
+   "word": "Engage,",
+   "start": 2.937,
+   "end": 3.599
+  },
+  {
+   "word": "Measure,",
+   "start": 3.657,
+   "end": 3.971
+  },
+  {
+   "word": "Account.",
+   "start": 3.994,
+   "end": 4.528
+  },
+  {
+   "word": "No",
+   "start": 4.563,
+   "end": 4.714
+  },
+  {
+   "word": "duplicates.",
+   "start": 4.795,
+   "end": 6.13
+  }
+ ]
+}

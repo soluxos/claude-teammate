@@ -1,0 +1,217 @@
+{
+ "id": "s3-02",
+ "text": "It's tidy, but I don't think it survives real customers. I was on calls last week. Developers live in Harbor, marketers live in Relay, and they're different people. Your Measure group puts server logs next to campaign analytics. No marketer wants that.",
+ "duration": 14.907,
+ "words": [
+  {
+   "word": "It's",
+   "start": 0,
+   "end": 0.209
+  },
+  {
+   "word": "tidy,",
+   "start": 0.255,
+   "end": 0.72
+  },
+  {
+   "word": "but",
+   "start": 0.755,
+   "end": 0.871
+  },
+  {
+   "word": "I",
+   "start": 0.917,
+   "end": 0.94
+  },
+  {
+   "word": "don't",
+   "start": 0.998,
+   "end": 1.184
+  },
+  {
+   "word": "think",
+   "start": 1.219,
+   "end": 1.382
+  },
+  {
+   "word": "it",
+   "start": 1.44,
+   "end": 1.509
+  },
+  {
+   "word": "survives",
+   "start": 1.556,
+   "end": 2.055
+  },
+  {
+   "word": "real",
+   "start": 2.171,
+   "end": 2.392
+  },
+  {
+   "word": "customers.",
+   "start": 2.461,
+   "end": 3.123
+  },
+  {
+   "word": "I",
+   "start": 3.367,
+   "end": 3.402
+  },
+  {
+   "word": "was",
+   "start": 3.471,
+   "end": 3.564
+  },
+  {
+   "word": "on",
+   "start": 3.611,
+   "end": 3.68
+  },
+  {
+   "word": "calls",
+   "start": 3.75,
+   "end": 4.063
+  },
+  {
+   "word": "last",
+   "start": 4.11,
+   "end": 4.296
+  },
+  {
+   "word": "week.",
+   "start": 4.342,
+   "end": 4.714
+  },
+  {
+   "word": "Developers",
+   "start": 5.155,
+   "end": 5.77
+  },
+  {
+   "word": "live",
+   "start": 5.84,
+   "end": 6.037
+  },
+  {
+   "word": "in",
+   "start": 6.084,
+   "end": 6.165
+  },
+  {
+   "word": "Harbor,",
+   "start": 6.258,
+   "end": 6.745
+  },
+  {
+   "word": "marketers",
+   "start": 6.827,
+   "end": 7.349
+  },
+  {
+   "word": "live",
+   "start": 7.43,
+   "end": 7.605
+  },
+  {
+   "word": "in",
+   "start": 7.639,
+   "end": 7.697
+  },
+  {
+   "word": "Relay,",
+   "start": 7.767,
+   "end": 8.313
+  },
+  {
+   "word": "and",
+   "start": 8.44,
+   "end": 8.58
+  },
+  {
+   "word": "they're",
+   "start": 8.615,
+   "end": 8.812
+  },
+  {
+   "word": "different",
+   "start": 8.835,
+   "end": 9.125
+  },
+  {
+   "word": "people.",
+   "start": 9.149,
+   "end": 9.683
+  },
+  {
+   "word": "Your",
+   "start": 9.927,
+   "end": 10.112
+  },
+  {
+   "word": "Measure",
+   "start": 10.17,
+   "end": 10.472
+  },
+  {
+   "word": "group",
+   "start": 10.507,
+   "end": 10.739
+  },
+  {
+   "word": "puts",
+   "start": 10.785,
+   "end": 11.018
+  },
+  {
+   "word": "server",
+   "start": 11.076,
+   "end": 11.575
+  },
+  {
+   "word": "logs",
+   "start": 11.749,
+   "end": 12.086
+  },
+  {
+   "word": "next",
+   "start": 12.155,
+   "end": 12.364
+  },
+  {
+   "word": "to",
+   "start": 12.388,
+   "end": 12.446
+  },
+  {
+   "word": "campaign",
+   "start": 12.515,
+   "end": 13.026
+  },
+  {
+   "word": "analytics.",
+   "start": 13.107,
+   "end": 13.758
+  },
+  {
+   "word": "No",
+   "start": 13.792,
+   "end": 13.909
+  },
+  {
+   "word": "marketer",
+   "start": 13.99,
+   "end": 14.385
+  },
+  {
+   "word": "wants",
+   "start": 14.431,
+   "end": 14.652
+  },
+  {
+   "word": "that.",
+   "start": 14.675,
+   "end": 14.907
+  }
+ ]
+}

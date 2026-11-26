@@ -1,0 +1,67 @@
+{
+ "id": "s3-05",
+ "text": "Account is owned by another team. It's out of scope for us.",
+ "duration": 3.529,
+ "words": [
+  {
+   "word": "Account",
+   "start": 0,
+   "end": 0.464
+  },
+  {
+   "word": "is",
+   "start": 0.522,
+   "end": 0.592
+  },
+  {
+   "word": "owned",
+   "start": 0.662,
+   "end": 0.882
+  },
+  {
+   "word": "by",
+   "start": 0.917,
+   "end": 1.033
+  },
+  {
+   "word": "another",
+   "start": 1.103,
+   "end": 1.382
+  },
+  {
+   "word": "team.",
+   "start": 1.44,
+   "end": 1.858
+  },
+  {
+   "word": "It's",
+   "start": 2.368,
+   "end": 2.531
+  },
+  {
+   "word": "out",
+   "start": 2.566,
+   "end": 2.67
+  },
+  {
+   "word": "of",
+   "start": 2.717,
+   "end": 2.763
+  },
+  {
+   "word": "scope",
+   "start": 2.833,
+   "end": 3.146
+  },
+  {
+   "word": "for",
+   "start": 3.181,
+   "end": 3.297
+  },
+  {
+   "word": "us.",
+   "start": 3.355,
+   "end": 3.529
+  }
+ ]
+}

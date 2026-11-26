@@ -1,0 +1,37 @@
+{
+ "id": "s4-05",
+ "text": "Agreed. Can you write it up?",
+ "duration": 1.997,
+ "words": [
+  {
+   "word": "Agreed.",
+   "start": 0,
+   "end": 0.557
+  },
+  {
+   "word": "Can",
+   "start": 1.161,
+   "end": 1.312
+  },
+  {
+   "word": "you",
+   "start": 1.358,
+   "end": 1.428
+  },
+  {
+   "word": "write",
+   "start": 1.451,
+   "end": 1.649
+  },
+  {
+   "word": "it",
+   "start": 1.672,
+   "end": 1.73
+  },
+  {
+   "word": "up?",
+   "start": 1.776,
+   "end": 1.997
+  }
+ ]
+}

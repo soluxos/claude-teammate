@@ -1,0 +1,177 @@
+{
+ "id": "s4-04",
+ "text": "That's better than either of the two we drew. One thing I'm unsure about: opening by role could hide things from people who do both jobs. I'd want to test it before we commit.",
+ "duration": 11.146,
+ "words": [
+  {
+   "word": "That's",
+   "start": 0,
+   "end": 0.337
+  },
+  {
+   "word": "better",
+   "start": 0.395,
+   "end": 0.662
+  },
+  {
+   "word": "than",
+   "start": 0.708,
+   "end": 0.848
+  },
+  {
+   "word": "either",
+   "start": 0.94,
+   "end": 1.173
+  },
+  {
+   "word": "of",
+   "start": 1.231,
+   "end": 1.277
+  },
+  {
+   "word": "the",
+   "start": 1.335,
+   "end": 1.405
+  },
+  {
+   "word": "two",
+   "start": 1.451,
+   "end": 1.625
+  },
+  {
+   "word": "we",
+   "start": 1.683,
+   "end": 1.788
+  },
+  {
+   "word": "drew.",
+   "start": 1.846,
+   "end": 2.31
+  },
+  {
+   "word": "One",
+   "start": 2.601,
+   "end": 2.833
+  },
+  {
+   "word": "thing",
+   "start": 2.868,
+   "end": 3.03
+  },
+  {
+   "word": "I'm",
+   "start": 3.077,
+   "end": 3.193
+  },
+  {
+   "word": "unsure",
+   "start": 3.262,
+   "end": 3.715
+  },
+  {
+   "word": "about:",
+   "start": 3.762,
+   "end": 4.284
+  },
+  {
+   "word": "opening",
+   "start": 4.679,
+   "end": 5.05
+  },
+  {
+   "word": "by",
+   "start": 5.108,
+   "end": 5.224
+  },
+  {
+   "word": "role",
+   "start": 5.317,
+   "end": 5.724
+  },
+  {
+   "word": "could",
+   "start": 5.782,
+   "end": 6.002
+  },
+  {
+   "word": "hide",
+   "start": 6.072,
+   "end": 6.362
+  },
+  {
+   "word": "things",
+   "start": 6.397,
+   "end": 6.629
+  },
+  {
+   "word": "from",
+   "start": 6.664,
+   "end": 6.792
+  },
+  {
+   "word": "people",
+   "start": 6.85,
+   "end": 7.152
+  },
+  {
+   "word": "who",
+   "start": 7.175,
+   "end": 7.291
+  },
+  {
+   "word": "do",
+   "start": 7.349,
+   "end": 7.477
+  },
+  {
+   "word": "both",
+   "start": 7.558,
+   "end": 7.79
+  },
+  {
+   "word": "jobs.",
+   "start": 7.86,
+   "end": 8.44
+  },
+  {
+   "word": "I'd",
+   "start": 8.777,
+   "end": 8.94
+  },
+  {
+   "word": "want",
+   "start": 8.986,
+   "end": 9.172
+  },
+  {
+   "word": "to",
+   "start": 9.207,
+   "end": 9.265
+  },
+  {
+   "word": "test",
+   "start": 9.323,
+   "end": 9.59
+  },
+  {
+   "word": "it",
+   "start": 9.648,
+   "end": 9.729
+  },
+  {
+   "word": "before",
+   "start": 9.776,
+   "end": 10.043
+  },
+  {
+   "word": "we",
+   "start": 10.077,
+   "end": 10.147
+  },
+  {
+   "word": "commit.",
+   "start": 10.194,
+   "end": 11.146
+  }
+ ]
+}

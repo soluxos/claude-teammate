@@ -1,0 +1,102 @@
+{
+ "id": "s1-04",
+ "text": "I'm not convinced. Tell you what, I'll lay out the switcher version properly, you do yours, and we compare.",
+ "duration": 7.57,
+ "words": [
+  {
+   "word": "I'm",
+   "start": 0,
+   "end": 0.186
+  },
+  {
+   "word": "not",
+   "start": 0.244,
+   "end": 0.372
+  },
+  {
+   "word": "convinced.",
+   "start": 0.418,
+   "end": 1.138
+  },
+  {
+   "word": "Tell",
+   "start": 1.649,
+   "end": 1.846
+  },
+  {
+   "word": "you",
+   "start": 1.881,
+   "end": 1.95
+  },
+  {
+   "word": "what,",
+   "start": 1.997,
+   "end": 2.403
+  },
+  {
+   "word": "I'll",
+   "start": 2.577,
+   "end": 2.763
+  },
+  {
+   "word": "lay",
+   "start": 2.81,
+   "end": 2.926
+  },
+  {
+   "word": "out",
+   "start": 2.972,
+   "end": 3.065
+  },
+  {
+   "word": "the",
+   "start": 3.1,
+   "end": 3.17
+  },
+  {
+   "word": "switcher",
+   "start": 3.204,
+   "end": 3.529
+  },
+  {
+   "word": "version",
+   "start": 3.587,
+   "end": 3.913
+  },
+  {
+   "word": "properly,",
+   "start": 3.971,
+   "end": 4.493
+  },
+  {
+   "word": "you",
+   "start": 4.818,
+   "end": 4.923
+  },
+  {
+   "word": "do",
+   "start": 5.004,
+   "end": 5.132
+  },
+  {
+   "word": "yours,",
+   "start": 5.201,
+   "end": 5.689
+  },
+  {
+   "word": "and",
+   "start": 6.13,
+   "end": 6.269
+  },
+  {
+   "word": "we",
+   "start": 6.316,
+   "end": 6.409
+  },
+  {
+   "word": "compare.",
+   "start": 6.467,
+   "end": 7.57
+  }
+ ]
+}
